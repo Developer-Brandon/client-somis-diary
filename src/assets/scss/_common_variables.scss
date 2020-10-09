@@ -1,0 +1,35 @@
+//@ Screen size variable
+$screen-desktop: 992px;
+$screen-tablet: 768px;
+$screen-mobile: $screen-tablet - 1px;
+$screen-desktop-another: 1200px;
+$screen-tablet-max: $screen-desktop - 1px;
+$screen-tablet-max-another: $screen-desktop-another - 1px;
+$grid-gutter-width: 30px !default;
+
+//@ Contents size variable
+$contents-width: 980px;
+$contents-height: 0;
+
+//@ Color variable
+$sd-light-blue: rgb(169, 196, 245);
+$sd-blue: rgb(100, 149, 237);
+$sd-deep-blue: rgb(101, 147, 245);
+
+$sd-gray: rgba(211, 211, 211, 0.5);
+$sd-light-gray: rgba(211, 211, 211, 0.1);
+$sd-deep-gray: rgb(53,53,53);
+$sd-opacity-deep-gray: rgba(53,53,53, 0.2);
+
+$sd-white: rgb(255,255,255);
+$sd-light-white: rgba(255,255,255,0.5);
+$sd-transparent-white: rgba(211, 211, 211, 0.8);
+
+$sd-ivory: rgb(255,255,240);
+
+$sd-red: rgb(300,18,27);
+$sd-deep-red: rgb(145,18,27);
+
+$sd-yellow: rgb(255,221,46);
+
+$sd-black: rgb(0, 0, 0);

@@ -1,0 +1,37 @@
+@mixin title-common-style {
+  margin: 0 auto;
+  max-width: 870px;
+  border-left: 3px solid $sd-blue;
+  padding-left: 10px;
+  @media (max-width: $screen-mobile) {
+    max-width: $screen-mobile;
+    padding-left: 5px;
+    margin-left: 10px;
+  }
+  .title {
+    font-size: 20px;
+    margin-bottom: 25px;
+    @media (max-width: $screen-mobile) {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+//@mixin sub-title-common-style {
+//  margin: 0 auto;
+//  max-width: 870px;
+//  border-left: 3px solid $sd-blue;
+//  padding-left: 10px;
+//  @media (max-width: $screen-mobile) {
+//    max-width: $screen-mobile;
+//    padding-left: 5px;
+//    margin-left: 10px;
+//  }
+//  .title {
+//    font-size: 20px;
+//    margin-bottom: 25px;
+//    @media (max-width: $screen-mobile) {
+//      margin-bottom: 20px;
+//    }
+//  }
+//}

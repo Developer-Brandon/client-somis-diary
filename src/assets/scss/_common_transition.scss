@@ -1,0 +1,49 @@
+// @Page fade
+.page-fade-enter, .page-fade-leave-to {
+  opacity: 0;
+}
+
+.page-fade-enter-active, .page-fade-leave-active {
+  transition: opacity .2s ease-out;
+}
+
+// @Component fade
+.component-fade-enter, .component-fade-leave-to {
+  opacity: 0;
+}
+
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .3s ease-out;
+}
+
+// @Slide
+.component-slide-enter {
+  //
+}
+
+.component-slide-leave-to {
+  //
+}
+
+.component-slide-enter-active {
+  animation: slide-in 0.5s forwards;
+  -webkit-animation: slide-in 0.5s forwards;
+}
+
+.component-slide-leave-active {
+  animation: slide-out 0.5s forwards;
+  -webkit-animation: slide-out 0.5s forwards;
+}
+
+// @Content
+.content-fade-enter, .content-fade-leave-to {
+  opacity: 0;
+}
+
+.content-fade-enter-active {
+  transition: opacity 1.5s ease-in-out;
+}
+.content-fade-leave-active {
+  //
+}
+

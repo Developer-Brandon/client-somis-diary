@@ -1,0 +1,279 @@
+.clear-both {
+  clear: both;
+}
+
+.mobile-visible-block-only {
+  display: none;
+  @media (max-width: $screen-mobile) {
+    display: block;
+  }
+}
+
+.desktop-visible-block-only {
+  display: block;
+  @media (max-width: $screen-mobile) {
+    display: none;
+  }
+}
+
+.mobile-visible-inline-only {
+  display: none;
+  @media (max-width: $screen-mobile) {
+    display: inline;
+  }
+}
+
+.desktop-visible-inline-only {
+  display: inline;
+  @media (max-width: $screen-mobile) {
+    display: none;
+  }
+}
+
+.sd-light-blue {
+  color: $sd-light-blue;
+}
+
+.sd-blue {
+  color: $sd-blue;
+}
+
+.sd-deep-blue {
+  color: $sd-deep-blue;
+}
+
+.sd-red {
+  color: $sd-red;
+}
+
+.sd-above-dot {
+  font-size: 30px;
+  text-emphasis-style: dot;
+  text-emphasis-position: over left;
+  -webkit-text-emphasis-style: dot;
+  -webkit-text-emphasis-position: over;
+}
+
+.sd-display-block {
+  display: block;
+}
+
+.sd-display-none {
+  display: none;
+}
+
+.sd-telephone-emphasize {
+  transition: 0.3s;
+  &:hover {
+    font-weight: 500;
+  }
+}
+
+.sd-email-emphasize {
+  &:hover {
+    font-weight: 500;
+  }
+}
+
+.sd-labeling {
+  display: block;
+  width: 100%;
+  height: 100%;
+  vertical-align: center;
+  @media (max-width: $screen-mobile) {
+  }
+}
+
+.sd-labeling-title {
+  font-size: 18px;
+  line-height: 30px;
+  @media (max-width: $screen-mobile) {
+    font-size: 18px;
+    line-height: 30px;
+  }
+}
+
+.sd-labeling-subtitle {
+  font-size: 13px;
+  line-height: 20px;
+  color: $sd-blue;
+  @media (max-width: $screen-mobile) {
+    display: block;
+    font-size: 15px;
+    text-align: right;
+  }
+}
+
+
+.sd-select {
+  width: 100%;
+  height: 30px;
+  line-height: 26px;
+  background: none;
+  outline: 0;
+  border: none;
+  border-radius: 0;
+  font-family: inherit;
+  padding: 4px 5px 2px 5px;
+  cursor: pointer;
+  text-align: center;
+  text-align: -webkit-center;
+  text-align-last: center;
+  font-weight: 300;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  @media (max-width: $screen-mobile) {
+    font-size: 15px;
+  }
+  &:focus, &:active {
+    cursor: pointer;
+    outline: none;
+  }
+  &:after {
+    border: 0;
+  }
+  .sd-option {
+    width: 100%;
+    height: auto;
+    color: $sd-black;
+    font-weight: 300;
+    white-space: pre;
+    line-height: 30px;
+    text-shadow: none;
+  }
+}
+
+.sd-input {
+  background-color: $sd-white;
+  border: 1px solid $sd-transparent-white;
+  font-weight: 200;
+  font-size: 15px;
+  letter-spacing: -0.5px;
+  line-height: 22px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @media (max-width: $screen-mobile) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  &:focus {
+    border: 1px solid $sd-blue;
+  }
+}
+
+.sd-textarea {
+  display: block;
+  background-color: $sd-white;
+  border: 1px solid $sd-transparent-white;
+  font-weight: 200;
+  font-size: 15px;
+  letter-spacing: -0.5px;
+  line-height: 22px;
+  resize: none;
+  border-radius: 3px;
+  width: 100%;
+  overflow: hidden;
+  padding: 5px 10px;
+  @media (max-width: $screen-mobile) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  &:focus {
+    border: 1px solid $sd-blue;
+  }
+}
+
+.sd-positive-button {
+  border: 1px solid $sd-white;
+  border-radius: 5px;
+  color: $sd-white;
+  transition: 0.3s;
+  &:hover {
+    color: $sd-deep-blue;
+    background-color: $sd-white;
+    font-size: 16.5px;
+    font-weight: 700;
+  }
+  @media (max-width: $screen-mobile) {
+    border: 0;
+    border-radius: 0;
+    color: $sd-deep-blue;
+    background-color: $sd-white;
+    font-size: 18px;
+  }
+}
+
+.sd-positive-reversal-button {
+  border: 1px solid $sd-deep-blue;
+  border-radius: 5px;
+  background-color: $sd-white;
+  color: $sd-deep-blue;
+  transition: 0.3s;
+  &:hover {
+    color: $sd-deep-blue;
+    font-size: 16.5px;
+    font-weight: 700;
+  }
+  @media (max-width: $screen-mobile) {
+    color: $sd-deep-blue;
+    font-size: 18px;
+    border: 0;
+    border-radius: 0;
+  }
+}
+
+.sd-negative-button {
+  border: 1px solid $sd-deep-blue;
+  border-radius: 5px;
+  color: $sd-deep-blue;
+  transition: 0.3s;
+  &:hover {
+    color: $sd-white;
+    background-color: $sd-deep-blue;
+    font-size: 16.5px;
+    font-weight: 700;
+  }
+  @media (max-width: $screen-mobile) {
+    border: 0;
+    border-radius: 0;
+    color: $sd-white;
+    background-color: $sd-deep-blue;
+    font-size: 18px;
+  }
+}
+
+.sd-negative-reversal-button {
+  border: 1px solid $sd-deep-blue;
+  border-radius: 5px;
+  background-color: $sd-deep-blue;
+  color: $sd-white;
+  transition: 0.3s;
+  &:hover {
+    font-size: 16.5px;
+    font-weight: 700;
+  }
+  @media (max-width: $screen-mobile) {
+    background-color: $sd-deep-blue;
+    font-size: 18px;
+  }
+}
+
+.sd-scrollbar {
+  &:hover {
+    cursor: pointer;
+  }
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $sd-gray;
+    transition: 0.3s;
+    &:hover {
+      background: $sd-opacity-deep-gray;
+    }
+  }
+}
