@@ -1,7 +1,7 @@
 export default {
- methods: {
-  callGlobalMethod() {
-   console.log('This code works well')
+  methods: {
+    callGlobalMethod() {
+      console.log('This code works well')
+    },
   },
- },
 }

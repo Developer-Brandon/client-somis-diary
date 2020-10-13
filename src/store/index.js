@@ -13,13 +13,12 @@ Vue.use(Vuex)
 const entryPointOfStore = () => new Vuex.Store({
   namespaced: true,
   modules: {
-    app,
     arrangeDiary,
     community,
     join,
     login,
     notice,
-    writeDiary
+    writeDiary,
   },
 })
 
