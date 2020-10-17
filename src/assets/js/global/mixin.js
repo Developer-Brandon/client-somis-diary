@@ -1,7 +1,12 @@
 export default {
   methods: {
-    callGlobalMethod() {
-      console.log('This code works well')
+    getProjectTitle() {
+      return 'Somi\'s diary'
+    },
+    getProjectExplain() {
+      return `You would record for your cat<br />
+      This diary can record history of your cat<br />
+      Record your cat's childhood memory for future`
     },
   },
 }

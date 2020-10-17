@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev-local": "NODE_PHASE=dev NODE_ENV=local vue-cli-service serve",
-    "dist-dev-server": "NODE_PHASE=dev NODE_ENV=server vue-cli-service build",
-    "prod-local": "NODE_PHASE=production NODE_ENV=local vue-cli-service serve",
-    "dist-prod-server": "NODE_PHASE=production NODE_ENV=server vue-cli-service build",
+    "dev-local": "PORT=4003 NODE_ENV=local vue-cli-service serve --mode development --open",
+    "dist-dev-server": "NODE_ENV=server vue-cli-service --mode development build",
+    "prod-local": "PORT=4004 NODE_ENV=local vue-cli-service serve --mode production --open",
+    "dist-prod-server": "NODE_ENV=server vue-cli-service build",
     "lint": "vue-cli-service lint",
     "force-lint": "vue-cli-service lint --fix"
   },
@@ -15,7 +15,6 @@
     "vue": "^2.6.11",
     "axios": "^0.19.2",
     "cheero": "0.0.1",
-    "cross-env": "^7.0.2",
     "jquery": "^3.5.1",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.20",
