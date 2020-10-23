@@ -6,7 +6,7 @@ export default {
     getProjectExplain() {
       return `You would record for your cat<br />
       This diary can record history of your cat<br />
-      Record your cat's childhood memory for future`
+      Record your cat's childhood <br class="mobile-visible-block-only"/>memory for future`
     },
     getCommonAnnouncement() {},
     callInquiryEstimateModal() {},

@@ -1,0 +1,53 @@
+// I had to custom default css of vue-hamburger-menu library.
+// below codes must be initialize before APP loading.
+
+.bm-burger-button {
+  width: 25px !important;
+  height: 22px !important;
+  left: 22px !important;
+  top: 20px !important;
+  cursor: pointer;
+}
+
+.bm-burger-bars {
+  background-color: $sd-white !important;
+}
+
+.bm-menu {
+  background-color: $sd-blue !important;
+  transition: 0.2s !important;
+  text-align: center !important;
+}
+
+.bm-item-list {
+  width: 150px !important;
+  margin-left: 0 !important;
+  font-size: 16px !important;
+}
+
+.bm-item-list > * {
+  display: flex;
+  text-decoration: none;
+  padding: 0.6em !important;
+}
+
+.bm-item-list > * > span {
+  margin: 0 auto !important;
+  font-weight: 700;
+  color: $sd-white !important;
+  text-align: center !important;
+}
+
+.bm-cross {
+  background: $sd-white !important;
+}
+
+.bm-cross-button {
+  width: 30px;
+  height: 30px;
+}
+
+.cross-style {
+  right: 5px !important;
+  top: 15px !important;
+}

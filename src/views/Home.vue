@@ -111,7 +111,7 @@ export default {
       position: relative;
       padding: 50px;
       @media (max-width: $screen-mobile) {
-        padding: 80px 50px;
+        padding: 65px 50px 0 50px;
       }
       .left-arrow {
         position: absolute;
@@ -174,6 +174,9 @@ export default {
           font-size: 20px;
           font-weight: 700;
           line-height: 25px;
+          @media (max-width: $screen-mobile) {
+            font-size: 15px;
+          }
         }
       }
     }
