@@ -1,6 +1,7 @@
 <template>
-  <div
+  <section
     v-show="values.check.lifeCycle"
+    onmousedown="return false"
     class="home"
     :class="{
       'wide-width': headerTypeState === enums.headerType.WIDE,
@@ -11,24 +12,34 @@
       class="home__inner"
     >
       <img
-        class="left-arrow"
+        class="left-arrow desktop-visible-block-only"
         src="@/assets/images/icons/left-and-right-arrow.png"
         alt="left arrow"
         @click="clickHeaderChangeButton"
       />
-      <div class="title">
+      <div class="pc-title desktop-visible-block-only">
         <img
-          class="title__icon"
+          class="pc-title__icon"
           src="@/assets/images/icons/primary-cat.png"
           alt="somi"
         />
-        <span class="title__text">{{ getProjectTitle() }}</span>
+        <span class="pc-title__text">{{ getProjectTitle() }}</span>
+      </div>
+      <div class="mobile-title mobile-visible-block-only">
+        <div class="mobile-title__wrap-icon">
+          <img
+            class="mobile-title__wrap-icon__icon"
+            src="@/assets/images/icons/primary-cat.png"
+            alt="somi"
+          />
+        </div>
+        <h2 class="title-text font-bold">SOMI'S<br/>DIARY</h2>
       </div>
       <div class="sub-title">
         <p v-html="getProjectExplain()"></p>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -77,9 +88,15 @@ export default {
   // @Local util
   .wide-width {
     width: calc(100% - 300px) !important;
+    @media (max-width: $screen-mobile) {
+      width: 100% !important;
+    }
   }
   .strait-width {
     width: calc(100% - 100px) !important;
+    @media (max-width: $screen-mobile) {
+      width: 100% !important;
+    }
   }
   .home {
     float: right;
@@ -87,9 +104,15 @@ export default {
     height: 100vh;
     background-color: $sd-yellow;
     background-image: url('~@/assets/images/main/banner/silent-cat.png');
+    @media (max-width: $screen-mobile) {
+      background-position: 20% center;
+    }
     &__inner {
       position: relative;
       padding: 50px;
+      @media (max-width: $screen-mobile) {
+        padding: 80px 50px;
+      }
       .left-arrow {
         position: absolute;
         top: 10px;
@@ -98,7 +121,7 @@ export default {
         height: 50px;
         cursor: pointer;
       }
-      .title {
+      .pc-title {
         text-align: right;
         margin-bottom: 15px;
         margin-right: 80px;
@@ -114,9 +137,38 @@ export default {
           letter-spacing: 1.5px;
         }
       }
+      .mobile-title {
+        &__wrap-icon {
+          position: relative;
+          width: 150px;
+          height: 150px;
+          background-color: $sd-blue;
+          margin: 0 auto;
+          border-radius: 20px;
+          &__icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100px;
+            height: 100px;
+            transform: translate(-50%, -50%);
+          }
+        }
+        .title-text {
+          color: $sd-blue;
+          font-size: 50px;
+          text-align: center;
+          padding: 20px 0;
+          letter-spacing: 2px;
+        }
+      }
       .sub-title {
         text-align: right;
         margin-right: 80px;
+        @media (max-width: $screen-mobile) {
+          text-align: center;
+          margin-right: 0;
+        }
         p {
           color: $sd-white;
           font-size: 20px;

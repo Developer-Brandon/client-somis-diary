@@ -8,5 +8,10 @@ export default {
       This diary can record history of your cat<br />
       Record your cat's childhood memory for future`
     },
+    getCommonAnnouncement() {},
+    callInquiryEstimateModal() {},
+    goInstagram() {},
+    goNaverBlog() {},
+    goKakaotalkChannel() {},
   },
 }
