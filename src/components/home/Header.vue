@@ -123,13 +123,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    $max-width:400px;
 
     // @Classes
     .header {
         &__pc {
             position: relative;
-            max-width: 300px;
-            width: 300px;
+            max-width: $max-width;
+            width: $max-width;
             height: 100vh;
             background-color: $sd-blue;
             border: 0;
@@ -139,9 +140,9 @@ export default {
             @media (max-width: $screen-mobile) {
             }
             &.wide {
-                max-width: 300px;
-                width: 300px;
-                padding: 50px 30px !important;
+                max-width: $max-width;
+                width: $max-width;
+                padding: 50px 70px !important;
                 .title {
                     margin-bottom: 30px;
                     &__inner {
@@ -159,7 +160,7 @@ export default {
 
                 .description {
                     display: block;
-                    margin-bottom: 100px;
+                    margin-bottom: 50px;
                     &__inner {
                         width: max-content;
                         border-bottom: 1px solid $sd-light-white;
@@ -178,11 +179,12 @@ export default {
                     &__inner {
                         width: max-content;
                         float: right;
+                        text-align: right;
                         p {
                             color: $sd-white;
-                            font-size: 25px;
+                            font-size: 30px;
                             line-height: 45px;
-                            letter-spacing: 0.8px;
+                            letter-spacing: -0.1px;
                             &:hover {
                                 cursor: pointer;
                             }
@@ -207,7 +209,7 @@ export default {
                             text-align: right;
                             color: $sd-white;
                             font-size: 25px;
-                            line-height: 35px;
+                            line-height: 45px;
                             letter-spacing: 0.8px;
                             &:hover {
                                 cursor: pointer;
