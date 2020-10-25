@@ -13,7 +13,7 @@
     >
       <img
         class="left-arrow desktop-visible-block-only"
-        src="@/assets/images/icons/left-and-right-arrow.png"
+        src="@/assets/images/icons/opposite-arrows.png"
         alt="left arrow"
         @click="clickHeaderChangeButton"
       />
