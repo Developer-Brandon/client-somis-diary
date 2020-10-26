@@ -1,19 +1,19 @@
-import { HeaderType } from '@/assets/js/enums/HeaderType'
+import { HeaderState } from '@/assets/js/enums/HeaderState'
 
 const state = () => ({
-  headerType: HeaderType.WIDE,
+  headerType: HeaderState.WIDE,
 })
 const getters = {
   headerType: (state) => state.headerType,
 }
 const mutations = {
-  setHeaderTypeState(state, params) {
+  setHeaderStateState(state, params) {
     state.headerType = params.headerType
   },
 }
 const actions = {
   SET_HEADER_STATE: ({ commit }, params) => new Promise((resolve) => {
-    commit('setHeaderTypeState', params)
+    commit('setHeaderStateState', params)
     resolve()
   }),
 }

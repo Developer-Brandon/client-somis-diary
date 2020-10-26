@@ -1,4 +1,4 @@
-export const HeaderType = Object.freeze({
+export const HeaderState = Object.freeze({
   WIDE: {
     name: 'wide',
     value: 1,

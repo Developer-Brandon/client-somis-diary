@@ -4,8 +4,8 @@
     onmousedown="return false"
     class="home"
     :class="{
-      'wide-width': headerTypeState === enums.headerType.WIDE,
-      'strait-width': headerTypeState === enums.headerType.STRAIT,
+      'wide-width': headerState === enums.headerState.WIDE,
+      'strait-width': headerState === enums.headerState.STRAIT,
     }"
   >
     <div
@@ -13,7 +13,7 @@
     >
       <img
         class="left-arrow desktop-visible-block-only"
-        src="@/assets/images/icons/opposite-arrows.png"
+        src="@/assets/images/icons/apposite-arrows.png"
         alt="left arrow"
         @click="clickHeaderChangeButton"
       />
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { HeaderType } from '@/assets/js/enums/HeaderType'
+import { HeaderState } from '@/assets/js/enums/HeaderState'
 
 export default {
   name: 'Home',
@@ -58,12 +58,12 @@ export default {
         },
       },
       enums: {
-        headerType: HeaderType,
+        headerState: HeaderState,
       },
     }
   },
   computed: {
-    headerTypeState() {
+    headerState() {
       return this.$store.getters['home/headerType']
     },
   },
@@ -75,10 +75,10 @@ export default {
   methods: {
     clickHeaderChangeButton() {
       let headerType
-      if (this.headerTypeState === HeaderType.WIDE) {
-        headerType = HeaderType.STRAIT
+      if (this.headerState === HeaderState.WIDE) {
+        headerType = HeaderState.STRAIT
       } else {
-        headerType = HeaderType.WIDE
+        headerType = HeaderState.WIDE
       }
       this.$store.dispatch('home/SET_HEADER_STATE', { headerType })
     },
