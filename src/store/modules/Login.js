@@ -8,7 +8,7 @@ const state = () => ({
   // 5. Write diary 클릭시 매번 검사
   // 6. Arrange diary 클릭시 매번 검사
   // 7. Write diary 클릭시 로그인 되어있으면 고양이 목록 가져와야 함
-  accessToken: true, // TODO: cookie에서 끌어오게 개발 예정
+  accessToken: false, // TODO: cookie에서 끌어오게 개발 예정
   whetherCatExist: false,
   establishedCatList: [],
 })
