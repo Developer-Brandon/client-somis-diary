@@ -4,17 +4,37 @@
       <sd-header />
       <router-view />
     </div>
+    <whether-login-state-modal ref="whtherLoginStateModal" />
+    <sign-in-modal ref="signInModal" />
+    <sign-up-modal ref="signUpModal" />
+    <sign-up-client-modal ref="signUpClientModal" />
+    <must-establish-cat-announce-modal ref="mustEstablishCatAnnounceModal"/>
+    <establish-cat-modal ref="establishCatModal" />
+    <write-cat-diary-modal ref="writeCatDiaryModal" />
   </div>
 </template>
 
 <script>
 import SdHeader from '@/components/home/Header.vue'
+import SignInModal from '@/components/util/modal/SignInModal.vue'
+import SignUpModal from '@/components/util/modal/SignUpModal.vue'
+import SignUpClientModal from '@/components/util/modal/SignUpClientModal.vue'
+import WhetherLoginStateModal from '@/components/util/modal/WhetherLoginStateModal.vue'
+import MustEstablishCatAnnounceModal from '@/components/util/modal/MustEstablishCatAnnounceModal.vue'
+import EstablishCatModal from '@/components/util/modal/EstablishCatModal.vue'
+import WriteCatDiaryModal from '@/components/util/modal/WriteCatDiaryModal.vue'
 
 export default {
   name: 'App',
   components: {
+    WhetherLoginStateModal,
     SdHeader,
-    // SdClearBoth,
+    SignInModal,
+    SignUpModal,
+    SignUpClientModal,
+    MustEstablishCatAnnounceModal,
+    EstablishCatModal,
+    WriteCatDiaryModal,
   },
 }
 </script>

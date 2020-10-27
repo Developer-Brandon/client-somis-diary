@@ -1,13 +1,13 @@
 <template>
-    <section></section>
+  <section></section>
 </template>
 
 <script>
 export default {
-  name: 'SimpleModla',
+  name: 'WriteCatDiaryModal',
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 
 </style>

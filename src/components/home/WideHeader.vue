@@ -30,20 +30,20 @@
       alt="커뮤니티"
       @click="routing(enums.pageState.COMMUNITY)"
     />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+    <auth-section :header-state="enums.headerState.STRAIT" />
   </section>
 </template>
 
 <script>
+import { HeaderState } from '@/assets/js/enums/HeaderState'
 import { PageState } from '@/assets/js/enums/PageState'
+import AuthSection from '@/components/home/AuthSection.vue'
 
 export default {
   name: 'WideHeader',
+  components: {
+    AuthSection,
+  },
   data() {
     return {
       values: {
@@ -53,11 +53,34 @@ export default {
       },
       enums: {
         pageState: PageState,
+        headerState: HeaderState,
       },
     }
   },
+  computed: {
+    isClientLogin() {
+      return this.$store.getters['login/isClientLogin']
+    },
+    getWhetherCatExist() {
+      return this.$store.getters['login/getWhetherCatExist']
+    },
+  },
   methods: {
-    callWriteDiaryModal() {},
+    callWriteDiaryModal() {
+      if (this.isClientLogin) {
+        // 2.로그인이 되어있다면,
+        // 2-(1).기존에 등록되어있는 고양이가 있는지 없는지 확인하는 모달 필요
+        if (this.getWhetherCatExist) {
+          // 2-(1)-1.기존에 등록되어있는 고양이가 있다면 다이어리 쓰는 모달 띄우기
+        } else {
+          // 2-(1)-2.기존에 등록되어있는 고양이가 없다면 고양이를 등록해야 한다는 모달을 띄우기
+          // 고양이를 등록하겠다고 한다면, 고양이를 등록할 수 있는 모달 띄우기
+        }
+      } else {
+        // 1.로그인이 안되어있다면, 로그인 창 띄우기
+
+      }
+    },
     routing(pageEnum) {
       switch (pageEnum) {
         case this.enums.pageState.ARRANGE_DIARY:
@@ -78,6 +101,7 @@ export default {
     .write-diary-icon {
         cursor: pointer;
     }
+
     .arrange-diary-icon {
         cursor: pointer;
     }

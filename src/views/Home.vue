@@ -11,12 +11,16 @@
     <div
       class="home__inner"
     >
-      <img
-        class="left-arrow desktop-visible-block-only"
-        src="@/assets/images/icons/apposite-arrows.png"
-        alt="left arrow"
+      <div
+        class="opposite-arrows"
         @click="clickHeaderChangeButton"
-      />
+      >
+        <img
+          class="left-arrow desktop-visible-block-only"
+          src="@/assets/images/icons/opposite-arrows.png"
+          alt="left arrow"
+        />
+      </div>
       <div class="pc-title desktop-visible-block-only">
         <img
           class="pc-title__icon"
@@ -104,6 +108,7 @@ export default {
         }
     }
 
+    // @Classes
     .home {
         float: right;
         width: calc(100% - 400px);
@@ -119,17 +124,30 @@ export default {
             @media (max-width: $screen-mobile) {
                 padding: 65px 50px 0 50px;
             }
-            .left-arrow {
+            .opposite-arrows {
                 position: absolute;
-                top: 30px;
-                left: 30px;
+                display: flex;
+                align-items: center;
+                top: 0;
+                left: 0;
                 width: 50px;
                 height: 50px;
                 cursor: pointer;
+                background-color: $sd-blue;
+                border-radius: 0 0 10px 0;
+                @media (max-width: $screen-mobile) {
+                    display: none;
+                }
+                .left-arrow {
+                    width: 27px;
+                    height: 27px;
+                    margin: 0 auto;
+                }
             }
+
             .pc-title {
                 text-align: right;
-                margin-bottom: 15px;
+                margin-bottom: 25px;
                 margin-right: 80px;
                 &__icon {
                     width: 50px;

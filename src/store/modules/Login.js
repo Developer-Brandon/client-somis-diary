@@ -9,14 +9,29 @@ const state = () => ({
   // 6. Arrange diary 클릭시 매번 검사
   // 7. Write diary 클릭시 로그인 되어있으면 고양이 목록 가져와야 함
   accessToken: false, // TODO: cookie에서 끌어오게 개발 예정
+  whetherCatExist: false,
+  establishedCatList: [],
 })
 const getters = {
   isClientLogin: (state) => !!state.accessToken,
   getAccessToken: (state) => state.accessToken,
+  getWhetherCatExist: (state) => state.whetherCatExist,
+  getEstablishedCatList: (state) => state.establishedCatList,
 }
 const mutations = {
   setAccessToken(state, params) {
     state.accessToken = params.accessToken
+  },
+  // expireAuth(state, params) {
+  //   // TODO: expire auth
+  // },
+  setCatList(state, params) {
+    state.establishedCatList = params.catList
+    if (state.establishedCatList.length !== 0) {
+      state.whetherCatExist = true
+    } else {
+      state.whetherCatExist = false
+    }
   },
 }
 const actions = {
@@ -27,9 +42,18 @@ const actions = {
     commit('setAccessToken', params)
     resolve()
   }),
-  // SET_ACCESS_TOKEN: ({ commit }) => new Promise((resolve) => {
-  //   resolve()
-  // }),
+  REQUEST_JOIN: ({ commit, params }) => new Promise((resolve) => {
+    // TODO: call join api
+    // 회원가입 후, 자동 로그인 시켜주게끔 처리
+    commit('setAccessToken', params)
+    console.log(params)
+    resolve()
+  }),
+  REQUEST_LOGOUT: ({ commit }) => new Promise((resolve) => {
+    // TODO: call log out api
+    commit('expireAuth')
+    resolve()
+  }),
 }
 export default {
   namespaced: true,

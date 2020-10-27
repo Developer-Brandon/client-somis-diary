@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'SimpleModla',
+  name: 'WhetherLoginStateModal',
 }
 </script>
 

@@ -1,10 +1,10 @@
 <template>
-    <section></section>
+  <section></section>
 </template>
 
 <script>
 export default {
-  name: 'SimpleModla',
+  name: 'MustEstablishCatAnnounceModal',
 }
 </script>
 

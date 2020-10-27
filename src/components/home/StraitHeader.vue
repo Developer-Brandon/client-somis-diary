@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="wrap-wide-header">
     <div class="title">
       <div class="title__inner">
         <h3 class="font-semi-bold">
@@ -37,35 +37,54 @@
       </div>
     </div>
     <sd-clear-both />
-    <div class="login-menu">
-      <div class="login-menu__inner">
-        <p>Sign in</p>
-        <p>Sign up</p>
-      </div>
-    </div>
+    <auth-section />
   </section>
 </template>
 
 <script>
 import SdClearBoth from '@/components/util/SdClearBoth.vue'
+import AuthSection from '@/components/home/AuthSection.vue'
 
 export default {
   name: 'StraitHeader',
   components: {
     SdClearBoth,
+    AuthSection,
+  },
+  computed: {
+    isClientLogin() {
+      return this.$store.getters['login/isClientLogin']
+    },
+    getWhetherCatExist() {
+      return this.$store.getters['login/getWhetherCatExist']
+    },
   },
   methods: {
-    callWriteDiaryModal() {},
+    callWriteDiaryModal() {
+      if (this.isClientLogin) {
+        // 2.로그인이 되어있다면,
+        // 2-(1).기존에 등록되어있는 고양이가 있는지 없는지 확인하는 모달 필요
+        if (this.getWhetherCatExist) {
+          // 2-(1)-1.기존에 등록되어있는 고양이가 있다면 다이어리 쓰는 모달 띄우기
+        } else {
+          // 2-(1)-2.기존에 등록되어있는 고양이가 없다면 고양이를 등록해야 한다는 모달을 띄우기
+          // 고양이를 등록하겠다고 한다면, 고양이를 등록할 수 있는 모달 띄우기
+        }
+      } else {
+        // 1.로그인이 안되어있다면, 로그인 창 띄우기
+
+      }
+    },
     routing(pageEnum) {
       switch (pageEnum) {
         case this.enums.pageState.ARRANGE_DIARY:
-          return false
+          return this.$router.push('/ArrangeDiary')
         case this.enums.pageState.NOTICE:
-          return false
+          return this.$router.push('/Notice')
         case this.enums.pageState.COMMUNITY:
-          return false
+          return this.$router.push('/Community')
         default:
-          return false
+          return this.$router.push('/ArrangeDiary')
       }
     },
   },
@@ -73,77 +92,61 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .title {
-        margin-bottom: 30px;
-        &__inner {
-            width: max-content;
-            border-bottom: 1px solid $sd-light-white;
-            h3 {
-                display: inline-block;
-                color: $sd-white;
-                letter-spacing: 2px;
-                font-size: 20px;
-                padding-bottom: 7px;
-            }
-        }
-    }
-
-    .description {
-        display: block;
-        margin-bottom: 60px;
-        &__inner {
-            width: max-content;
-            border-bottom: 1px solid $sd-light-white;
-            p {
-                color: $sd-white;
-                font-size: 30px;
-                line-height: 30px;
-                letter-spacing: 2px;
-            }
-        }
-    }
-
-    .menu {
-        display: block;
-        margin-bottom: 80px;
-        &__inner {
-            width: max-content;
-            float: right;
-            text-align: right;
-            p {
-                color: $sd-white;
-                font-size: 30px;
-                line-height: 45px;
-                letter-spacing: -0.1px;
-                &:hover {
-                    cursor: pointer;
+    .wrap-wide-header {
+        .title {
+            margin-bottom: 30px;
+            &__inner {
+                width: max-content;
+                border-bottom: 1px solid $sd-light-white;
+                h3 {
+                    display: inline-block;
+                    color: $sd-white;
+                    letter-spacing: 2px;
+                    font-size: 20px;
+                    padding-bottom: 7px;
                 }
             }
         }
-        &:after {
-            clear: both;
-            content: "";
-            display: table;
-        }
-    }
 
-    .login-menu {
-        position: absolute;
-        bottom: 50px;
-        right: 30px;
-        width: 50%;
-        min-height: 70px;
-        &__inner {
-            padding-right: 10px;
-            p {
+        .description {
+            display: block;
+            margin-bottom: 60px;
+            &__inner {
+                width: max-content;
+                border-bottom: 1px solid $sd-light-white;
+                p {
+                    color: $sd-white;
+                    font-size: 30px;
+                    line-height: 30px;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+
+        .menu {
+            position: absolute;
+            bottom: 170px;
+            right: 35px;
+            &__inner {
+                width: max-content;
+                float: right;
                 text-align: right;
-                color: $sd-white;
-                font-size: 25px;
-                line-height: 45px;
-                letter-spacing: 0.8px;
-                &:hover {
-                    cursor: pointer;
+                p {
+                    color: $sd-white;
+                    font-size: 30px;
+                    line-height: 45px;
+                    letter-spacing: -0.1px;
+                    transition: 0.3s;
+                    &:hover {
+                      cursor: pointer;
+                      letter-spacing: 1px;
+                    }
                 }
+            }
+            &:after {
+                clear: both;
+                content: "";
+                display: table;
             }
         }
     }

@@ -33,7 +33,7 @@
       to="/About"
     >
       <span>
-        Arrange diary
+        Arrange<br />diary
       </span>
     </router-link>
     <router-link
@@ -44,33 +44,33 @@
         Notice
       </span>
     </router-link>
-    <span
+    <router-link
       class="menus-from-hb font-regular"
-      @click="callInquiryEstimateModal"
+      to="/Community"
     >
       <span>
         Community
       </span>
-    </span>
-    <br />
-    <br />
-    <span
-      class="menus-from-hb font-regular"
-      @click="callSignUpModal"
-    >
-      <span>
-        SignUp
-      </span>
-    </span>
-    <span
-      class="menus-from-hb font-regular"
-      @click="callLoginModal"
-    >
-      <span>
-        Login
-      </span>
-    </span>
+    </router-link>
     <div class="slider__footer">
+      <div class="login-section">
+        <div
+          class="sign-up-text menus-from-hb"
+          @click="callSignUpPopUp"
+        >
+          <span class="font-bold">
+            Sign Up
+          </span>
+        </div>
+        <div
+          class="sign-in-text menus-from-hb"
+          @click="callSignInPopUp"
+        >
+          <span class="font-bold">
+            Sign In
+          </span>
+        </div>
+      </div>
       <div class="sns-channels">
         <div class="wrap-sns-logo">
           <img
@@ -114,22 +114,43 @@ export default {
     },
     handleCloseMenu() {
     },
-    callSignUpModal() {
+    callSignInPopUp() {
+      // TODO: 로그인 모달
     },
-    callLoginModal() {
+    callSignUpPopUp() {
+      // TODO: 회원가입 모달
+    },
+    callSignOut() {
+      return new Promise((resolve) => {
+        this.$store.dispatch('login/REQUEST_LOGOUT')
+          .then(() => {
+            resolve()
+          })
+      })
+    },
+    goInstagram() {
+    },
+    goNaverBlog() {
+    },
+    goKakaotalkChannel() {
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
+
+    // @Local Utils
+    .menus-from-hb {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    // @Classes
     .slider {
         position: relative;
-        .menus-from-hb {
-            margin-top: 5px;
-            margin-bottom: 5px;
-            text-align: center;
-        }
         &__header {
             @media (max-width: $screen-mobile) {
                 text-align: center;
@@ -158,7 +179,21 @@ export default {
                 width: 150px;
                 height: 100px;
                 border-top: 1px dotted $sd-white;
-                /*background-color: rgba(211, 211, 211, 0.4);*/
+            }
+            .login-section {
+                display: block !important;
+                position: absolute !important;
+                right: 20px;
+                bottom: 115px;
+                .sign-up-text {
+                    padding-bottom: 15px;
+                    color: $sd-white;
+                    font-size: 20px;
+                }
+                .sign-in-text {
+                    font-size: 20px;
+                    color: $sd-white;
+                }
             }
             .sns-channels {
                 @media (max-width: $screen-mobile) {
