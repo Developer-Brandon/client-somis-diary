@@ -5,19 +5,18 @@
       <router-view />
     </div>
     <whether-login-state-modal ref="whtherLoginStateModal" />
-    <sign-in-modal ref="signInModal" />
-    <sign-up-modal ref="signUpModal" />
+    <sign-in-client-modal ref="signInClientModal" />
     <sign-up-client-modal ref="signUpClientModal" />
-    <must-establish-cat-announce-modal ref="mustEstablishCatAnnounceModal"/>
+    <must-establish-cat-announce-modal ref="mustEstablishCatAnnounceModal" />
     <establish-cat-modal ref="establishCatModal" />
     <write-cat-diary-modal ref="writeCatDiaryModal" />
   </div>
 </template>
 
 <script>
+import { EventBus } from '@/assets/js/plugin/eventBus'
 import SdHeader from '@/components/home/Header.vue'
-import SignInModal from '@/components/util/modal/SignInModal.vue'
-import SignUpModal from '@/components/util/modal/SignUpModal.vue'
+import SignInClientModal from '@/components/util/modal/SignInClientModal.vue'
 import SignUpClientModal from '@/components/util/modal/SignUpClientModal.vue'
 import WhetherLoginStateModal from '@/components/util/modal/WhetherLoginStateModal.vue'
 import MustEstablishCatAnnounceModal from '@/components/util/modal/MustEstablishCatAnnounceModal.vue'
@@ -29,12 +28,17 @@ export default {
   components: {
     WhetherLoginStateModal,
     SdHeader,
-    SignInModal,
-    SignUpModal,
+    SignInClientModal,
     SignUpClientModal,
     MustEstablishCatAnnounceModal,
     EstablishCatModal,
     WriteCatDiaryModal,
+  },
+  mounted() {
+    EventBus.$on('callSignUpModal', () => this.$refs.signUpClientModal.show('간편하게 회원가입 해보라냥!'))
+    EventBus.$on('callSignInModal', () => this.$refs.signInClientModal.show('로그인해달라냥~'))
+    EventBus.$on('callMustEstablishCatAnnounceModal', () => this.$refs.mustEstablishCatAnnounceModal.show('먼저 반려냥이를 등록해야한다냥~!\n등록하겠냥?'))
+    EventBus.$on('callEstablishCatModal', () => this.$refs.establishCatModal.show(null))
   },
 }
 </script>

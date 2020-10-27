@@ -8,15 +8,26 @@
       class="login-menu__log-out"
     >
       <div v-if="headerState === enums.headerState.WIDE">
-        <p @click="callSignInPopUp">
+        <p @click="callSignInModal">
           Sign in
         </p>
-        <p @click="callSignUpPopUp">
+        <p @click="callSignUpModal">
           Sign up
         </p>
       </div>
       <div v-else-if="headerState === enums.headerState.STRAIT">
-        <!-- TODO: 회원가입, 로그인 아이콘 찾아서 삽입하기 -->
+        <img
+          class="sign-up-icon"
+          src="@/assets/images/icons/join.png"
+          alt="sign-up-image"
+          @click="callSignUpModal"
+        />
+        <img
+          class="sign-in-icon"
+          src="@/assets/images/icons/log-in.png"
+          alt="sign-in-image"
+          @click="callSignInModal"
+        />
       </div>
     </div>
     <div
@@ -29,7 +40,12 @@
         </p>
       </div>
       <div v-else-if="headerState === enums.headerState.STRAIT">
-        <!-- TODO: 로그아웃 아이콘 찾아서 삽입하기 -->
+        <img
+          class="log-out-icon"
+          src="@/assets/images/icons/log-out.png"
+          alt="log-out-image"
+          @click="callSignOut"
+        />
       </div>
     </div>
   </div>
@@ -37,6 +53,7 @@
 
 <script>
 import { HeaderState } from '@/assets/js/enums/HeaderState'
+import { EventBus } from '@/assets/js/plugin/eventBus'
 
 export default {
   name: 'AuthSection',
@@ -67,16 +84,17 @@ export default {
     this.values.lifeCycle = true
   },
   methods: {
-    callSignInPopUp() {
-      // TODO: 로그인 모달
+    callSignInModal() {
+      EventBus.$emit('callSignInModal')
     },
-    callSignUpPopUp() {
-      // TODO: 회원가입 모달
+    callSignUpModal() {
+      EventBus.$emit('callSignUpModal')
     },
     callSignOut() {
       return new Promise((resolve) => {
         this.$store.dispatch('login/REQUEST_LOGOUT')
           .then(() => {
+            // TODO: Cookie는 store에서 파괴해주면 되고, 이외에 처리해주어야 할 부분 찾아서 처리해주기
             resolve()
           })
       })
@@ -104,8 +122,34 @@ export default {
                 transition: 0.3s;
                 &:hover {
                     cursor: pointer;
-                    letter-spacing: 1.2px;
+                    -webkit-transform: scale(1.1);
+                    -moz-transform: scale(1.1);
+                    -ms-transform: scale(1.1);
+                    transform: scale(1.1);
                 }
+            }
+            .sign-up-icon {
+              margin-bottom: 30px;
+              cursor: pointer;
+              transition: 0.3s;
+              &:hover {
+                cursor: pointer;
+                -webkit-transform: scale(1.1);
+                -moz-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                transform: scale(1.1);
+              }
+            }
+            .sign-in-icon {
+              cursor: pointer;
+              transition: 0.3s;
+              &:hover {
+                cursor: pointer;
+                -webkit-transform: scale(1.1);
+                -moz-transform: scale(1.1);
+                -ms-transform: scale(1.1);
+                transform: scale(1.1);
+              }
             }
         }
         &__log-in {
@@ -120,8 +164,14 @@ export default {
                 transition: 0.3s;
                 &:hover {
                     cursor: pointer;
-                    letter-spacing: 1.2px;
+                    -webkit-transform: scale(1.1);
+                    -moz-transform: scale(1.1);
+                    -ms-transform: scale(1.1);
+                    transform: scale(1.1);
                 }
+            }
+            .log-out-icon {
+                cursor: pointer;
             }
         }
     }

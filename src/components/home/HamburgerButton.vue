@@ -15,59 +15,59 @@
           <img
             class="logo-by-hb"
             :alt="getCommonAnnouncement()"
-            src="@/assets/images/icons/ol-cat-house.png"
+            src="@/assets/images/icons/home-icon.png"
           />
         </router-link>
       </p>
     </div>
-    <router-link
+    <span
       class="menus-from-hb"
-      to="/Products"
+      @click="callWriteDiaryModal"
     >
       <span>
         Write diary
       </span>
-    </router-link>
-    <router-link
+    </span>
+    <span
       class="menus-from-hb font-regular"
-      to="/About"
+      @click="routing(enums.pageState.ARRANGE_DIARY)"
     >
       <span>
         Arrange<br />diary
       </span>
-    </router-link>
-    <router-link
+    </span>
+    <span
       class="menus-from-hb font-regular"
-      to="/Notice"
+      @click="routing(enums.pageState.NOTICE)"
     >
       <span>
         Notice
       </span>
-    </router-link>
-    <router-link
+    </span>
+    <span
       class="menus-from-hb font-regular"
-      to="/Community"
+      @click="routing(enums.pageState.COMMUNITY)"
     >
       <span>
         Community
       </span>
-    </router-link>
+    </span>
     <div class="slider__footer">
       <div class="login-section">
         <div
-          class="sign-up-text menus-from-hb"
-          @click="callSignUpPopUp"
-        >
-          <span class="font-bold">
-            Sign Up
-          </span>
-        </div>
-        <div
           class="sign-in-text menus-from-hb"
-          @click="callSignInPopUp"
+          @click="callSignInModal"
         >
           <span class="font-bold">
             Sign In
+          </span>
+        </div>
+        <div
+          class="sign-up-text menus-from-hb"
+          @click="callSignUpModal"
+        >
+          <span class="font-bold">
+            Sign Up
           </span>
         </div>
       </div>
@@ -102,23 +102,66 @@
 </template>
 
 <script>
+import { EventBus } from '@/assets/js/plugin/eventBus'
 import { Slide } from 'vue-burger-menu'
+import { HeaderState } from '@/assets/js/enums/HeaderState'
+import { PageState } from '@/assets/js/enums/PageState'
 
 export default {
   name: 'HamburgerButton',
   components: {
     Slide,
   },
+  data() {
+    return {
+      enums: {
+        pageState: PageState,
+        headerState: HeaderState,
+      },
+    }
+  },
   methods: {
     handleOpenMenu() {
     },
     handleCloseMenu() {
     },
-    callSignInPopUp() {
-      // TODO: 로그인 모달
+    callWriteDiaryModal() {
+      if (this.isClientLogin) {
+        if (this.getWhetherCatExist) {
+          EventBus.$emit('callWriteCatDiaryModal')
+        } else {
+          EventBus.$emit('callMustEstablishCatAnnounceModal')
+          // EventBus.$emit('callEstablishCatModal')
+        }
+      } else {
+        EventBus.$emit('callSignInModal')
+      }
     },
-    callSignUpPopUp() {
-      // TODO: 회원가입 모달
+    routing(pageEnum) {
+      switch (pageEnum) {
+        case this.enums.pageState.ARRANGE_DIARY:
+          if (this.isClientLogin) {
+            return this.$router.push('/ArrangeDiary')
+          } else {
+            return EventBus.$emit('callSignInModal')
+          }
+        case this.enums.pageState.NOTICE:
+          return this.$router.push('/Notice')
+        case this.enums.pageState.COMMUNITY:
+          return this.$router.push('/Community')
+        default:
+          if (this.$router.history.current.path !== '/') {
+            return this.$router.push('/')
+          } else {
+            return ''
+          }
+      }
+    },
+    callSignInModal() {
+      EventBus.$emit('callSignInModal')
+    },
+    callSignUpModal() {
+      EventBus.$emit('callSignUpModal')
     },
     callSignOut() {
       return new Promise((resolve) => {
@@ -183,14 +226,15 @@ export default {
             .login-section {
                 display: block !important;
                 position: absolute !important;
-                right: 20px;
+                right: 25px;
                 bottom: 115px;
+                text-align: center;
                 .sign-up-text {
-                    padding-bottom: 15px;
                     color: $sd-white;
                     font-size: 20px;
                 }
                 .sign-in-text {
+                    padding-bottom: 10px;
                     font-size: 20px;
                     color: $sd-white;
                 }

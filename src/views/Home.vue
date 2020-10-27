@@ -139,9 +139,16 @@ export default {
                     display: none;
                 }
                 .left-arrow {
-                    width: 27px;
-                    height: 27px;
-                    margin: 0 auto;
+                  width: 27px;
+                  height: 27px;
+                  margin: 0 auto;
+                  transition: 0.1s;
+                  &:hover {
+                      -webkit-transform: scale(1.1);
+                      -moz-transform: scale(1.1);
+                      -ms-transform: scale(1.1);
+                      transform: scale(1.1);
+                    }
                 }
             }
 
