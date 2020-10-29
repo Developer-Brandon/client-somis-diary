@@ -74,7 +74,8 @@ export default {
       },
     }
   },
-  created() {},
+  created() {
+  },
   methods: {
     close() {
       this.values.check.lifeCycle = false
@@ -149,12 +150,15 @@ export default {
                     text-align: center;
                     color: $sd-ivory;
                     font-size: 24px;
+                    @media (max-width: $screen-mobile) {
+                        font-size: 18px;
+                    }
                 }
             }
             .wrap-auth-buttons {
                 text-align: center;
                 margin-bottom: 20px;
-                .google-auth-button{
+                .google-auth-button {
                     cursor: pointer;
                     margin-right: 25px;
                     border: $sd-yellow;
@@ -168,28 +172,28 @@ export default {
                 }
             }
             .wrap-already-have-an-account {
-              width: 100%;
-              &__contents {
-                width: 80%;
-                padding-left: 20px;
-                display: block;
-                float: left;
-                cursor: pointer;
-                color: $sd-ivory;
-                text-align: left;
-                font-size: 20px;
-              }
-              .close-button {
-                width: 20%;
-                padding-right: 20px;
-                float: right;
-                display:block;
-                cursor:pointer;
-                text-align:right;
-                color:$sd-ivory;
-                padding-bottom:3px;
-                font-size: 20px;
-              }
+                width: 100%;
+                &__contents {
+                    width: 50%;
+                    padding-left: 20px;
+                    display: block;
+                    float: left;
+                    cursor: pointer;
+                    color: $sd-ivory;
+                    text-align: left;
+                    font-size: 20px;
+                }
+                .close-button {
+                    width: 50%;
+                    padding-right: 20px;
+                    float: right;
+                    display: block;
+                    cursor: pointer;
+                    text-align: right;
+                    color: $sd-ivory;
+                    padding-bottom: 3px;
+                    font-size: 20px;
+                }
             }
         }
     }

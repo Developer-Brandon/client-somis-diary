@@ -38,7 +38,8 @@ export default {
     EventBus.$on('callSignUpModal', () => this.$refs.signUpClientModal.show('간편하게 회원가입 해보라냥!'))
     EventBus.$on('callSignInModal', () => this.$refs.signInClientModal.show('로그인해달라냥~'))
     EventBus.$on('callMustEstablishCatAnnounceModal', () => this.$refs.mustEstablishCatAnnounceModal.show('먼저 반려냥이를 등록해야한다냥~!\n등록하겠냥?'))
-    EventBus.$on('callEstablishCatModal', () => this.$refs.establishCatModal.show(null))
+    EventBus.$on('callEstablishCatModal', () => this.$refs.establishCatModal.show())
+    EventBus.$on('writeCatDiaryModal', () => this.$refs.writeCatDiaryModal.show())
   },
 }
 </script>

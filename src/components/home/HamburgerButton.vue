@@ -120,6 +120,14 @@ export default {
       },
     }
   },
+  computed: {
+    isClientLogin() {
+      return this.$store.getters['login/isClientLogin']
+    },
+    getWhetherCatExist() {
+      return this.$store.getters['login/getWhetherCatExist']
+    },
+  },
   methods: {
     handleOpenMenu() {
     },

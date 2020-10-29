@@ -149,6 +149,9 @@ export default {
             text-align: center;
             color: $sd-ivory;
             font-size: 24px;
+            @media (max-width: $screen-mobile) {
+              font-size: 18px;
+            }
           }
         }
         .wrap-auth-buttons {
@@ -170,7 +173,7 @@ export default {
         .wrap-already-have-an-account {
           width: 100%;
           &__contents {
-            width: 80%;
+            width: 50%;
             padding-left: 20px;
             display: block;
             float: left;
@@ -180,7 +183,7 @@ export default {
             font-size: 20px;
           }
           .close-button {
-            width: 20%;
+            width: 50%;
             padding-right: 20px;
             float: right;
             display:block;

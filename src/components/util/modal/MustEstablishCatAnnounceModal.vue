@@ -55,8 +55,6 @@ export default {
       },
     }
   },
-  created() {
-  },
   methods: {
     close() {
       this.values.check.lifeCycle = false
@@ -122,6 +120,9 @@ export default {
                     text-align: center;
                     color: $sd-ivory;
                     font-size: 24px;
+                    @media (max-width: $screen-mobile) {
+                      font-size: 20px;
+                    }
                 }
             }
             .wrap-whether-establish-cat-buttons {
