@@ -18,6 +18,7 @@
           </div>
           <div class="wrap-writer-cat">
             <img
+              style="display:none;"
               class="writer-cat"
               src="@/assets/images/icons/ol-cat-food.png"
               alt="고양이통조림"

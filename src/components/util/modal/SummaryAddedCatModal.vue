@@ -17,6 +17,7 @@
         </div>
         <div class="wrap-writer-cat">
           <img
+            style="display:none;"
             class="writer-cat"
             src="@/assets/images/icons/writer-cat.png"
             alt="쓰는고양이"
@@ -62,21 +63,23 @@
             class="introduce-summary"
           ></p>
         </div>
-        <div class="select-buttons">
-          <div class="select-buttons__inner">
-            <div class="select-buttons__inner__left">
-              <p
-                @click="before"
-              >
-                이전
-              </p>
-            </div>
-            <div class="select-buttons__inner__right">
-              <p
-                @click="finish"
-              >
-                저장
-              </p>
+        <div class="wrap-select-buttons">
+          <div class="select-buttons">
+            <div class="select-buttons__inner">
+              <div class="select-buttons__inner__left">
+                <p
+                  @click="before"
+                >
+                  이전
+                </p>
+              </div>
+              <div class="select-buttons__inner__right">
+                <p
+                  @click="finish"
+                >
+                  저장
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -330,39 +333,43 @@ export default {
         .introduce-contents {
         }
       }
-      .select-buttons {
-        &__inner {
-          display: flex;
-          justify-content: flex-end;
-          flex-direction: column;
-          height: 160px;
-          position: relative;
-          &__left {
-            position: absolute;
-            width: 50%;
-            left: 5px;
-            bottom: 5px;
-            p {
-              cursor: pointer;
-              text-align: left;
-              color: $sd-ivory;
-              font-size: 25px;
+        .wrap-select-buttons {
+            .select-buttons {
+                width: 290px;
+                position: absolute;
+                bottom: 30px;
+                &__inner {
+                    display: flex;
+                    justify-content: flex-end;
+                    flex-direction: column;
+                    position: relative;
+                    &__left {
+                        position: absolute;
+                        width: 50%;
+                        left: 5px;
+                        bottom: 5px;
+                        p {
+                            cursor: pointer;
+                            text-align: left;
+                            color: $sd-ivory;
+                            font-size: 25px;
+                        }
+                    }
+                    &__right {
+                        position: absolute;
+                        width: 50%;
+                        right: 5px;
+                        bottom: 5px;
+                        p {
+                            cursor: pointer;
+                            text-align: right;
+                            color: $sd-ivory;
+                            font-size: 25px;
+                        }
+                    }
+                }
             }
-          }
-          &__right {
-            position: absolute;
-            width: 50%;
-            right: 5px;
-            bottom: 5px;
-            p {
-              cursor: pointer;
-              text-align: right;
-              color: $sd-ivory;
-              font-size: 25px;
-            }
-          }
         }
-      }
     }
   }
 </style>

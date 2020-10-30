@@ -18,6 +18,7 @@
         <div class="wrap-writer-cat">
           <img
             class="writer-cat"
+            style="display:none;"
             src="@/assets/images/icons/writer-cat.png"
             alt="쓰는고양이"
           />
@@ -77,21 +78,23 @@
             class="sd-textarea introduce-contents"
           ></textarea>
         </div>
-        <div class="select-buttons">
-          <div class="select-buttons__inner">
-            <div class="select-buttons__inner__left">
-              <p
-                @click="close"
-              >
-                닫기
-              </p>
-            </div>
-            <div class="select-buttons__inner__right">
-              <p
-                @click="finish"
-              >
-                완료
-              </p>
+        <div class="wrap-select-buttons">
+          <div class="select-buttons">
+            <div class="select-buttons__inner">
+              <div class="select-buttons__inner__left">
+                <p
+                  @click="close"
+                >
+                  닫기
+                </p>
+              </div>
+              <div class="select-buttons__inner__right">
+                <p
+                  @click="finish"
+                >
+                  완료
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -355,38 +358,42 @@ export default {
                 .introduce-contents {
                 }
             }
-            .select-buttons {
+            .wrap-select-buttons {
+              .select-buttons {
+                width: 290px;
+                position: absolute;
+                bottom: 30px;
                 &__inner {
-                    display: flex;
-                    justify-content: flex-end;
-                    flex-direction: column;
-                    height: 70px;
-                    position: relative;
-                    &__left {
-                        position: absolute;
-                        width: 50%;
-                        left: 5px;
-                        bottom: 5px;
-                        p {
-                            cursor: pointer;
-                            text-align: left;
-                            color: $sd-ivory;
-                            font-size: 25px;
-                        }
+                  display: flex;
+                  justify-content: flex-end;
+                  flex-direction: column;
+                  position: relative;
+                  &__left {
+                    position: absolute;
+                    width: 50%;
+                    left: 5px;
+                    bottom: 5px;
+                    p {
+                      cursor: pointer;
+                      text-align: left;
+                      color: $sd-ivory;
+                      font-size: 25px;
                     }
-                    &__right {
-                        position: absolute;
-                        width: 50%;
-                        right: 5px;
-                        bottom: 5px;
-                        p {
-                            cursor: pointer;
-                            text-align: right;
-                            color: $sd-ivory;
-                            font-size: 25px;
-                        }
+                  }
+                  &__right {
+                    position: absolute;
+                    width: 50%;
+                    right: 5px;
+                    bottom: 5px;
+                    p {
+                      cursor: pointer;
+                      text-align: right;
+                      color: $sd-ivory;
+                      font-size: 25px;
                     }
+                  }
                 }
+              }
             }
         }
     }
