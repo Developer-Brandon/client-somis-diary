@@ -2,9 +2,9 @@
   <transition name="page-fade">
     <section
       v-show="values.check.lifeCycle"
-      class="wrap-cat-establish-announce-modal"
+      class="wrap-cat-add-announce-modal"
     >
-      <div class="wrap-cat-establish-announce-modal__inner">
+      <div class="wrap-cat-add-announce-modal__inner">
         <div class="wrap-image">
           <img
             src="@/assets/images/icons/sensitive-cat.png"
@@ -17,7 +17,7 @@
           </p>
         </div>
         <div
-          class="wrap-whether-establish-cat-buttons"
+          class="wrap-whether-add-cat-buttons"
         >
           <span
 
@@ -27,7 +27,7 @@
             취소
           </span>
           <span
-            class="establish-button"
+            class="add-button"
             @click="mustEstablishModal"
           >
             등록
@@ -65,7 +65,7 @@ export default {
     },
     mustEstablishModal() {
       this.close()
-      EventBus.$emit('callEstablishCatModal')
+      EventBus.$emit('callAddCatModal')
     },
   },
 }
@@ -73,7 +73,7 @@ export default {
 
 <style lang="scss" scoped>
     // @Classes
-    .wrap-cat-establish-announce-modal {
+    .wrap-cat-add-announce-modal {
         position: fixed;
         z-index: 1;
         left: 0;
@@ -125,7 +125,7 @@ export default {
                     }
                 }
             }
-            .wrap-whether-establish-cat-buttons {
+            .wrap-whether-add-cat-buttons {
                 width: 100%;
                 .close-button {
                     width: 50%;
@@ -138,7 +138,7 @@ export default {
                     padding-bottom: 3px;
                     font-size: 20px;
                 }
-                .establish-button {
+                .add-button {
                     width: 50%;
                     padding-right: 20px;
                     display: block;

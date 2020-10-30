@@ -2,9 +2,9 @@
   <transition name="page-fade">
     <section
       v-show="values.check.lifeCycle"
-      class="cat-establish-modal"
+      class="cat-add-modal"
     >
-      <div class="cat-establish-modal__inner">
+      <div class="cat-add-modal__inner">
         <div class="profile">
           <div class="profile__inner">
             <img
@@ -26,6 +26,7 @@
           <span class="left-side-frame">이름</span>
           <span class="right-side-frame">
             <input
+              v-model="name"
               class="name-input sd-input"
               type="text"
             />
@@ -35,6 +36,7 @@
           <span class="left-side-frame">생일</span>
           <span class="right-side-frame">
             <input
+              v-model="birthday"
               class="birthday-input sd-input"
               type="text"
             />
@@ -42,7 +44,10 @@
         </div>
         <div class="gender">
           <span class="left-side-frame">성별</span>
-          <span class="right-side-frame"></span>
+          <span class="right-side-frame">
+            <img />
+            <img />
+          </span>
         </div>
         <div class="species">
           <span class="left-side-frame">종류</span>
@@ -54,6 +59,7 @@
           <span class="left-side-frame">무게</span>
           <span class="right-side-frame">
             <input
+              v-model="kg"
               class="weight-input sd-input"
               type="text"
             />
@@ -64,8 +70,8 @@
           <p class="introduce-title">
             특이사항
           </p>
-          <!--for="introduce-baby"-->
           <textarea
+            v-model="introduce"
             maxlength="201"
             placeholder=""
             class="sd-textarea introduce-contents"
@@ -74,12 +80,18 @@
         <div class="select-buttons">
           <div class="select-buttons__inner">
             <div class="select-buttons__inner__left">
-              <p @click="close">
+              <p
+                @click="close"
+              >
                 닫기
               </p>
             </div>
             <div class="select-buttons__inner__right">
-              <p>완료</p>
+              <p
+                @click="finish"
+              >
+                완료
+              </p>
             </div>
           </div>
         </div>
@@ -92,29 +104,76 @@
 import { EventBus } from '@/assets/js/plugin/eventBus'
 
 export default {
-  name: 'EstablishCatModal',
+  name: 'AddCatModal',
   data() {
     return {
       values: {
-        string: {
-          message: '',
-        },
         check: {
           lifeCycle: false,
         },
       },
     }
   },
-  methods: {
-    close() {
-      this.values.check.lifeCycle = false
+  computed: {
+    name: {
+      set(name) {
+        this.$store.dispatch('cat/SET_NAME', { name })
+      },
+      get() {
+        return this.$store.getters['cat/name']
+      },
     },
+    birthday: {
+      set(birthday) {
+        this.$store.dispatch('cat/SET_BIRTHDAY', { birthday })
+      },
+      get() {
+        return this.$store.getters['cat/birthday']
+      },
+    },
+    gender: {
+      set(gender) {
+        this.$store.dispatch('cat/SET_GENDER', { gender })
+      },
+      get() {
+        return this.$store.getters['cat/gender']
+      },
+    },
+    species: {
+      set(species) {
+        this.$store.dispatch('cat/SET_SPECIES', { species })
+      },
+      get() {
+        return this.$store.getters['cat/species']
+      },
+    },
+    kg: {
+      set(kg) {
+        this.$store.dispatch('cat/SET_KG', { kg })
+      },
+      get() {
+        return this.$store.getters['cat/kg']
+      },
+    },
+    introduce: {
+      set(introduce) {
+        this.$store.dispatch('cat/SET_INTRODUCE', { introduce })
+      },
+      get() {
+        return this.$store.getters['cat/introduce']
+      },
+    },
+  },
+  methods: {
     show() {
       this.values.check.lifeCycle = true
     },
-    establishIsFinished() {
+    close() {
+      this.values.check.lifeCycle = false
+    },
+    finish() {
       this.close()
-      EventBus.$emit('writeCatDiaryModal')
+      EventBus.$emit('callSummaryAddedCatModal')
     },
   },
 }
@@ -122,7 +181,7 @@ export default {
 
 <style lang="scss" scoped>
     // @Classes
-    .cat-establish-modal {
+    .cat-add-modal {
         position: fixed;
         z-index: 1;
         left: 0;

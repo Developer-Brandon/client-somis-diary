@@ -2,12 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import home from './modules/Home'
-import arrangeDiary from './modules/ArrangeDiary'
+import dairyList from './modules/DiaryList'
 import community from './modules/Community'
 import join from './modules/Join'
 import login from './modules/Login'
 import notice from './modules/Notice'
-import writeDiary from './modules/WriteDiary'
+import cat from './modules/Cat'
+import dairy from './modules/Diary'
 
 Vue.use(Vuex)
 
@@ -15,12 +16,13 @@ const entryPointOfStore = () => new Vuex.Store({
   namespaced: true,
   modules: {
     home,
-    arrangeDiary,
+    dairyList,
     community,
     join,
     login,
     notice,
-    writeDiary,
+    cat,
+    dairy,
   },
 })
 

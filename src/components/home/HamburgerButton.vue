@@ -124,8 +124,8 @@ export default {
     isClientLogin() {
       return this.$store.getters['login/isClientLogin']
     },
-    getWhetherCatExist() {
-      return this.$store.getters['login/getWhetherCatExist']
+    whetherCatExist() {
+      return this.$store.getters['cat/whetherCatExist']
     },
   },
   methods: {
@@ -135,11 +135,11 @@ export default {
     },
     callWriteDiaryModal() {
       if (this.isClientLogin) {
-        if (this.getWhetherCatExist) {
+        if (this.whetherCatExist) {
           EventBus.$emit('callWriteCatDiaryModal')
         } else {
-          EventBus.$emit('callMustEstablishCatAnnounceModal')
-          // EventBus.$emit('callEstablishCatModal')
+          EventBus.$emit('callMustAddCatAnnounceModal')
+          // EventBus.$emit('callAddCatModal')
         }
       } else {
         EventBus.$emit('callSignInModal')

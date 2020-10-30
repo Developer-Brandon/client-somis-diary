@@ -7,8 +7,9 @@
     <whether-login-state-modal ref="whtherLoginStateModal" />
     <sign-in-client-modal ref="signInClientModal" />
     <sign-up-client-modal ref="signUpClientModal" />
-    <must-establish-cat-announce-modal ref="mustEstablishCatAnnounceModal" />
-    <establish-cat-modal ref="establishCatModal" />
+    <must-add-cat-announce-modal ref="mustAddCatAnnounceModal" />
+    <add-cat-modal ref="addCatModal" />
+    <summary-added-cat-modal ref="summaryAddedCatModal" />
     <write-cat-diary-modal ref="writeCatDiaryModal" />
   </div>
 </template>
@@ -19,8 +20,9 @@ import SdHeader from '@/components/home/Header.vue'
 import SignInClientModal from '@/components/util/modal/SignInClientModal.vue'
 import SignUpClientModal from '@/components/util/modal/SignUpClientModal.vue'
 import WhetherLoginStateModal from '@/components/util/modal/WhetherLoginStateModal.vue'
-import MustEstablishCatAnnounceModal from '@/components/util/modal/MustEstablishCatAnnounceModal.vue'
-import EstablishCatModal from '@/components/util/modal/EstablishCatModal.vue'
+import MustAddCatAnnounceModal from '@/components/util/modal/MustAddCatAnnounceModal.vue'
+import AddCatModal from '@/components/util/modal/AddCatModal.vue'
+import SummaryAddedCatModal from '@/components/util/modal/SummaryAddedCatModal.vue'
 import WriteCatDiaryModal from '@/components/util/modal/WriteCatDiaryModal.vue'
 
 export default {
@@ -30,16 +32,18 @@ export default {
     SdHeader,
     SignInClientModal,
     SignUpClientModal,
-    MustEstablishCatAnnounceModal,
-    EstablishCatModal,
+    MustAddCatAnnounceModal,
+    AddCatModal,
+    SummaryAddedCatModal,
     WriteCatDiaryModal,
   },
   mounted() {
     EventBus.$on('callSignUpModal', () => this.$refs.signUpClientModal.show('간편하게 회원가입 해보라냥!'))
     EventBus.$on('callSignInModal', () => this.$refs.signInClientModal.show('로그인해달라냥~'))
-    EventBus.$on('callMustEstablishCatAnnounceModal', () => this.$refs.mustEstablishCatAnnounceModal.show('먼저 반려냥이를 등록해야한다냥~!\n등록하겠냥?'))
-    EventBus.$on('callEstablishCatModal', () => this.$refs.establishCatModal.show())
-    EventBus.$on('writeCatDiaryModal', () => this.$refs.writeCatDiaryModal.show())
+    EventBus.$on('callMustAddCatAnnounceModal', () => this.$refs.mustAddCatAnnounceModal.show('먼저 반려냥이를 등록해야한다냥~!\n등록하겠냥?'))
+    EventBus.$on('callAddCatModal', () => this.$refs.addCatModal.show())
+    EventBus.$on('callSummaryAddedCatModal', () => this.$refs.summaryAddedCatModal.show())
+    EventBus.$on('callWriteCatDiaryModal', () => this.$refs.writeCatDiaryModal.show())
   },
 }
 </script>
