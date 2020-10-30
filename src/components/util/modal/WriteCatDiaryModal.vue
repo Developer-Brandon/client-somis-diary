@@ -109,8 +109,14 @@
             </div>
           </div>
           <div class="button-section">
-            <span class="button-section__close" @click="close">닫기</span>
-            <span class="button-section__save" @click="save">저장</span>
+            <span
+              class="button-section__close"
+              @click="close"
+            >닫기</span>
+            <span
+              class="button-section__save"
+              @click="save"
+            >저장</span>
           </div>
         </div>
       </div>

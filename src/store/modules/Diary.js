@@ -32,6 +32,11 @@ const actions = {
     commit('setContents', params)
     resolve()
   }),
+  SAVE_DIARY: ({ commit, params }) => new Promise((resolve) => {
+    // TODO: Call save diary api
+    commit('', params)
+    resolve()
+  }),
 }
 export default {
   namespaced: true,

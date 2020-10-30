@@ -9,10 +9,10 @@
     >
       <div v-if="headerState === enums.headerState.WIDE">
         <p @click="callSignInModal">
-          Sign in
+          가입하기
         </p>
         <p @click="callSignUpModal">
-          Sign up
+          로그인
         </p>
       </div>
       <div v-else-if="headerState === enums.headerState.STRAIT">
@@ -36,7 +36,7 @@
     >
       <div v-if="headerState === enums.headerState.WIDE">
         <p @click="callSignOut">
-          Sign out
+          로그아웃
         </p>
       </div>
       <div v-else-if="headerState === enums.headerState.STRAIT">

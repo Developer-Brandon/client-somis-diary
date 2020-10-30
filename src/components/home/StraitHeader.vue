@@ -26,16 +26,16 @@
     <div class="menu">
       <div class="menu__inner">
         <p @click="callWriteDiaryModal">
-          <span class="font-bold">W</span>rite diary
+          <span class="font-bold">일</span>기 쓰기
         </p>
         <p @click="routing(enums.pageState.ARRANGE_DIARY)">
-          <span class="font-bold">A</span>rrange diary
+          <span class="font-bold">일</span>기 목록
         </p>
         <p @click="routing(enums.pageState.NOTICE)">
-          <span class="font-bold">N</span>otice
+          <span class="font-bold">공</span>지
         </p>
         <p @click="routing(enums.pageState.COMMUNITY)">
-          <span class="font-bold">C</span>ommunity
+          <span class="font-bold">커</span>뮤니티
         </p>
       </div>
     </div>

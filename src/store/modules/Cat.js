@@ -75,20 +75,20 @@ const actions = {
     resolve()
   }),
   GET_CAT_LIST: ({ commit, params }) => new Promise((resolve) => {
-    // TODO: 고양이목록을 불러올 api 개발 예정
+    // TODO: Call cat list api
     commit('', params)
     resolve()
   }),
   APPLY_CAT_INFORMATION: ({ commit, params }) => new Promise((resolve) => {
     commit()
     console.log(params)
-    // TODO: apply api 개발예정
+    // TODO: Call apply cat information api
     resolve()
   }),
   CHECK_CAT_EXIST: ({ commit, params }) => new Promise((resolve) => {
     commit()
     console.log(params)
-    // TODO: 기존에 고양이를 등록한적이 있는지 없는지에 대한 api 개발예정
+    // TODO: Call whether check cat exist api
     resolve()
   }),
 }

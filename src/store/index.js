@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import home from './modules/Home'
-import dairyList from './modules/DiaryList'
 import community from './modules/Community'
 import join from './modules/Join'
 import login from './modules/Login'
@@ -16,7 +15,6 @@ const entryPointOfStore = () => new Vuex.Store({
   namespaced: true,
   modules: {
     home,
-    dairyList,
     community,
     join,
     login,
