@@ -73,7 +73,7 @@
               </p>
               <select
                 v-model="catList"
-                class="title-row__cat-list"
+                class="title-row__cat-list sd-select"
               ></select>
             </div>
             <div class="title-row default-diary-row">
@@ -82,7 +82,8 @@
               </p>
               <input
                 v-model="diaryTitle"
-                class="title-row__title sd-input"
+                class="title-row__diary-title sd-input"
+                placeholder="20자 이내로 입력해주세요"
                 type="text"
               />
             </div>
@@ -93,6 +94,7 @@
               <input
                 v-model="diaryDateTime"
                 class="title-row__date sd-input"
+                placeholder="2020-00-00"
                 type="text"
               />
             </div>
@@ -103,21 +105,23 @@
               <textarea
                 v-model="diaryContents"
                 class="sd-textarea title-row__diary-contents"
-                maxlength="201"
+                maxlength="401"
                 for="estimate"
-                placeholder="내용을 입력해주세요"
+                placeholder="400자 이내로 입력해주세요."
               ></textarea>
             </div>
           </div>
-          <div class="button-section">
-            <span
-              class="button-section__close"
-              @click="close"
-            >닫기</span>
-            <span
-              class="button-section__save"
-              @click="save"
-            >저장</span>
+          <div class="wrap-select-buttons">
+            <div class="select-buttons">
+              <span
+                class="select-buttons__close"
+                @click="close"
+              >닫기</span>
+              <span
+                class="select-buttons__save"
+                @click="save"
+              >저장</span>
+            </div>
           </div>
         </div>
       </div>
@@ -161,14 +165,29 @@ export default {
     catList() {
       return this.$store.getters['cat/catList']
     },
-    diaryTitle() {
-      return this.$store.getters['dairy/title']
+    diaryTitle: {
+      set(title) {
+        this.$store.dispatch('diary/SET_TITLE', { title })
+      },
+      get() {
+        return this.$store.getters['dairy/title']
+      },
     },
-    diaryDateTime() {
-      return this.$store.getters['dairy/dateTime']
+    diaryDateTime: {
+      set(dateTime) {
+        this.$store.dispatch('diary/SET_DATETIME', { dateTime })
+      },
+      get() {
+        return this.$store.getters['dairy/dateTime']
+      },
     },
-    diaryContents() {
-      return this.$store.getters['dairy/contents']
+    diaryContents: {
+      set(contents) {
+        this.$store.dispatch('diary/SET_CONTENTS', { contents })
+      },
+      get() {
+        return this.$store.getters['dairy/contents']
+      },
     },
   },
   methods: {
@@ -219,7 +238,7 @@ export default {
             left: 0;
             right: 0;
             margin: auto;
-            width: 900px;
+            width: 820px;
             height: 530px;
             padding: 30px;
             background-color: $sd-blue;
@@ -239,6 +258,7 @@ export default {
                 border-right: $sd-ivory 1px solid;
                 padding-right: 15px;
                 @media (max-width: $screen-mobile) {
+                    display: none;
                 }
                 .left-side-frame {
                     display: inline-block;
@@ -431,35 +451,97 @@ export default {
                 }
             }
             &__right {
-                padding-left: 25px;
-                padding-right: 25px;
                 display: inline-block;
+                padding-left: 30px;
+                padding-right: 25px;
+                @media (max-width: $screen-mobile) {
+                    // position: absolute;
+                    padding: 10px;
+                    overflow-x: hidden;
+                }
                 .input-section {
                     position: absolute;
+                    width: 350px;
                     top: 30px;
+                    @media (max-width: $screen-mobile) {
+                        position: relative;
+                        top: 0;
+                        width: 100%;
+                        max-height: 70%;
+                        overflow-y: scroll;
+                    }
                     .title-row {
+                        @media (max-width: $screen-mobile) {
+                            min-width: 230px;
+                            max-width: 642px;
+                        }
                         &__title {
                             margin-top: 10px;
                             font-size: 20px;
                             color: $sd-ivory;
                             margin-bottom: 8px;
+                            @media (max-width: $screen-mobile) {
+                                margin-top: 15px;
+                                margin-bottom: 10px;
+                            }
+                        }
+                        &__diary-title {
+                            width: 100%;
+                            @media (max-width: $screen-mobile) {
+                                margin-bottom: 5px;
+                            }
+                        }
+                        &__date {
+                            width: 100%;
+                            @media (max-width: $screen-mobile) {
+                                margin-bottom: 5px;
+                            }
+                        }
+                        &__diary-contents {
+                            width: 100%;
+                            height: 115px;
+                            @media (max-width: $screen-mobile) {
+                                margin-bottom: 5px;
+                                height: 90px;
+                            }
                         }
                     }
                 }
-                .button-section {
-                    position: absolute;
-                    bottom: 30px;
-                    right: 30px;
-                    &__close {
-                        cursor: pointer;
-                        margin-right: 50px;
-                        color: $sd-ivory;
-                        font-size: 30px;
-                    }
-                    &__save {
-                        cursor: pointer;
-                        font-size: 30px;
-                        color: $sd-ivory;
+                .wrap-select-buttons {
+                    .select-buttons {
+                        position: absolute;
+                        bottom: 30px;
+                        right: 30px;
+                        @media (max-width: $screen-mobile) {
+                            width: 90%;
+                            right: auto;
+                        }
+                        &__close {
+                            cursor: pointer;
+                            margin-right: 50px;
+                            color: $sd-ivory;
+                            font-size: 30px;
+                            @media (max-width: $screen-mobile) {
+                                width: auto;
+                                position: absolute;
+                                left: 5px;
+                                bottom: 5px;
+                                margin-right: auto;
+                                font-size: 25px;
+                            }
+                        }
+                        &__save {
+                            cursor: pointer;
+                            font-size: 30px;
+                            color: $sd-ivory;
+                            @media (max-width: $screen-mobile) {
+                                width: auto;
+                                position: absolute;
+                                right: 15px;
+                                bottom: 5px;
+                                font-size: 25px;
+                            }
+                        }
                     }
                 }
             }

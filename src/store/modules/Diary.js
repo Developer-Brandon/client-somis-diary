@@ -34,6 +34,7 @@ const actions = {
   }),
   SAVE_DIARY: ({ commit, params }) => new Promise((resolve) => {
     // TODO: Call save diary api
+    // cat vuex에서 catId를 가져와서 save 직전에 같이 전송해야 함.
     commit('', params)
     resolve()
   }),
