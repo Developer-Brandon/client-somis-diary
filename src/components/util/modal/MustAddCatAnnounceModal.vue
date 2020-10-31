@@ -12,26 +12,24 @@
           />
         </div>
         <div class="wrap-message">
-          <p class="contents">
-            {{ values.string.message }}
+          <p
+            class="contents"
+            v-html="values.string.message"
+          >
           </p>
         </div>
         <div
           class="wrap-whether-add-cat-buttons"
         >
-          <span
+          <div
 
-            class="close-button"
-            @click="close"
-          >
-            취소
-          </span>
-          <span
-            class="add-button"
-            @click="mustEstablishModal"
-          >
-            등록
-          </span>
+            class="close-button">
+            <span @click.stop="close">취소</span>
+          </div>
+          <div
+            class="add-button">
+            <span @click.stop="mustEstablishModal">등록</span>
+          </div>
         </div>
       </div>
     </section>
@@ -96,17 +94,15 @@ export default {
             margin: auto;
             //
             width: 500px;
-            height: 240px;
+            height: 275px;
             padding: 30px;
             background-color: $sd-blue;
             border-radius: 15px;
             overflow: visible;
             @media (max-width: $screen-mobile) {
                 width: 90%;
-                height: 240px;
-                max-height: 240px;
-                padding: 15px;
                 overflow-x: hidden;
+                height: 275px;
             }
             .wrap-image {
                 text-align: center;
@@ -119,9 +115,9 @@ export default {
                 .contents {
                     text-align: center;
                     color: $sd-ivory;
-                    font-size: 24px;
+                    font-size: 25px;
                     @media (max-width: $screen-mobile) {
-                      font-size: 20px;
+                        font-size: 18px;
                     }
                 }
             }
@@ -131,22 +127,24 @@ export default {
                     width: 50%;
                     padding-left: 20px;
                     float: left;
-                    display: block;
-                    cursor: pointer;
                     text-align: left;
                     color: $sd-ivory;
                     padding-bottom: 3px;
-                    font-size: 20px;
+                    font-size: 25px;
+                    span {
+                      cursor: pointer;
+                    }
                 }
                 .add-button {
                     width: 50%;
                     padding-right: 20px;
-                    display: block;
                     float: right;
-                    cursor: pointer;
                     color: $sd-ivory;
                     text-align: right;
-                    font-size: 20px;
+                    font-size: 25px;
+                    span {
+                      cursor: pointer;
+                    }
                 }
             }
         }

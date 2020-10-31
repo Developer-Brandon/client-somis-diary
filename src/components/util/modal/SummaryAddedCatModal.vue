@@ -350,7 +350,7 @@ export default {
                         position: relative;
                         &__left {
                             position: absolute;
-                            width: 50%;
+                            width: auto;
                             left: 5px;
                             bottom: 5px;
                             @media (max-width: $screen-mobile) {
@@ -361,11 +361,14 @@ export default {
                                 text-align: left;
                                 color: $sd-ivory;
                                 font-size: 25px;
+                                @media (max-width: $screen-mobile) {
+                                    // ?
+                                }
                             }
                         }
                         &__right {
                             position: absolute;
-                            width: 50%;
+                            width: auto;
                             right: 5px;
                             bottom: 5px;
                             @media (max-width: $screen-mobile) {
@@ -376,6 +379,9 @@ export default {
                                 text-align: right;
                                 color: $sd-ivory;
                                 font-size: 25px;
+                                @media (max-width: $screen-mobile) {
+                                    // ?
+                                }
                             }
                         }
                     }

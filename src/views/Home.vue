@@ -4,23 +4,14 @@
     onmousedown="return false"
     class="home"
     :class="{
-      'wide-width': headerState === enums.headerState.WIDE,
-      'strait-width': headerState === enums.headerState.STRAIT,
+      'sd-wide-width': headerState === enums.headerState.WIDE,
+      'sd-strait-width': headerState === enums.headerState.STRAIT,
     }"
   >
     <div
       class="home__inner"
     >
-      <div
-        class="opposite-arrows"
-        @click="clickHeaderChangeButton"
-      >
-        <img
-          class="left-arrow desktop-visible-block-only"
-          src="@/assets/images/icons/opposite-arrows.png"
-          alt="left arrow"
-        />
-      </div>
+      <sd-opposite-arrows />
       <div class="pc-title desktop-visible-block-only">
         <img
           class="pc-title__icon"
@@ -50,10 +41,13 @@
 
 <script>
 import { HeaderState } from '@/assets/js/enums/HeaderState'
+import SdOppositeArrows from '@/components/util/SdOppositeArrows.vue'
 
 export default {
   name: 'Home',
-  components: {},
+  components: {
+    SdOppositeArrows,
+  },
   data() {
     return {
       values: {
@@ -76,37 +70,11 @@ export default {
       this.values.check.lifeCycle = true
     })
   },
-  methods: {
-    clickHeaderChangeButton() {
-      let headerType
-      if (this.headerState === HeaderState.WIDE) {
-        headerType = HeaderState.STRAIT
-      } else {
-        headerType = HeaderState.WIDE
-      }
-      this.$store.dispatch('home/SET_HEADER_STATE', { headerType })
-    },
-  },
 }
 </script>
 
 <style lang="scss" scoped>
     $max-width: 400px;
-
-    // @Local util
-    .wide-width {
-        width: calc(100% - 400px) !important;
-        @media (max-width: $screen-mobile) {
-            width: 100% !important;
-        }
-    }
-
-    .strait-width {
-        width: calc(100% - 100px) !important;
-        @media (max-width: $screen-mobile) {
-            width: 100% !important;
-        }
-    }
 
     // @Classes
     .home {
@@ -124,34 +92,6 @@ export default {
             @media (max-width: $screen-mobile) {
                 padding: 65px 50px 0 50px;
             }
-            .opposite-arrows {
-                position: absolute;
-                display: flex;
-                align-items: center;
-                top: 0;
-                left: 0;
-                width: 50px;
-                height: 50px;
-                cursor: pointer;
-                background-color: $sd-blue;
-                border-radius: 0 0 10px 0;
-                @media (max-width: $screen-mobile) {
-                    display: none;
-                }
-                .left-arrow {
-                  width: 27px;
-                  height: 27px;
-                  margin: 0 auto;
-                  transition: 0.1s;
-                  &:hover {
-                      -webkit-transform: scale(1.1);
-                      -moz-transform: scale(1.1);
-                      -ms-transform: scale(1.1);
-                      transform: scale(1.1);
-                    }
-                }
-            }
-
             .pc-title {
                 text-align: right;
                 margin-bottom: 25px;
@@ -201,12 +141,19 @@ export default {
                     margin-right: 0;
                 }
                 p {
-                    color: $sd-white;
-                    font-size: 20px;
+                    color: $sd-ivory;
+                    text-shadow: -1px 0  $sd-yellow, 0 1px $sd-yellow, 1px 0  $sd-yellow, 0 -1px  $sd-yellow;
+                    font-size: 25px;
                     font-weight: 700;
-                    line-height: 25px;
+                    line-height: 40px;
+                    letter-spacing: 1px;
+                    &:hover {
+                      // ?
+                    }
                     @media (max-width: $screen-mobile) {
-                        font-size: 15px;
+                      letter-spacing: 0.5px;
+                      font-size: 15px;
+                      line-height: 30px;
                     }
                 }
             }

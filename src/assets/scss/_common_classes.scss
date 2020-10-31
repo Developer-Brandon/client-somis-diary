@@ -277,3 +277,17 @@
     }
   }
 }
+
+.sd-wide-width {
+  width: calc(100% - 400px) !important;
+  @media (max-width: $screen-mobile) {
+    width: 100% !important;
+  }
+}
+
+.sd-strait-width {
+  width: calc(100% - 100px) !important;
+  @media (max-width: $screen-mobile) {
+    width: 100% !important;
+  }
+}
