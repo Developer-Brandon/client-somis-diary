@@ -115,7 +115,7 @@ export default {
 
 <style lang="scss" scoped>
     .main-icon {
-        margin-bottom: 30px;
+        margin-bottom: 50px;
     }
 
     img {

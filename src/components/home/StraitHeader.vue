@@ -2,14 +2,14 @@
   <section class="wrap-wide-header">
     <div class="title">
       <div class="title__inner">
-        <h3 class="font-semi-bold">
+        <h3 class="font-semi-bold title-diary-fade-in">
           소미일기
         </h3>
       </div>
     </div>
     <sd-clear-both />
     <div
-      class="description"
+      class="description contents-diary-fade-in"
       @click="routing"
     >
       <div class="description__inner">
@@ -129,6 +129,14 @@ export default {
 
 <style lang="scss" scoped>
     // @Local Utils
+    .title-diary-fade-in {
+      @include primary-fade-in-bottom-to-top(0.4, 0.1);
+    }
+
+    .contents-diary-fade-in {
+      @include primary-fade-in-bottom-to-top(0.4, 0.1);
+    }
+
     .write-diary-fade-in {
       @include primary-fade-in-bottom-to-top(0.4, 0.1);
     }
