@@ -1,13 +1,62 @@
 <template>
-  <div></div>
+  <div>
+    <section
+      v-show="values.check.lifeCycle"
+      onmousedown="return false"
+      class="community sd-common-page"
+      :class="{
+        'sd-wide-width': headerState === enums.headerState.WIDE,
+        'sd-strait-width': headerState === enums.headerState.STRAIT,
+      }"
+    >
+      <div
+        class="community__inner sd-common-page__inner"
+      >
+        <sd-opposite-arrows />
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
+import { HeaderState } from '@/assets/js/enums/HeaderState'
+import SdOppositeArrows from '@/components/util/SdOppositeArrows.vue'
+
 export default {
   name: 'Community',
+  components: {
+    SdOppositeArrows,
+  },
+  data() {
+    return {
+      values: {
+        check: {
+          lifeCycle: false,
+        },
+      },
+      enums: {
+        headerState: HeaderState,
+      },
+    }
+  },
+  computed: {
+    headerState() {
+      return this.$store.getters['home/headerType']
+    },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.values.check.lifeCycle = true
+    })
+  },
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  $max-width: 400px;
+  .community {
+    &__inner {
+      //
+    }
+  }
 </style>

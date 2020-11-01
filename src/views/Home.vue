@@ -2,14 +2,14 @@
   <section
     v-show="values.check.lifeCycle"
     onmousedown="return false"
-    class="home"
+    class="home sd-common-page"
     :class="{
       'sd-wide-width': headerState === enums.headerState.WIDE,
       'sd-strait-width': headerState === enums.headerState.STRAIT,
     }"
   >
     <div
-      class="home__inner"
+      class="home__inner sd-common-page__inner"
     >
       <sd-opposite-arrows />
       <div class="pc-title desktop-visible-block-only">
@@ -78,20 +78,7 @@ export default {
 
     // @Classes
     .home {
-        float: right;
-        width: calc(100% - 400px);
-        height: 100vh;
-        background-color: $sd-yellow;
-        background-image: url('~@/assets/images/main/banner/silent-cat.png');
-        @media (max-width: $screen-mobile) {
-            background-position: 20% center;
-        }
         &__inner {
-            position: relative;
-            padding: 50px;
-            @media (max-width: $screen-mobile) {
-                padding: 65px 50px 0 50px;
-            }
             .pc-title {
                 text-align: right;
                 margin-bottom: 25px;
@@ -142,18 +129,18 @@ export default {
                 }
                 p {
                     color: $sd-ivory;
-                    text-shadow: -1px 0  $sd-yellow, 0 1px $sd-yellow, 1px 0  $sd-yellow, 0 -1px  $sd-yellow;
+                    text-shadow: -1px 0 $sd-yellow, 0 1px $sd-yellow, 1px 0 $sd-yellow, 0 -1px $sd-yellow;
                     font-size: 25px;
                     font-weight: 700;
                     line-height: 40px;
                     letter-spacing: 1px;
                     &:hover {
-                      // ?
+                        // ?
                     }
                     @media (max-width: $screen-mobile) {
-                      letter-spacing: 0.5px;
-                      font-size: 15px;
-                      line-height: 30px;
+                        letter-spacing: 0.5px;
+                        font-size: 15px;
+                        line-height: 30px;
                     }
                 }
             }

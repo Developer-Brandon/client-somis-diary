@@ -291,3 +291,21 @@
     width: 100% !important;
   }
 }
+
+.sd-common-page {
+  float: right;
+  width: calc(100% - 400px);
+  height: 100vh;
+  background-color: $sd-yellow;
+  background-image: url('~@/assets/images/main/banner/silent-cat.png');
+  @media (max-width: $screen-mobile) {
+    background-position: 20% center;
+  }
+  &__inner {
+    position: relative;
+    padding: 50px;
+    @media (max-width: $screen-mobile) {
+      padding: 65px 50px 0 50px;
+    }
+  }
+}
