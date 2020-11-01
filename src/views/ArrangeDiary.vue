@@ -14,6 +14,7 @@
         class="arrange-diary__inner sd-common-page__inner"
       >
         <sd-opposite-arrows />
+        <sd-diary-search-bar />
       </div>
     </section>
   </div>
@@ -22,11 +23,13 @@
 <script>
 import { HeaderState } from '@/assets/js/enums/HeaderState'
 import SdOppositeArrows from '@/components/util/SdOppositeArrows.vue'
+import SdDiarySearchBar from '@/components/arrangeDiary/SdDiarySearchBar.vue'
 
 export default {
   name: 'ArrangeDiary',
   components: {
     SdOppositeArrows,
+    SdDiarySearchBar,
   },
   data() {
     return {
@@ -54,7 +57,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    $max-width: 400px;
     .arrange-diary {
         &__inner {
             //

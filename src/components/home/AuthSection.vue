@@ -8,10 +8,10 @@
       class="login-menu__log-out"
     >
       <div v-if="headerState === enums.headerState.WIDE">
-        <p @click="callSignInModal">
+        <p class="sign-in-fade-in" @click="callSignInModal">
           가입하기
         </p>
-        <p @click="callSignUpModal">
+        <p class="sign-up-fade-in" @click="callSignUpModal">
           로그인
         </p>
       </div>
@@ -35,7 +35,7 @@
       class="login-menu__log-in"
     >
       <div v-if="headerState === enums.headerState.WIDE">
-        <p @click="callSignOut">
+        <p class="sign-out-fade-in" @click="callSignOut">
           로그아웃
         </p>
       </div>
@@ -104,6 +104,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    // @Local Utils
+    .sign-in-fade-in {
+        @include primary-fade-in-bottom-to-top(0.6, 0.9);
+    }
+
+    .sign-up-fade-in {
+        @include primary-fade-in-bottom-to-top(0.8, 1);
+    }
+
+    .sign-out-fade-in {
+        @include primary-fade-in-bottom-to-top(0.6, 0.9);
+    }
+
     // @Classes
     .login-menu {
         position: absolute;
@@ -129,27 +142,27 @@ export default {
                 }
             }
             .sign-up-icon {
-              margin-bottom: 30px;
-              cursor: pointer;
-              transition: 0.3s;
-              &:hover {
+                margin-bottom: 30px;
                 cursor: pointer;
-                -webkit-transform: scale(1.1);
-                -moz-transform: scale(1.1);
-                -ms-transform: scale(1.1);
-                transform: scale(1.1);
-              }
+                transition: 0.3s;
+                &:hover {
+                    cursor: pointer;
+                    -webkit-transform: scale(1.1);
+                    -moz-transform: scale(1.1);
+                    -ms-transform: scale(1.1);
+                    transform: scale(1.1);
+                }
             }
             .sign-in-icon {
-              cursor: pointer;
-              transition: 0.3s;
-              &:hover {
                 cursor: pointer;
-                -webkit-transform: scale(1.1);
-                -moz-transform: scale(1.1);
-                -ms-transform: scale(1.1);
-                transform: scale(1.1);
-              }
+                transition: 0.3s;
+                &:hover {
+                    cursor: pointer;
+                    -webkit-transform: scale(1.1);
+                    -moz-transform: scale(1.1);
+                    -ms-transform: scale(1.1);
+                    transform: scale(1.1);
+                }
             }
         }
         &__log-in {

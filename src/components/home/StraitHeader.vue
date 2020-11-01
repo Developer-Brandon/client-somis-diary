@@ -25,16 +25,28 @@
     <sd-clear-both />
     <div class="menu">
       <div class="menu__inner">
-        <p @click="callWriteDiaryModal">
+        <p
+          class="write-diary-fade-in"
+          @click="callWriteDiaryModal"
+        >
           <span class="font-bold">일</span>기 쓰기
         </p>
-        <p @click="routing(enums.pageState.ARRANGE_DIARY)">
+        <p
+          class="arrange-diary-fade-in"
+          @click="routing(enums.pageState.ARRANGE_DIARY)"
+        >
           <span class="font-bold">일</span>기 목록
         </p>
-        <p @click="routing(enums.pageState.NOTICE)">
+        <p
+          class="notice-fade-in"
+          @click="routing(enums.pageState.NOTICE)"
+        >
           <span class="font-bold">공</span>지
         </p>
-        <p @click="routing(enums.pageState.COMMUNITY)">
+        <p
+          class="community-fade-in"
+          @click="routing(enums.pageState.COMMUNITY)"
+        >
           <span class="font-bold">커</span>뮤니티
         </p>
       </div>
@@ -116,6 +128,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    // @Local Utils
+    .write-diary-fade-in {
+      @include primary-fade-in-bottom-to-top(0.4, 0.1);
+    }
+
+    .arrange-diary-fade-in {
+      @include primary-fade-in-bottom-to-top(0.4, 0.3);
+    }
+
+    .notice-fade-in {
+      @include primary-fade-in-bottom-to-top(0.4, 0.5);
+    }
+
+    .community-fade-in {
+      @include primary-fade-in-bottom-to-top(0.4, 0.7);
+    }
+
+    // @Classes
     .wrap-wide-header {
         .title {
             margin-bottom: 30px;

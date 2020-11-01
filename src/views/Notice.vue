@@ -53,7 +53,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $max-width: 400px;
   .notice {
     &__inner {
       //

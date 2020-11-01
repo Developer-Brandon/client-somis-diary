@@ -74,8 +74,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    $max-width: 400px;
-
     // @Classes
     .home {
         &__inner {
