@@ -249,7 +249,7 @@
 .sd-negative-reversal-button {
   border: 1px solid $sd-deep-blue;
   border-radius: 5px;
-  background-color: $sd-deep-blue;
+  background-color: $sd-blue;
   color: $sd-white;
   transition: 0.3s;
   &:hover {
@@ -257,7 +257,7 @@
     font-weight: 700;
   }
   @media (max-width: $screen-mobile) {
-    background-color: $sd-deep-blue;
+    background-color: $sd-blue;
     font-size: 18px;
   }
 }

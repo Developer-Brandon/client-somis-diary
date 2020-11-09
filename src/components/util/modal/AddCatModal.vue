@@ -12,7 +12,9 @@
                 class="default-image"
                 src="@/assets/images/icons/cat-default-profile.png"
                 alt="기본 프로필 이미지"
+                @click="callFileAttach"
               />
+              <!-- TODO: 사진등록 기능이 완성 되고 난 후 개발 예정 -->
               <!--<img src="" alt="등록된 이미지" />-->
             </div>
           </div>
@@ -29,6 +31,8 @@
             <span class="right-side-frame">
               <input
                 v-model="name"
+                placeholder="15글자 이하"
+                maxlength="15"
                 class="name-input sd-input"
                 type="text"
               />
@@ -39,6 +43,7 @@
             <span class="right-side-frame">
               <input
                 v-model="birthday"
+                placeholder="0000-00-00"
                 class="birthday-input sd-input"
                 type="text"
               />
@@ -47,14 +52,36 @@
           <div class="gender">
             <span class="left-side-frame">성별</span>
             <span class="right-side-frame">
-              <img />
-              <img />
+              <span class="right-side-frame__gender">
+                <button
+                  :class="{'change-button-color-to-visited': values.check.gender.man}"
+                  @click="catManHasClicked"
+                >
+                  <img
+                    class="cat-man"
+                    src="@/assets/images/icons/man.png"
+                    alt="수컷"
+                  />
+                </button>
+                <button
+                  :class="{'change-button-color-to-visited': values.check.gender.woman}"
+                  @click="catWomanHasClicked"
+                >
+                  <img
+                    class="cat-woman"
+                    src="@/assets/images/icons/woman.png"
+                    alt="암컷"
+                  />
+                </button>
+              </span>
             </span>
           </div>
           <div class="species">
             <span class="left-side-frame">종류</span>
             <span class="right-side-frame">
-              <p>선택하기</p>
+              <span class="right-side-frame__type">
+                <button @click="callCatTypeList">선택하기</button>
+              </span>
             </span>
           </div>
           <div class="weight">
@@ -62,6 +89,8 @@
             <span class="right-side-frame">
               <input
                 v-model="kg"
+                maxlength="2"
+                placeholder="2자리수 이하"
                 class="weight-input sd-input"
                 type="text"
               />
@@ -75,7 +104,7 @@
             <textarea
               v-model="introduce"
               maxlength="201"
-              placeholder=""
+              placeholder="특이사항을 입력해주세요"
               class="sd-textarea introduce-contents"
             ></textarea>
           </div>
@@ -115,6 +144,10 @@ export default {
       values: {
         check: {
           lifeCycle: false,
+          gender: {
+            man: false,
+            woman: false,
+          },
         },
       },
     }
@@ -173,6 +206,9 @@ export default {
     show() {
       this.values.check.lifeCycle = true
     },
+    callFileAttach() {
+      EventBus.$emit('callSdSimpleModal', '준비중인 기능입니다')
+    },
     close() {
       this.values.check.lifeCycle = false
     },
@@ -180,11 +216,27 @@ export default {
       this.close()
       EventBus.$emit('callSummaryAddedCatModal')
     },
+    catManHasClicked() {
+      this.values.check.gender.man = !this.values.check.gender.man
+      this.values.check.gender.woman = false
+    },
+    catWomanHasClicked() {
+      this.values.check.gender.woman = !this.values.check.gender.woman
+      this.values.check.gender.man = false
+    },
+    callCatTypeList() {
+
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
+    // @Local Utils
+    .change-button-color-to-visited {
+        background-color: $sd-yellow !important;
+    }
+
     // @Classes
     .cat-add-modal {
         position: fixed;
@@ -248,6 +300,55 @@ export default {
                         display: block;
                         width: 100%;
                         padding-bottom: 5px;
+                    }
+                    &__gender {
+                        button {
+                            width: 75px;
+                            background-color: $sd-white;
+                            border: 1px solid $sd-blue;
+                            -webkit-border-radius: 20px;
+                            -moz-border-radius: 20px;
+                            border-radius: 20px;
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            &:first-child {
+                                margin-right: 10px;
+                                @media (max-width: $screen-mobile) {
+                                  margin-right: 4%;
+                                }
+                            }
+                            .cat-man {
+                                width: 20px;
+                                height: 20px;
+                            }
+                            .cat-woman {
+                                width: 20px;
+                                height: 20px;
+                            }
+                            @media (max-width: $screen-mobile) {
+                              width: 48%;
+                            }
+                        }
+                    }
+                    &__type {
+                        button {
+                            width: 120px;
+                            background-color: $sd-white;
+                            border: 1px solid $sd-blue;
+                            -webkit-border-radius: 20px;
+                            -moz-border-radius: 20px;
+                            border-radius: 20px;
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            font-size: 20px;
+                            &:active {
+                                background-color: $sd-blue;
+                                color: $sd-white;
+                            }
+                            @media (max-width: $screen-mobile) {
+                              width: 100%;
+                            }
+                        }
                     }
                 }
                 .wrap-writer-cat {

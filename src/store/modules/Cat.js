@@ -3,7 +3,7 @@ const state = () => ({
   birthday: '',
   gender: 0, // TODO: Convert to Enum
   species: 0, // TODO: Convert to Enum
-  kg: 0,
+  kg: '',
   introduce: '',
   whetherCatExist: false,
   catList: [],

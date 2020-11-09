@@ -11,6 +11,8 @@
     <add-cat-modal ref="addCatModal" />
     <summary-added-cat-modal ref="summaryAddedCatModal" />
     <write-cat-diary-modal ref="writeCatDiaryModal" />
+    <sd-simple-modal ref="sdSimpleModal" />
+    <sd-simple-confirm-modal ref="sdSimpleConfirmModal" />
   </div>
 </template>
 
@@ -24,6 +26,8 @@ import MustAddCatAnnounceModal from '@/components/util/modal/MustAddCatAnnounceM
 import AddCatModal from '@/components/util/modal/AddCatModal.vue'
 import SummaryAddedCatModal from '@/components/util/modal/SummaryAddedCatModal.vue'
 import WriteCatDiaryModal from '@/components/util/modal/WriteCatDiaryModal.vue'
+import SdSimpleModal from '@/components/util/modal/SdSimpleModal.vue'
+import SdSimpleConfirmModal from '@/components/util/modal/SdSimpleConfirmModal.vue'
 
 export default {
   name: 'App',
@@ -36,6 +40,8 @@ export default {
     AddCatModal,
     SummaryAddedCatModal,
     WriteCatDiaryModal,
+    SdSimpleModal,
+    SdSimpleConfirmModal,
   },
   mounted() {
     EventBus.$on('callSignUpModal', () => this.$refs.signUpClientModal.show('간편하게 회원가입 해보라냥!'))
@@ -44,6 +50,8 @@ export default {
     EventBus.$on('callAddCatModal', () => this.$refs.addCatModal.show())
     EventBus.$on('callSummaryAddedCatModal', () => this.$refs.summaryAddedCatModal.show())
     EventBus.$on('callWriteCatDiaryModal', () => this.$refs.writeCatDiaryModal.show())
+    EventBus.$on('callSdSimpleModal', (message) => this.$refs.sdSimpleModal.show(message))
+    EventBus.$on('callSdSimpleConfirmModal', (type, message) => this.$refs.sdSimpleConfirmModal.show(type, message))
   },
 }
 </script>
