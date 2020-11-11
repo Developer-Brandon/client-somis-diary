@@ -101,6 +101,7 @@ export default {
         check: {
           lifeCycle: false,
         },
+        data: {},
       },
     }
   },
@@ -125,6 +126,10 @@ export default {
     },
   },
   methods: {
+    // TODO: 파일첨부 기능이 완성 된 후 받는 쪽까지 같이 개발
+    fileObject() {
+      return null
+    },
     close() {
       this.values.check.lifeCycle = false
     },
@@ -132,8 +137,10 @@ export default {
       this.close()
       EventBus.$emit('callAddCatModal')
     },
-    show() {
+    show(data) {
+      this.values.data = data
       this.values.check.lifeCycle = true
+      console.log('data', data)
     },
     finish() {
       this.close()

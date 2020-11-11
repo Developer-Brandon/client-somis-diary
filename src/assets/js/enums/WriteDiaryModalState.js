@@ -1,30 +1,30 @@
 export const WriteDiaryModalState = Object.freeze({
   NAME: {
-    name: 'name',
+    name: 'NAME',
     value: 1,
   },
   SPECIES: {
-    name: 'species',
+    name: 'SPECIES',
     value: 2,
   },
   BIRTHDAY: {
-    name: 'birthday',
+    name: 'BIRTHDAY',
     value: 3,
   },
   WEIGHT: {
-    name: 'weight',
+    name: 'WEIGHT',
     value: 4,
   },
   GENDER: {
-    name: 'gender',
+    name: 'GENDER',
     value: 5,
   },
   WHETHER_NEUTRALIZATION: {
-    name: 'whetherNeutralization',
+    name: 'WHETHER_NEUTRALIZATION',
     value: 6,
   },
   SOME_ELSE: {
-    name: 'someElse',
+    name: 'SOME_ELSE',
     value: 7,
   },
 })

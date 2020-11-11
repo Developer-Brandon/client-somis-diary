@@ -30,7 +30,7 @@ const actions = {
     commit('setAccessToken', params)
     resolve()
   }),
-  REQUEST_JOIN: ({ commit, params }) => new Promise((resolve) => {
+  REQUEST_JOIN: ({ commit }, params) => new Promise((resolve) => {
     // TODO: call join api
     // 회원가입 후, 자동 로그인 시켜주게끔 처리
     commit('setAccessToken', params)

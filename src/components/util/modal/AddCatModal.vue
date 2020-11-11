@@ -136,7 +136,9 @@
 
 <script>
 import { EventBus } from '@/assets/js/plugin/eventBus'
+import UtilBox from '@/assets/js/util/validation/utilBox'
 
+let utilBox
 export default {
   name: 'AddCatModal',
   data() {
@@ -202,19 +204,66 @@ export default {
       },
     },
   },
+  created() {
+    utilBox = new UtilBox()
+  },
   methods: {
     show() {
       this.values.check.lifeCycle = true
     },
+    callSimpleModal(message) {
+      EventBus.$emit('callSdSimpleModal', message)
+    },
     callFileAttach() {
-      EventBus.$emit('callSdSimpleModal', '준비중인 기능입니다')
+      this.callSimpleModal('준비중인 기능입니다')
     },
     close() {
       this.values.check.lifeCycle = false
     },
+    getWrapedFromData() {
+      // TODO: File관련 기능 추가 후 객체 넘기기
+      return {
+        file: '',
+        name: this.name,
+        birthday: this.birthday,
+        gender: this.gender,
+        species: this.species,
+        kg: this.kg,
+        introduce: this.introduce,
+      }
+    },
+    valicationAllValues() {
+      const data = this.getWrapedFromData()
+      return new Promise((resolve, reject) => {
+        utilBox._type = 'file'
+        utilBox._value = data.file
+        if (!utilBox.validateFile) reject(new Error('사진이 등록되지 않았다냥~!'))
+        utilBox._type = 'name'
+        utilBox._value = data.name
+        if (!utilBox.validateName) reject(new Error('이름이 1글자 이상은 입력되어야한다냥~!'))
+        utilBox._type = 'birthday'
+        utilBox._value = data.birthday
+        if (!utilBox.validateBirthday) reject(new Error('생일은 꼭 입력해주어야한다냥~!'))
+        utilBox._type = 'gender'
+        utilBox._value = data.gender
+        if (!utilBox.validateGender) reject(new Error('성별은 꼭 선택해주어야한다냥~!'))
+        utilBox._type = 'species'
+        utilBox._value = data.species
+        if (!utilBox.validateSpecies) reject(new Error('고양이 종은 꼭 선택해주어야한다냥~!'))
+        utilBox._type = 'kg'
+        utilBox._value = data.kg
+        if (!utilBox.validateKg) reject(new Error('고양이 무게는 꼭 입력해주어야한다냥~!'))
+        // TODO: 특이사항의 필수/선택 입력 여부를 정해야 한다
+        resolve()
+      })
+    },
     finish() {
-      this.close()
-      EventBus.$emit('callSummaryAddedCatModal')
+      this.valicationAllValues()
+        .then(() => {
+          EventBus.$emit('callSummaryAddedCatModal', this.getWrapedFromData())
+          this.close()
+        })
+        .catch((error) => this.callSimpleModal(error.message))
     },
     catManHasClicked() {
       this.values.check.gender.man = !this.values.check.gender.man
@@ -314,7 +363,7 @@ export default {
                             &:first-child {
                                 margin-right: 10px;
                                 @media (max-width: $screen-mobile) {
-                                  margin-right: 4%;
+                                    margin-right: 4%;
                                 }
                             }
                             .cat-man {
@@ -326,7 +375,7 @@ export default {
                                 height: 20px;
                             }
                             @media (max-width: $screen-mobile) {
-                              width: 48%;
+                                width: 48%;
                             }
                         }
                     }
@@ -346,7 +395,7 @@ export default {
                                 color: $sd-white;
                             }
                             @media (max-width: $screen-mobile) {
-                              width: 100%;
+                                width: 100%;
                             }
                         }
                     }

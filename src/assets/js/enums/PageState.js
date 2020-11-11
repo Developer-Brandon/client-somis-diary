@@ -1,14 +1,14 @@
 export const PageState = Object.freeze({
   ARRANGE_DIARY: {
-    name: 'arrangeDiary',
+    name: 'ARRANGE_DIARY',
     value: 2,
   },
   NOTICE: {
-    name: 'notice',
+    name: 'NOTICE',
     value: 3,
   },
   COMMUNITY: {
-    name: 'community',
+    name: 'COMMUNITY',
     value: 4,
   },
 })

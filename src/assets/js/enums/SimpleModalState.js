@@ -1,10 +1,10 @@
 export const SimpleModalState = Object.freeze({
   ALERT: {
-    name: 'alert',
+    name: 'ALERT',
     value: 1,
   },
   CONFIRM: {
-    name: 'confirm',
+    name: 'CONFIRM',
     value: 2,
   },
 })

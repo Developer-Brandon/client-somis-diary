@@ -1,10 +1,10 @@
 export const AuthModalState = Object.freeze({
   SIGN_IN: {
-    name: 'signIn',
+    name: 'SIGN_IN',
     value: 1,
   },
   SIGN_UP: {
-    name: 'signUp',
+    name: 'SIGN_UP',
     value: 2,
   },
 })

@@ -1,10 +1,10 @@
 export const HeaderState = Object.freeze({
   WIDE: {
-    name: 'wide',
+    name: 'WIDE',
     value: 1,
   },
   STRAIT: {
-    name: 'strait',
+    name: 'STRAIT',
     value: 2,
   },
 })

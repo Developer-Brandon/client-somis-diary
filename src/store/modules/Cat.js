@@ -48,47 +48,61 @@ const mutations = {
   setWhetherCatExist(state, params) {
     state.whetherCatExist = params.whetherCatExist
   },
+  clearAllData(state) {
+    state.name = ''
+    state.birthday = ''
+    state.gender = 0
+    state.species = 0
+    state.kg = ''
+    state.introduce = ''
+    state.whetherCatExist = false
+    state.catList = []
+  },
 }
 const actions = {
-  SET_NAME: ({ commit, params }) => new Promise((resolve) => {
+  SET_NAME: ({ commit }, params) => new Promise((resolve) => {
     commit('setName', params)
     resolve()
   }),
-  SET_BIRTHDAY: ({ commit, params }) => new Promise((resolve) => {
+  SET_BIRTHDAY: ({ commit }, params) => new Promise((resolve) => {
     commit('setBirthday', params)
     resolve()
   }),
-  SET_GENDER: ({ commit, params }) => new Promise((resolve) => {
+  SET_GENDER: ({ commit }, params) => new Promise((resolve) => {
     commit('setGender', params)
     resolve()
   }),
-  SET_SPECIES: ({ commit, params }) => new Promise((resolve) => {
+  SET_SPECIES: ({ commit }, params) => new Promise((resolve) => {
     commit('setSpecies', params)
     resolve()
   }),
-  SET_KG: ({ commit, params }) => new Promise((resolve) => {
+  SET_KG: ({ commit }, params) => new Promise((resolve) => {
     commit('setKg', params)
     resolve()
   }),
-  SET_INTRODUCE: ({ commit, params }) => new Promise((resolve) => {
+  SET_INTRODUCE: ({ commit }, params) => new Promise((resolve) => {
     commit('setIntroduce', params)
     resolve()
   }),
-  GET_CAT_LIST: ({ commit, params }) => new Promise((resolve) => {
+  GET_CAT_LIST: ({ commit }, params) => new Promise((resolve) => {
     // TODO: Call cat list api
     commit('', params)
     resolve()
   }),
-  APPLY_CAT_INFORMATION: ({ commit, params }) => new Promise((resolve) => {
+  APPLY_CAT_INFORMATION: ({ commit }, params) => new Promise((resolve) => {
     commit()
     console.log(params)
     // TODO: Call apply cat information api
     resolve()
   }),
-  CHECK_CAT_EXIST: ({ commit, params }) => new Promise((resolve) => {
+  CHECK_CAT_EXIST: ({ commit }, params) => new Promise((resolve) => {
     commit()
     console.log(params)
     // TODO: Call whether check cat exist api
+    resolve()
+  }),
+  CLEAR_ALL_DATA: ({ commit }) => new Promise((resolve) => {
+    commit('clearAllData')
     resolve()
   }),
 }

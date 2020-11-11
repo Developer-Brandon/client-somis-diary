@@ -20,19 +20,19 @@ const mutations = {
   },
 }
 const actions = {
-  SET_TITLE: ({ commit, params }) => new Promise((resolve) => {
+  SET_TITLE: ({ commit }, params) => new Promise((resolve) => {
     commit('setTitle', params)
     resolve()
   }),
-  SET_DATETIME: ({ commit, params }) => new Promise((resolve) => {
+  SET_DATETIME: ({ commit }, params) => new Promise((resolve) => {
     commit('setDateTime', params)
     resolve()
   }),
-  SET_CONTENTS: ({ commit, params }) => new Promise((resolve) => {
+  SET_CONTENTS: ({ commit }, params) => new Promise((resolve) => {
     commit('setContents', params)
     resolve()
   }),
-  SAVE_DIARY: ({ commit, params }) => new Promise((resolve) => {
+  SAVE_DIARY: ({ commit }, params) => new Promise((resolve) => {
     // TODO: Call save diary api
     // cat vuex에서 catId를 가져와서 save 직전에 같이 전송해야 함.
     commit('', params)

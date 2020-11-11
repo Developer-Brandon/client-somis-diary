@@ -1,10 +1,10 @@
 export const SimpleConfirmModalState = Object.freeze({
   URL: {
-    name: '주소',
+    name: 'URL',
     value: 0,
   },
   NORMAL_CONFIRM: {
-    name: '확인',
+    name: 'NORMAL_CONFIRM',
     value: 1,
   },
 })

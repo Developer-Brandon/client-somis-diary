@@ -1,14 +1,14 @@
 export const ArrangeState = Object.freeze({
   LIST: {
-    name: 'list',
+    name: 'LIST',
     value: 1,
   },
   MIDDLE_LIST: {
-    name: 'middleList',
+    name: 'MIDDLE_LIST',
     value: 2,
   },
   BIG_LIST: {
-    name: 'bigList',
+    name: 'BIG_LIST',
     value: 3,
   },
 })

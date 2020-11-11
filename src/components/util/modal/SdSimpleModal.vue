@@ -27,7 +27,7 @@
             class="add-button"
           >
             <button
-              class="sd-positive-reversal-button confirm"
+              class="sd-negative-reversal-button confirm"
               @click.stop="confirm"
             >
               확인
@@ -127,10 +127,11 @@ export default {
                     margin-bottom: 40px;
                     .contents {
                         text-align: center;
-                        color: $sd-white;
+                        color: $sd-black;
                         font-size: 25px;
                         @media (max-width: $screen-mobile) {
                             font-size: 18px;
+                            padding: 10px 0;
                         }
                     }
                 }

@@ -1,10 +1,10 @@
 export const WhetherClientHasCatState = Object.freeze({
   HAS: {
-    name: 'has',
+    name: 'HAS',
     value: 1,
   },
   HAS_NOT: {
-    name: 'hasNot',
+    name: 'HAS_NOT',
     value: 2,
   },
 })
