@@ -60,8 +60,6 @@ export default {
       return this.headerState === this.enums.headerState.STRAIT
     },
   },
-  mounted() {
-  },
   methods: {
     callWriteDiaryModal() {},
     routing(pageEnum) {

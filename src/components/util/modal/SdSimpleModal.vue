@@ -11,7 +11,7 @@
           >
             <img
               class="icon"
-              src="@/assets/images/icons/icon-information.png"
+              src="@/assets/images/icons/surprise-cat.png"
               alt="sign-in-image"
             />
           </div>
@@ -27,7 +27,7 @@
             class="add-button"
           >
             <button
-              class="sd-negative-reversal-button confirm"
+              class="sd-positive-button confirm"
               @click.stop="confirm"
             >
               확인
@@ -73,7 +73,7 @@ export default {
 <style lang="scss" scoped>
     // @Local Utils
     .change-font-size-to-small {
-      font-size: 20px !important;
+        font-size: 20px !important;
     }
 
     // @Classes
@@ -102,7 +102,7 @@ export default {
             width: 350px;
             height: 275px;
             padding: 30px;
-            background-color: $sd-white;
+            background-color: $sd-blue;
             border-radius: 15px;
             overflow: visible;
             @media (max-width: $screen-mobile) {
@@ -127,7 +127,7 @@ export default {
                     margin-bottom: 40px;
                     .contents {
                         text-align: center;
-                        color: $sd-black;
+                        color: $sd-ivory;
                         font-size: 25px;
                         @media (max-width: $screen-mobile) {
                             font-size: 18px;
@@ -135,22 +135,22 @@ export default {
                         }
                     }
                 }
-              .add-button {
-                .confirm {
-                  position: absolute;
-                  bottom: 0;
-                  right: 0;
-                  width: 120px;
-                  height: 45px;
-                  float: right;
-                  clear: right;
-                  @media (max-width: $screen-mobile) {
-                    width: 100%;
-                    height: 50px;
-                    margin-bottom: 10px;
-                  }
+                .add-button {
+                    .confirm {
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        width: 120px;
+                        height: 45px;
+                        float: right;
+                        clear: right;
+                        @media (max-width: $screen-mobile) {
+                            width: 100%;
+                            height: 50px;
+                            margin-bottom: 10px;
+                        }
+                    }
                 }
-              }
             }
         }
     }

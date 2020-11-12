@@ -1,8 +1,8 @@
 const state = () => ({
   name: '',
   birthday: '',
-  gender: 0, // TODO: Convert to Enum
-  species: 0, // TODO: Convert to Enum
+  gender: '',
+  species: '',
   kg: '',
   introduce: '',
   whetherCatExist: false,
@@ -51,8 +51,8 @@ const mutations = {
   clearAllData(state) {
     state.name = ''
     state.birthday = ''
-    state.gender = 0
-    state.species = 0
+    state.gender = ''
+    state.species = ''
     state.kg = ''
     state.introduce = ''
     state.whetherCatExist = false

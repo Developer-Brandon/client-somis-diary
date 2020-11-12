@@ -39,13 +39,13 @@
           <div class="gender">
             <span class="left-side-frame">성별</span>
             <span class="right-side-frame">
-              <img class="gender-summary" />
+              <span class="gender-summary"> {{ values.temp.gender }}</span>
             </span>
           </div>
           <div class="species">
             <span class="left-side-frame">종류</span>
             <span class="right-side-frame">
-              <p class="species-summary">{{ species }}</p>
+              <p class="species-summary">{{ species | ValidateCatSpecies }}</p>
             </span>
           </div>
           <div class="weight">
@@ -60,9 +60,10 @@
               특이사항
             </p>
             <p
-              v-model="introduce"
               class="introduce-summary"
-            ></p>
+            >
+              {{ introduce | ValidateCatIntroduce }}
+            </p>
           </div>
         </div>
         <div class="wrap-select-buttons">
@@ -92,12 +93,16 @@
 
 <script>
 import { EventBus } from '@/assets/js/plugin/eventBus'
+import { CatGenderState } from '@/assets/js/enums/CatGenderState'
 
 export default {
   name: 'SummaryAddedCatModal',
   data() {
     return {
       values: {
+        temp: {
+          gender: '',
+        },
         check: {
           lifeCycle: false,
         },
@@ -124,6 +129,13 @@ export default {
     introduce() {
       return this.$store.getters['cat/introduce']
     },
+  },
+  mounted() {
+    if (this.gender === CatGenderState.MAN) {
+      this.values.temp.gender = '남아'
+    } else if (this.gender === CatGenderState.WOMAN) {
+      this.values.temp.gender = '여아'
+    }
   },
   methods: {
     // TODO: 파일첨부 기능이 완성 된 후 받는 쪽까지 같이 개발
@@ -254,11 +266,11 @@ export default {
                     }
                     .right-side-frame {
                         .name-summary {
-                            margin-left: 20px;
+                            margin: 0 auto;
                             font-size: 20px;
                             width: 180px;
+                            color: $sd-ivory;
                             @media (max-width: $screen-mobile) {
-                                margin-left: 0;
                                 width: 100%;
                             }
                         }
@@ -271,11 +283,11 @@ export default {
                     }
                     .right-side-frame {
                         .birthday-summary {
-                            margin-left: 20px;
+                            margin: 0 auto;
                             font-size: 20px;
                             width: 180px;
+                            color: $sd-ivory;
                             @media (max-width: $screen-mobile) {
-                                margin-left: 0;
                                 width: 100%;
                             }
                         }
@@ -288,9 +300,10 @@ export default {
                     }
                     .right-side-frame {
                         .gender-summary {
-                            margin-left: 20px;
+                            margin: 0 auto;
                             font-size: 20px;
                             width: 180px;
+                            color: $sd-ivory;
                             @media (max-width: $screen-mobile) {
                                 margin-left: 0;
                                 width: 100%;
@@ -337,8 +350,10 @@ export default {
                         width: 140px;
                         margin-bottom: 10px;
                     }
-                    .introduce-contents {
-                        // TOOD : ???
+                    .introduce-summary {
+                        font-size: 20px;
+                        margin-top: 10px;
+                        color: $sd-ivory;
                     }
                 }
             }

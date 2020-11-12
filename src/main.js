@@ -3,7 +3,7 @@ import meta from 'vue-meta'
 import mixin from '@/assets/js/global/mixin'
 import router from '@/router'
 import store from '@/store'
-import VueTheMask from 'vue-the-mask'
+import VueMask from 'v-mask'
 import App from './App.vue'
 // eslint-disable-next-line
 import '@/assets/js/global/filter'
@@ -13,7 +13,7 @@ Vue.config.devtools = process.env.NODE_ENV !== 'production'
 
 Vue.use(meta)
 Vue.mixin(mixin)
-Vue.use(VueTheMask)
+Vue.use(VueMask)
 
 new Vue({
   router,

@@ -43,6 +43,7 @@
             <span class="right-side-frame">
               <input
                 v-model="birthday"
+                v-mask="'####-##-##'"
                 placeholder="0000-00-00"
                 class="birthday-input sd-input"
                 type="text"
@@ -135,8 +136,10 @@
 </template>
 
 <script>
-import { EventBus } from '@/assets/js/plugin/eventBus'
 import UtilBox from '@/assets/js/util/validation/utilBox'
+import { UtilBoxState } from '@/assets/js/enums/UtilBoxState'
+import { EventBus } from '@/assets/js/plugin/eventBus'
+import { CatGenderState } from '@/assets/js/enums/CatGenderState'
 
 let utilBox
 export default {
@@ -171,13 +174,8 @@ export default {
         return this.$store.getters['cat/birthday']
       },
     },
-    gender: {
-      set(gender) {
-        this.$store.dispatch('cat/SET_GENDER', { gender })
-      },
-      get() {
-        return this.$store.getters['cat/gender']
-      },
+    gender() {
+      return this.$store.getters['cat/gender']
     },
     species: {
       set(species) {
@@ -207,6 +205,9 @@ export default {
   created() {
     utilBox = new UtilBox()
   },
+  mounted() {
+    this.checkCatGenderState()
+  },
   methods: {
     show() {
       this.values.check.lifeCycle = true
@@ -215,10 +216,32 @@ export default {
       EventBus.$emit('callSdSimpleModal', message)
     },
     callFileAttach() {
-      this.callSimpleModal('준비중인 기능입니다')
+      this.callSimpleModal('준비중인 기능입니다냥~!')
     },
     close() {
-      this.values.check.lifeCycle = false
+      this.$store.dispatch('cat/CLEAR_ALL_DATA')
+        .then(() => {
+          this.values.check.lifeCycle = false
+        })
+    },
+    catManHasClicked() {
+      this.values.check.gender.man = !this.values.check.gender.man
+      this.values.check.gender.woman = false
+      const gender = CatGenderState.MAN
+      this.$store.dispatch('cat/SET_GENDER', { gender })
+    },
+    catWomanHasClicked() {
+      this.values.check.gender.woman = !this.values.check.gender.woman
+      this.values.check.gender.man = false
+      const gender = CatGenderState.WOMAN
+      this.$store.dispatch('cat/SET_GENDER', { gender })
+    },
+    checkCatGenderState() {
+      if (this.gender === CatGenderState.MAN) {
+        this.values.check.gender.man = true
+      } else if (this.gender === CatGenderState.WOMAN) {
+        this.values.check.gender.woman = true
+      }
     },
     getWrapedFromData() {
       // TODO: File관련 기능 추가 후 객체 넘기기
@@ -232,46 +255,38 @@ export default {
         introduce: this.introduce,
       }
     },
-    valicationAllValues() {
+    validateAllFormValues() {
       const data = this.getWrapedFromData()
       return new Promise((resolve, reject) => {
-        utilBox._type = 'file'
+        utilBox._type = UtilBoxState.FILE
         utilBox._value = data.file
-        if (!utilBox.validateFile) reject(new Error('사진이 등록되지 않았다냥~!'))
-        utilBox._type = 'name'
+        if (!utilBox.validateFile) reject(new Error('사진이<br /> 등록되지 않았다냥~!'))
+        utilBox._type = UtilBoxState.NAME
         utilBox._value = data.name
-        if (!utilBox.validateName) reject(new Error('이름이 1글자 이상은 입력되어야한다냥~!'))
-        utilBox._type = 'birthday'
+        if (!utilBox.validateName) reject(new Error('이름이 1글자 이상은<br />입력되어야한다냥~!'))
+        utilBox._type = UtilBoxState.BIRTHDAY
         utilBox._value = data.birthday
-        if (!utilBox.validateBirthday) reject(new Error('생일은 꼭 입력해주어야한다냥~!'))
-        utilBox._type = 'gender'
+        if (!utilBox.validateBirthday) reject(new Error('생일은 꼭<br /> 입력해주어야한다냥~!'))
+        utilBox._type = UtilBoxState.GENDER
         utilBox._value = data.gender
-        if (!utilBox.validateGender) reject(new Error('성별은 꼭 선택해주어야한다냥~!'))
-        utilBox._type = 'species'
+        if (!utilBox.validateGender) reject(new Error('성별은 꼭<br /> 선택해주어야한다냥~!'))
+        utilBox._type = UtilBoxState.SPECIES
         utilBox._value = data.species
-        if (!utilBox.validateSpecies) reject(new Error('고양이 종은 꼭 선택해주어야한다냥~!'))
-        utilBox._type = 'kg'
+        if (!utilBox.validateSpecies) reject(new Error('고양이 종은 꼭<br /> 선택해주어야한다냥~!'))
+        utilBox._type = UtilBoxState.KG
         utilBox._value = data.kg
-        if (!utilBox.validateKg) reject(new Error('고양이 무게는 꼭 입력해주어야한다냥~!'))
-        // TODO: 특이사항의 필수/선택 입력 여부를 정해야 한다
+        if (!utilBox.validateKg) reject(new Error('고양이 무게는 꼭<br />입력해주어야한다냥~!'))
+        //
         resolve()
       })
     },
     finish() {
-      this.valicationAllValues()
+      this.validateAllFormValues()
         .then(() => {
           EventBus.$emit('callSummaryAddedCatModal', this.getWrapedFromData())
-          this.close()
+          this.values.check.lifeCycle = false
         })
         .catch((error) => this.callSimpleModal(error.message))
-    },
-    catManHasClicked() {
-      this.values.check.gender.man = !this.values.check.gender.man
-      this.values.check.gender.woman = false
-    },
-    catWomanHasClicked() {
-      this.values.check.gender.woman = !this.values.check.gender.woman
-      this.values.check.gender.man = false
     },
     callCatTypeList() {
 
