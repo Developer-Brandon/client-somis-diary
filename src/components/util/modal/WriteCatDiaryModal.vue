@@ -6,63 +6,77 @@
     >
       <div class="write-cat-diary-modal__inner">
         <div class="write-cat-diary-modal__inner__left">
-          <div class="profile">
-            <div class="profile__inner">
+          <div
+            v-if="preivewCat"
+            class="when-cat-has-selected"
+            :class="{ 'add-right-border-when-cat-has-selected': preivewCat, 'add-right-border-when-cat-has-not-selected': !preivewCat }"
+          >
+            <div class="profile">
+              <div class="profile__inner">
+                <img
+                  class="default-image"
+                  src="@/assets/images/icons/cat-default-profile.png"
+                  alt="기본 프로필 이미지"
+                />
+                <!--<img src="" alt="등록된 이미지" />-->
+              </div>
+            </div>
+            <div class="wrap-writer-cat">
               <img
-                class="default-image"
-                src="@/assets/images/icons/cat-default-profile.png"
-                alt="기본 프로필 이미지"
+                style="display:none;"
+                class="writer-cat"
+                src="@/assets/images/icons/ol-cat-food.png"
+                alt="고양이통조림"
               />
-              <!--<img src="" alt="등록된 이미지" />-->
+            </div>
+            <div class="name">
+              <span class="left-side-frame">이름</span>
+              <span class="right-side-frame">
+                <p class="name-summary">{{ name }}</p>
+              </span>
+            </div>
+            <div class="birthday">
+              <span class="left-side-frame">생일</span>
+              <span class="right-side-frame">
+                <p class="birthday-summary">{{ birthday }}</p>
+              </span>
+            </div>
+            <div class="gender">
+              <span class="left-side-frame">성별</span>
+              <span class="right-side-frame">
+                <img class="gender-summary" />
+              </span>
+            </div>
+            <div class="species">
+              <span class="left-side-frame">종류</span>
+              <span class="right-side-frame">
+                <p class="species-summary">{{ species }}</p>
+              </span>
+            </div>
+            <div class="weight">
+              <span class="left-side-frame">무게</span>
+              <span class="right-side-frame">
+                <span class="kg-summary">{{ kg }}</span>
+                <span class="kg-flag">kg</span>
+              </span>
+            </div>
+            <div class="introduce">
+              <p class="introduce-title">
+                특이사항
+              </p>
+              <p
+                v-model="introduce"
+                class="introduce-summary"
+              ></p>
             </div>
           </div>
-          <div class="wrap-writer-cat">
-            <img
-              style="display:none;"
-              class="writer-cat"
-              src="@/assets/images/icons/ol-cat-food.png"
-              alt="고양이통조림"
-            />
-          </div>
-          <div class="name">
-            <span class="left-side-frame">이름</span>
-            <span class="right-side-frame">
-              <p class="name-summary">{{ name }}</p>
-            </span>
-          </div>
-          <div class="birthday">
-            <span class="left-side-frame">생일</span>
-            <span class="right-side-frame">
-              <p class="birthday-summary">{{ birthday }}</p>
-            </span>
-          </div>
-          <div class="gender">
-            <span class="left-side-frame">성별</span>
-            <span class="right-side-frame">
-              <img class="gender-summary" />
-            </span>
-          </div>
-          <div class="species">
-            <span class="left-side-frame">종류</span>
-            <span class="right-side-frame">
-              <p class="species-summary">{{ species }}</p>
-            </span>
-          </div>
-          <div class="weight">
-            <span class="left-side-frame">무게</span>
-            <span class="right-side-frame">
-              <span class="kg-summary">{{ kg }}</span>
-              <span class="kg-flag">kg</span>
-            </span>
-          </div>
-          <div class="introduce">
-            <p class="introduce-title">
-              특이사항
+          <div
+            v-else-if="!preivewCat"
+            class="when-cat-has-not-selected"
+          >
+            <p class="announcement">
+              선택된 고양이가 없습니다
             </p>
-            <p
-              v-model="introduce"
-              class="introduce-summary"
-            ></p>
           </div>
         </div>
         <div class="write-cat-diary-modal__inner__right">
@@ -113,14 +127,14 @@
           </div>
           <div class="wrap-select-buttons">
             <div class="select-buttons">
-              <span
-                class="select-buttons__close"
+              <button
+                class="select-buttons__close sd-transparent-button"
                 @click="close"
-              >닫기</span>
-              <span
-                class="select-buttons__save"
+              >닫기</button>
+              <button
+                class="select-buttons__save sd-transparent-button"
                 @click="save"
-              >저장</span>
+              >저장</button>
             </div>
           </div>
         </div>
@@ -164,6 +178,9 @@ export default {
     },
     catList() {
       return this.$store.getters['cat/catList']
+    },
+    preivewCat() {
+      return this.$store.getters['diary/previewCat']
     },
     diaryTitle: {
       set(title) {
@@ -216,6 +233,14 @@ export default {
         margin-bottom: 20px;
     }
 
+    .add-right-border-when-cat-has-selected {
+      border-right: $sd-ivory 1px solid !important;
+    }
+
+    .add-right-border-when-cat-has-not-selected {
+      border-right: 0 !important;
+    }
+
     // @Classes
     .write-cat-diary-modal {
         position: fixed;
@@ -255,7 +280,7 @@ export default {
             &__left {
                 display: inline-block;
                 width: 350px;
-                border-right: $sd-ivory 1px solid;
+                height: 100%;
                 padding-right: 15px;
                 @media (max-width: $screen-mobile) {
                     display: none;
@@ -283,170 +308,182 @@ export default {
                         padding-bottom: 5px;
                     }
                 }
-                .wrap-writer-cat {
-                    padding-top: 15px;
-                    padding-bottom: 15px;
-                    .writer-cat {
-                        width: 40px;
-                        height: 40px;
+                .when-cat-has-selected {
+                    .wrap-writer-cat {
+                        padding-top: 15px;
+                        padding-bottom: 15px;
+                        .writer-cat {
+                            width: 40px;
+                            height: 40px;
+                        }
                     }
-                }
-                .profile {
-                    width: 100px;
-                    margin: 0 auto;
-                    &__inner {
-                        position: relative;
-                        border: 2px solid $sd-ivory;
-                        border-radius: 50%;
+                    .profile {
                         width: 100px;
-                        height: 100px;
-                        margin-top: 5px;
-                        margin-bottom: 5px;
-                        .default-image {
-                            position: absolute;
-                            width: 70px;
+                        margin: 0 auto;
+                        &__inner {
+                            position: relative;
+                            border: 2px solid $sd-ivory;
+                            border-radius: 50%;
+                            width: 100px;
+                            height: 100px;
+                            margin-top: 5px;
+                            margin-bottom: 5px;
+                            .default-image {
+                                position: absolute;
+                                width: 70px;
+                                height: 70px;
+                                top: 50%;
+                                left: 53%;
+                                transform: translate(-50%, -50%);
+                            }
+                            .attached-image {
+                            }
+                        }
+                    }
+                    .name {
+                        margin-bottom: 15px;
+                        @media (max-width: $screen-mobile) {
+                            margin-bottom: 20px;
+                        }
+                        .right-side-frame {
+                            .name-summary {
+                                margin: 0 auto;
+                                font-size: 20px;
+                                width: 180px;
+                                color: $sd-ivory;
+                                @media (max-width: $screen-mobile) {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                    .birthday {
+                        margin-bottom: 15px;
+                        @media (max-width: $screen-mobile) {
+                            margin-bottom: 20px;
+                        }
+                        .right-side-frame {
+                            .birthday-summary {
+                                margin: 0 auto;
+                                font-size: 20px;
+                                width: 180px;
+                                color: $sd-ivory;
+                                @media (max-width: $screen-mobile) {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                    .gender {
+                        margin-bottom: 15px;
+                        @media (max-width: $screen-mobile) {
+                            margin-bottom: 20px;
+                        }
+                        .right-side-frame {
+                            .gender-summary {
+                                margin: 0 auto;
+                                font-size: 20px;
+                                width: 180px;
+                                color: $sd-ivory;
+                                @media (max-width: $screen-mobile) {
+                                    margin-left: 0;
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                    .species {
+                        margin-bottom: 15px;
+                        @media (max-width: $screen-mobile) {
+                            margin-bottom: 20px;
+                        }
+                        .right-side-frame {
+                            .species-summary {
+                                font-size: 20px;
+                                color: $sd-ivory;
+                            }
+                        }
+                    }
+                    .weight {
+                        margin-bottom: 15px;
+                        @media (max-width: $screen-mobile) {
+                            margin-bottom: 20px;
+                        }
+                        .right-side-frame {
+                            .kg-summary {
+                                font-size: 20px;
+                                color: $sd-ivory;
+                            }
+                            .kg-flag {
+                                color: $sd-ivory;
+                                font-weight: 700;
+                                padding-left: 15px;
+                                @media (max-width: $screen-mobile) {
+                                    padding-left: 7px;
+                                }
+                            }
+                        }
+                    }
+                    .introduce {
+                        .introduce-title {
+                            color: $sd-ivory;
+                            font-size: 20px;
+                            width: 140px;
+                            margin-bottom: 10px;
+                        }
+                        .introduce-summary {
+                            width: 100%;
                             height: 70px;
-                            top: 50%;
-                            left: 53%;
-                            transform: translate(-50%, -50%);
-                        }
-                        .attached-image {
+                            max-height: 70px;
                         }
                     }
-                }
-                .name {
-                    margin-bottom: 15px;
-                    @media (max-width: $screen-mobile) {
-                        margin-bottom: 20px;
-                    }
-                    .right-side-frame {
-                        .name-summary {
-                            margin-left: 20px;
-                            font-size: 20px;
-                            width: 180px;
-                            @media (max-width: $screen-mobile) {
-                                margin-left: 0;
-                                width: 100%;
+                    .select-buttons {
+                        &__inner {
+                            display: flex;
+                            justify-content: flex-end;
+                            flex-direction: column;
+                            height: 160px;
+                            position: relative;
+                            &__left {
+                                position: absolute;
+                                width: 50%;
+                                left: 5px;
+                                bottom: 5px;
+                                p {
+                                    cursor: pointer;
+                                    text-align: left;
+                                    color: $sd-ivory;
+                                    font-size: 25px;
+                                }
+                            }
+                            &__right {
+                                position: absolute;
+                                width: 50%;
+                                right: 5px;
+                                bottom: 5px;
+                                p {
+                                    cursor: pointer;
+                                    text-align: right;
+                                    color: $sd-ivory;
+                                    font-size: 25px;
+                                }
                             }
                         }
                     }
                 }
-                .birthday {
-                    margin-bottom: 15px;
-                    @media (max-width: $screen-mobile) {
-                        margin-bottom: 20px;
-                    }
-                    .right-side-frame {
-                        .birthday-summary {
-                            margin-left: 20px;
-                            font-size: 20px;
-                            width: 180px;
-                            @media (max-width: $screen-mobile) {
-                                margin-left: 0;
-                                width: 100%;
-                            }
-                        }
-                    }
-                }
-                .gender {
-                    margin-bottom: 15px;
-                    @media (max-width: $screen-mobile) {
-                        margin-bottom: 20px;
-                    }
-                    .right-side-frame {
-                        .gender-summary {
-                            margin-left: 20px;
-                            font-size: 20px;
-                            width: 180px;
-                            @media (max-width: $screen-mobile) {
-                                margin-left: 0;
-                                width: 100%;
-                            }
-                        }
-                    }
-                }
-                .species {
-                    margin-bottom: 15px;
-                    @media (max-width: $screen-mobile) {
-                        margin-bottom: 20px;
-                    }
-                    .right-side-frame {
-                        .species-summary {
-                            font-size: 20px;
-                            color: $sd-ivory;
-                            @media (max-width: $screen-mobile) {
-                                text-align: center !important;
-                            }
-                        }
-                    }
-                }
-                .weight {
-                    margin-bottom: 15px;
-                    @media (max-width: $screen-mobile) {
-                        margin-bottom: 20px;
-                    }
-                    .right-side-frame {
-                        .kg-summary {
-                            font-size: 20px;
-                            color: $sd-ivory;
-                            @media (max-width: $screen-mobile) {
-                                text-align: center !important;
-                            }
-                        }
-                        .kg-flag {
-                            color: $sd-ivory;
-                            font-weight: 700;
-                            padding-left: 15px;
-                            @media (max-width: $screen-mobile) {
-                                padding-left: 7px;
-                            }
-                        }
-                    }
-                }
-                .introduce {
-                    .introduce-title {
-                        color: $sd-ivory;
-                        font-size: 20px;
-                        width: 140px;
-                        margin-bottom: 10px;
-                    }
-                    .introduce-summary {
-                        width: 100%;
-                        height: 70px;
-                        max-height: 70px;
-                    }
-                }
-                .select-buttons {
-                    &__inner {
-                        display: flex;
-                        justify-content: flex-end;
-                        flex-direction: column;
-                        height: 160px;
-                        position: relative;
-                        &__left {
-                            position: absolute;
-                            width: 50%;
-                            left: 5px;
-                            bottom: 5px;
-                            p {
-                                cursor: pointer;
-                                text-align: left;
-                                color: $sd-ivory;
-                                font-size: 25px;
-                            }
-                        }
-                        &__right {
-                            position: absolute;
-                            width: 50%;
-                            right: 5px;
-                            bottom: 5px;
-                            p {
-                                cursor: pointer;
-                                text-align: right;
-                                color: $sd-ivory;
-                                font-size: 25px;
-                            }
-                        }
+                .when-cat-has-not-selected {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    .announcement {
+                      margin: 0 auto;
+                      position: absolute;
+                      top: 50%;
+                      left: 50%;
+                      transform: translate(-50%, -50%);
+                      color: $sd-white;
+                      font-size: 24px;
+                      text-align: center;
                     }
                 }
             }
@@ -455,7 +492,7 @@ export default {
                 padding-left: 30px;
                 padding-right: 25px;
                 @media (max-width: $screen-mobile) {
-                    // position: absolute;
+                    display: block;
                     padding: 10px;
                     overflow-x: hidden;
                 }
@@ -468,7 +505,6 @@ export default {
                         top: 0;
                         width: 100%;
                         max-height: 70%;
-                        overflow-y: scroll;
                     }
                     .title-row {
                         @media (max-width: $screen-mobile) {

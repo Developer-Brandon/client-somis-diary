@@ -1,14 +1,26 @@
 const state = () => ({
+  previewCat: {
+    name: '',
+    birthday: '',
+    gender: '',
+    species: '',
+    kg: '',
+    introduce: '',
+  },
   title: '',
   dateTime: '',
   contents: '',
 })
 const getters = {
+  previewCat: (state) => state.previewCat,
   title: (state) => state.title,
   dateTime: (state) => state.dateTime,
   contents: (state) => state.contents,
 }
 const mutations = {
+  setPreviewCat(state, params) {
+    state.previewCat = params.previewCat
+  },
   setTitle(state, params) {
     state.title = params.title
   },
@@ -20,6 +32,10 @@ const mutations = {
   },
 }
 const actions = {
+  SET_PREVIEW_CAT: ({ commit }, params) => new Promise((resolve) => {
+    commit('setPreviewCat', params)
+    resolve()
+  }),
   SET_TITLE: ({ commit }, params) => new Promise((resolve) => {
     commit('setTitle', params)
     resolve()

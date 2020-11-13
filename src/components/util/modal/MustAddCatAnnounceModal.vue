@@ -21,15 +21,18 @@
         <div
           class="wrap-whether-add-cat-buttons"
         >
-          <div
-
-            class="close-button">
-            <span @click.stop="close">취소</span>
-          </div>
-          <div
-            class="add-button">
-            <span @click.stop="mustEstablishModal">등록</span>
-          </div>
+          <button
+            class="sd-transparent-button close-button"
+            @click.stop="close"
+          >
+            취소
+          </button>
+          <button
+            class="sd-transparent-button add-button"
+            @click.stop="mustEstablishModal"
+          >
+            등록
+          </button>
         </div>
       </div>
     </section>

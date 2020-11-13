@@ -114,18 +114,20 @@
           <div class="select-buttons">
             <div class="select-buttons__inner">
               <div class="select-buttons__inner__left">
-                <p
+                <button
+                  class="sd-transparent-button close-button"
                   @click="close"
                 >
                   닫기
-                </p>
+                </button>
               </div>
               <div class="select-buttons__inner__right">
-                <p
+                <button
+                  class="sd-transparent-button finish-button"
                   @click="finish"
                 >
                   완료
-                </p>
+                </button>
               </div>
             </div>
           </div>
@@ -142,6 +144,7 @@ import { EventBus } from '@/assets/js/plugin/eventBus'
 import { CatGenderState } from '@/assets/js/enums/CatGenderState'
 
 let utilBox
+
 export default {
   name: 'AddCatModal',
   data() {
@@ -221,6 +224,8 @@ export default {
     close() {
       this.$store.dispatch('cat/CLEAR_ALL_DATA')
         .then(() => {
+          this.values.check.gender.man = false
+          this.values.check.gender.woman = false
           this.values.check.lifeCycle = false
         })
     },
@@ -367,14 +372,17 @@ export default {
                     }
                     &__gender {
                         button {
-                            width: 75px;
+                            width: 85px;
                             background-color: $sd-white;
                             border: 1px solid $sd-blue;
                             -webkit-border-radius: 20px;
                             -moz-border-radius: 20px;
-                            border-radius: 20px;
+                            border-radius: 10px;
                             padding-top: 5px;
                             padding-bottom: 5px;
+                            @media (max-width: $screen-mobile) {
+                              width: 75px;
+                            }
                             &:first-child {
                                 margin-right: 10px;
                                 @media (max-width: $screen-mobile) {
@@ -396,12 +404,12 @@ export default {
                     }
                     &__type {
                         button {
-                            width: 120px;
+                            width: 180px;
                             background-color: $sd-white;
                             border: 1px solid $sd-blue;
                             -webkit-border-radius: 20px;
                             -moz-border-radius: 20px;
-                            border-radius: 20px;
+                            border-radius: 10px;
                             padding-top: 5px;
                             padding-bottom: 5px;
                             font-size: 20px;
@@ -453,7 +461,6 @@ export default {
                         margin-bottom: 20px;
                     }
                     .name-input {
-                        margin-left: 20px;
                         font-size: 20px;
                         width: 180px;
                         @media (max-width: $screen-mobile) {
@@ -468,7 +475,6 @@ export default {
                         margin-bottom: 20px;
                     }
                     .birthday-input {
-                        margin-left: 20px;
                         font-size: 20px;
                         width: 180px;
                         @media (max-width: $screen-mobile) {
@@ -503,7 +509,6 @@ export default {
                         margin-bottom: 20px;
                     }
                     .weight-input {
-                        margin-left: 20px;
                         font-size: 20px;
                         width: 140px;
                         @media (max-width: $screen-mobile) {
@@ -552,7 +557,7 @@ export default {
                             @media (max-width: $screen-mobile) {
                                 // ?
                             }
-                            p {
+                            .close-button {
                                 cursor: pointer;
                                 text-align: left;
                                 color: $sd-ivory;
@@ -570,7 +575,7 @@ export default {
                             @media (max-width: $screen-mobile) {
                                 // ?
                             }
-                            p {
+                            .finish-button {
                                 cursor: pointer;
                                 text-align: right;
                                 color: $sd-ivory;

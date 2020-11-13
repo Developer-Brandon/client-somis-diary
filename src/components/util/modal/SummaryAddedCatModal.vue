@@ -130,14 +130,14 @@ export default {
       return this.$store.getters['cat/introduce']
     },
   },
-  mounted() {
-    if (this.gender === CatGenderState.MAN) {
-      this.values.temp.gender = '남아'
-    } else if (this.gender === CatGenderState.WOMAN) {
-      this.values.temp.gender = '여아'
-    }
-  },
   methods: {
+    checkGender() {
+      if (this.gender === CatGenderState.MAN) {
+        this.values.temp.gender = '남아'
+      } else if (this.gender === CatGenderState.WOMAN) {
+        this.values.temp.gender = '여아'
+      }
+    },
     // TODO: 파일첨부 기능이 완성 된 후 받는 쪽까지 같이 개발
     fileObject() {
       return null
@@ -151,13 +151,16 @@ export default {
     },
     show(data) {
       this.values.data = data
+      this.checkGender()
       this.values.check.lifeCycle = true
-      console.log('data', data)
     },
     finish() {
       this.close()
       // TODO: apply api 개발하기, apply Api 가 제대로 꽃히고 나서 writeCatDiaryModal 호출
-      EventBus.$emit('callWriteCatDiaryModal')
+      this.$store.dispatch('cat/CLEAR_ALL_DATA')
+        .then(() => {
+          EventBus.$emit('callWriteCatDiaryModal')
+        })
     },
   },
 }

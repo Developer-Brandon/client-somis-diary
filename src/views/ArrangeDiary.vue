@@ -50,6 +50,10 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
+      if (this.headerState === HeaderState.WIDE) {
+        const headerType = HeaderState.STRAIT
+        this.$store.dispatch('home/SET_HEADER_STATE', { headerType })
+      }
       this.values.check.lifeCycle = true
     })
   },

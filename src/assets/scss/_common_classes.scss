@@ -199,8 +199,6 @@
     font-weight: 700;
   }
   @media (max-width: $screen-mobile) {
-    border: 0;
-    border-radius: 0;
     color: $sd-deep-blue;
     background-color: $sd-white;
     font-size: 18px;
@@ -258,6 +256,20 @@
   }
   @media (max-width: $screen-mobile) {
     background-color: $sd-blue;
+    font-size: 18px;
+  }
+}
+
+.sd-transparent-button {
+  border: 0;
+  border-radius: 0;
+  color: $sd-white;
+  transition: 0.3s;
+  &:hover {
+    font-size: 16.5px;
+    font-weight: 700;
+  }
+  @media (max-width: $screen-mobile) {
     font-size: 18px;
   }
 }
