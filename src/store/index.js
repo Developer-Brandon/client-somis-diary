@@ -7,7 +7,7 @@ import join from './modules/Join'
 import login from './modules/Login'
 import notice from './modules/Notice'
 import cat from './modules/Cat'
-import dairy from './modules/Diary'
+import diary from './modules/Diary'
 
 Vue.use(Vuex)
 
@@ -20,7 +20,7 @@ const entryPointOfStore = () => new Vuex.Store({
     login,
     notice,
     cat,
-    dairy,
+    diary,
   },
 })
 

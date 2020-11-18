@@ -7,6 +7,7 @@ const state = () => ({
   introduce: '',
   whetherCatExist: false,
   catList: [],
+  selectedCat: '',
 })
 const getters = {
   name: (state) => state.name,
@@ -16,6 +17,7 @@ const getters = {
   kg: (state) => state.kg,
   introduce: (state) => state.introduce,
   catList: (state) => state.catList,
+  selectedCat: (state) => state.selectedCat,
   whetherCatExist: (state) => state.whetherCatExist,
 }
 const mutations = {
@@ -37,6 +39,15 @@ const mutations = {
   setIntroduce(state, params) {
     state.introduce = params.introduce
   },
+  setSelectedCatInfo(state, params) {
+    state.name = params.name
+    state.selectedCat = params.name
+    state.birthday = params.birthday
+    state.gender = params.gender
+    state.species = params.species
+    state.kg = params.kg
+    state.introduce = params.introduce
+  },
   setCatList(state, params) {
     state.catList = params.catList
     if (state.catList.length !== 0) {
@@ -56,7 +67,7 @@ const mutations = {
     state.kg = ''
     state.introduce = ''
     state.whetherCatExist = false
-    state.catList = []
+    // state.catList = []
   },
 }
 const actions = {
@@ -82,6 +93,23 @@ const actions = {
   }),
   SET_INTRODUCE: ({ commit }, params) => new Promise((resolve) => {
     commit('setIntroduce', params)
+    resolve()
+  }),
+  CALL_CAT_INFO: ({ commit }, params) => new Promise((resolve) => {
+    console.log(params)
+    const response = {
+      name: '테스트냥이',
+      birthday: '2020-12-20',
+      gender: '여아',
+      species: '스트릿출신',
+      kg: 12,
+      introduce: '특이사항없음',
+    }
+    commit('setSelectedCatInfo', response)
+    resolve()
+  }),
+  SET_CAT_LIST: ({ commit }, params) => new Promise((resolve) => {
+    commit('setCatList', params)
     resolve()
   }),
   GET_CAT_LIST: ({ commit }, params) => new Promise((resolve) => {

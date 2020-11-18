@@ -7,9 +7,17 @@
       <div class="write-cat-diary-modal__inner">
         <div class="write-cat-diary-modal__inner__left">
           <div
-            v-if="preivewCat"
+            v-if="!selectedCat"
+            class="when-cat-has-not-selected"
+          >
+            <p class="announcement">
+              선택된 고양이가 없습니다
+            </p>
+          </div>
+          <div
+            v-else
             class="when-cat-has-selected"
-            :class="{ 'add-right-border-when-cat-has-selected': preivewCat, 'add-right-border-when-cat-has-not-selected': !preivewCat }"
+            :class="{ 'add-right-border-when-cat-has-selected': selectedCat, 'add-right-border-when-cat-has-not-selected': !selectedCat }"
           >
             <div class="profile">
               <div class="profile__inner">
@@ -44,7 +52,7 @@
             <div class="gender">
               <span class="left-side-frame">성별</span>
               <span class="right-side-frame">
-                <img class="gender-summary" />
+                <p class="gender-summary"> {{ gender }} </p>
               </span>
             </div>
             <div class="species">
@@ -65,18 +73,11 @@
                 특이사항
               </p>
               <p
-                v-model="introduce"
                 class="introduce-summary"
-              ></p>
+              >
+                {{ introduce | ValidateCatIntroduce }}
+              </p>
             </div>
-          </div>
-          <div
-            v-else-if="!preivewCat"
-            class="when-cat-has-not-selected"
-          >
-            <p class="announcement">
-              선택된 고양이가 없습니다
-            </p>
           </div>
         </div>
         <div class="write-cat-diary-modal__inner__right">
@@ -86,9 +87,27 @@
                 냥이들 목록
               </p>
               <select
-                v-model="catList"
+                v-model="selectedCat"
                 class="title-row__cat-list sd-select"
-              ></select>
+                name="cat-type"
+              >
+                <option
+                  class="sd-option"
+                  selected="selected"
+                  disabled="disabled"
+                  value=""
+                >
+                  선택하기
+                </option>
+                <option
+                  v-for="(item, index) in catList"
+                  :key="index"
+                  class="sd-option"
+                  :value="item.name"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
             </div>
             <div class="title-row default-diary-row">
               <p class="title-row__title">
@@ -121,7 +140,7 @@
                 class="sd-textarea title-row__diary-contents"
                 maxlength="401"
                 for="estimate"
-                placeholder="400자 이내로 입력해주세요."
+                placeholder="400자 이내로 입력해주세요"
               ></textarea>
             </div>
           </div>
@@ -130,11 +149,15 @@
               <button
                 class="select-buttons__close sd-transparent-button"
                 @click="close"
-              >닫기</button>
+              >
+                닫기
+              </button>
               <button
                 class="select-buttons__save sd-transparent-button"
                 @click="save"
-              >저장</button>
+              >
+                저장
+              </button>
             </div>
           </div>
         </div>
@@ -176,11 +199,23 @@ export default {
     introduce() {
       return this.$store.getters['cat/introduce']
     },
+    selectedCat: {
+      set(selectedCat) {
+        const params = { id: selectedCat.id }
+        this.$store.dispatch('cat/CALL_CAT_INFO', { params })
+          .then(() => {
+            // TODO: What should I do?
+          })
+          .catch((error) => {
+            EventBus.$emit('callSdSimpleModal', `아래와 같은 이유로 고양이 정보를 불러오는데에 실패하였습니다!\n${error}`)
+          })
+      },
+      get() {
+        return this.$store.getters['cat/selectedCat']
+      },
+    },
     catList() {
       return this.$store.getters['cat/catList']
-    },
-    preivewCat() {
-      return this.$store.getters['diary/previewCat']
     },
     diaryTitle: {
       set(title) {
@@ -215,8 +250,25 @@ export default {
       this.close()
       EventBus.$emit('callAddCatModal')
     },
+    callDummyCatList() {
+      const catList = [{
+        id: 0,
+        name: '소미',
+        description: '올해 1살된 길냥이',
+      }, {
+        id: 1,
+        name: '수미',
+        description: '올해 2살된 길냥이',
+      }, {
+        id: 2,
+        name: '세미',
+        description: '올해 2살된 길냥이',
+      }]
+      this.$store.dispatch('cat/SET_CAT_LIST', { catList })
+    },
     show() {
       this.values.check.lifeCycle = true
+      if (process.env.NODE_ENV !== 'production') this.callDummyCatList()
     },
     save() {
       this.close()
@@ -234,11 +286,11 @@ export default {
     }
 
     .add-right-border-when-cat-has-selected {
-      border-right: $sd-ivory 1px solid !important;
+        border-right: $sd-ivory 1px solid !important;
     }
 
     .add-right-border-when-cat-has-not-selected {
-      border-right: 0 !important;
+        border-right: 0 !important;
     }
 
     // @Classes
@@ -435,6 +487,8 @@ export default {
                             width: 100%;
                             height: 70px;
                             max-height: 70px;
+                            font-size: 20px;
+                            color: $sd-ivory;
                         }
                     }
                     .select-buttons {
@@ -476,14 +530,15 @@ export default {
                     width: 100%;
                     height: 100%;
                     .announcement {
-                      margin: 0 auto;
-                      position: absolute;
-                      top: 50%;
-                      left: 50%;
-                      transform: translate(-50%, -50%);
-                      color: $sd-white;
-                      font-size: 24px;
-                      text-align: center;
+                        margin: 0 auto;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        color: $sd-white;
+                        font-size: 24px;
+                        text-align: center;
+                        cursor: default;
                     }
                 }
             }
@@ -507,6 +562,7 @@ export default {
                         max-height: 70%;
                     }
                     .title-row {
+                        cursor: default;
                         @media (max-width: $screen-mobile) {
                             min-width: 230px;
                             max-width: 642px;
@@ -526,6 +582,16 @@ export default {
                             @media (max-width: $screen-mobile) {
                                 margin-bottom: 5px;
                             }
+                        }
+                        &__cat-list {
+                            width: 100%;
+                            height: 40px;
+                            font-size: 18px;
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                            color: $sd-white;
+                            border: 1px solid $sd-white;
+                            border-radius: 3px;
                         }
                         &__date {
                             width: 100%;
