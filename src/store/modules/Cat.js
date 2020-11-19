@@ -98,7 +98,7 @@ const actions = {
   CALL_CAT_INFO: ({ commit }, params) => new Promise((resolve) => {
     console.log(params)
     const response = {
-      name: '테스트냥이',
+      name: '소미',
       birthday: '2020-12-20',
       gender: '여아',
       species: '스트릿출신',

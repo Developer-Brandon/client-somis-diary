@@ -115,6 +115,8 @@
               </p>
               <input
                 v-model="diaryTitle"
+                :disabled="!selectedCat"
+                :class="{ 'input-color-changed-when-disabled':!selectedCat }"
                 class="title-row__diary-title sd-input"
                 placeholder="20자 이내로 입력해주세요"
                 type="text"
@@ -126,7 +128,9 @@
               </p>
               <input
                 v-model="diaryDateTime"
+                :disabled="!selectedCat"
                 class="title-row__date sd-input"
+                :class="{ 'input-color-changed-when-disabled':!selectedCat }"
                 placeholder="2020-00-00"
                 type="text"
               />
@@ -137,9 +141,10 @@
               </p>
               <textarea
                 v-model="diaryContents"
+                :disabled="!selectedCat"
+                :class="{ 'input-color-changed-when-disabled':!selectedCat }"
                 class="sd-textarea title-row__diary-contents"
                 maxlength="401"
-                for="estimate"
                 placeholder="400자 이내로 입력해주세요"
               ></textarea>
             </div>
@@ -244,7 +249,13 @@ export default {
   },
   methods: {
     close() {
-      this.values.check.lifeCycle = false
+      this.$store.dispatch('cat/CLEAR_ALL_DATA')
+        .then(() => {
+          this.$store.dispatch('diary/CLEAR_ALL_DATA')
+            .then(() => {
+              this.values.check.lifeCycle = false
+            })
+        })
     },
     before() {
       this.close()
@@ -291,6 +302,11 @@ export default {
 
     .add-right-border-when-cat-has-not-selected {
         border-right: 0 !important;
+    }
+
+    .input-color-changed-when-disabled {
+        background-color: $sd-gray !important;
+        color: $sd-ivory !important;
     }
 
     // @Classes

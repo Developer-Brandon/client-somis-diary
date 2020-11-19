@@ -205,15 +205,18 @@ export default {
       },
     },
   },
+  destroyed() {
+    this.close()
+  },
   created() {
     utilBox = new UtilBox()
   },
-  mounted() {
-    this.checkCatGenderState()
-  },
   methods: {
     show() {
-      this.values.check.lifeCycle = true
+      this.checkCatGenderState()
+        .then(() => {
+          this.values.check.lifeCycle = true
+        })
     },
     callSimpleModal(message) {
       EventBus.$emit('callSdSimpleModal', message)
@@ -242,11 +245,17 @@ export default {
       this.$store.dispatch('cat/SET_GENDER', { gender })
     },
     checkCatGenderState() {
-      if (this.gender === CatGenderState.MAN) {
-        this.values.check.gender.man = true
-      } else if (this.gender === CatGenderState.WOMAN) {
-        this.values.check.gender.woman = true
-      }
+      return new Promise((resolve) => {
+        if (this.gender === CatGenderState.MAN) {
+          this.values.check.gender.man = true
+        } else if (this.gender === CatGenderState.WOMAN) {
+          this.values.check.gender.woman = true
+        } else {
+          this.values.check.gender.man = false
+          this.values.check.gender.woman = false
+        }
+        resolve()
+      })
     },
     getWrapedFromData() {
       // TODO: File관련 기능 추가 후 객체 넘기기

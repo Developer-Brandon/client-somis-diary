@@ -30,6 +30,12 @@ const mutations = {
   setContents(state, params) {
     state.contents = params.contents
   },
+  clearAllData(state) {
+    state.previewCat = ''
+    state.title = ''
+    state.dateTime = ''
+    state.contents = ''
+  },
 }
 const actions = {
   SET_PREVIEW_CAT: ({ commit }, params) => new Promise((resolve) => {
@@ -51,6 +57,10 @@ const actions = {
   SAVE_DIARY: ({ commit }, params) => new Promise((resolve) => {
     // TODO: Call save diary api
     // cat vuex에서 catId를 가져와서 save 직전에 같이 전송해야 함.
+    commit('', params)
+    resolve()
+  }),
+  CLEAR_ALL_DATA: ({ commit }, params) => new Promise((resolve) => {
     commit('', params)
     resolve()
   }),
