@@ -2,7 +2,7 @@
   <transition name="page-fade">
     <section
       v-show="values.check.lifeCycle"
-      class="wrap-cat-add-announce-modal"
+      class="wrap-cat-add-announce-modal sd-block-select"
     >
       <div class="wrap-cat-add-announce-modal__inner">
         <div class="wrap-image">
@@ -127,26 +127,36 @@ export default {
             .wrap-whether-add-cat-buttons {
                 width: 100%;
                 .close-button {
-                    width: 50%;
+                    width: auto;
                     padding-left: 20px;
                     float: left;
                     text-align: left;
                     color: $sd-ivory;
                     padding-bottom: 3px;
                     font-size: 25px;
-                    span {
-                      cursor: pointer;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    &:hover {
+                        -webkit-transform: scale(1.1);
+                        -moz-transform: scale(1.1);
+                        -ms-transform: scale(1.1);
+                        transform: scale(1.1);
                     }
                 }
                 .add-button {
-                    width: 50%;
+                    width: auto;
                     padding-right: 20px;
                     float: right;
                     color: $sd-ivory;
                     text-align: right;
                     font-size: 25px;
-                    span {
-                      cursor: pointer;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    &:hover {
+                        -webkit-transform: scale(1.1);
+                        -moz-transform: scale(1.1);
+                        -ms-transform: scale(1.1);
+                        transform: scale(1.1);
                     }
                 }
             }

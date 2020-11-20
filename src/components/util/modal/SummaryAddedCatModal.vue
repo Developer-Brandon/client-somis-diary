@@ -2,7 +2,7 @@
   <transition name="page-fade">
     <section
       v-show="values.check.lifeCycle"
-      class="cat-add-modal"
+      class="cat-add-modal sd-block-select"
     >
       <div class="cat-add-modal__inner">
         <div class="wrap-information">

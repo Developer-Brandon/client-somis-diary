@@ -9,6 +9,8 @@ import notice from './modules/Notice'
 import cat from './modules/Cat'
 import diary from './modules/Diary'
 
+import catTypeList from './modules/modals/CatTypeList'
+
 Vue.use(Vuex)
 
 const entryPointOfStore = () => new Vuex.Store({
@@ -21,6 +23,7 @@ const entryPointOfStore = () => new Vuex.Store({
     notice,
     cat,
     diary,
+    catTypeList,
   },
 })
 

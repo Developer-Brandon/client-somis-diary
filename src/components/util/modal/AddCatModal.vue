@@ -2,7 +2,7 @@
   <transition name="page-fade">
     <section
       v-show="values.check.lifeCycle"
-      class="cat-add-modal"
+      class="cat-add-modal sd-block-select"
     >
       <div class="cat-add-modal__inner">
         <div class="wrap-information">
@@ -12,6 +12,7 @@
                 class="default-image"
                 src="@/assets/images/icons/cat-default-profile.png"
                 alt="기본 프로필 이미지"
+                ondragstart="return false;"
                 @click="callFileAttach"
               />
               <!-- TODO: 사진등록 기능이 완성 되고 난 후 개발 예정 -->
@@ -28,6 +29,7 @@
           </div>
           <div class="name">
             <span class="left-side-frame">이름</span>
+            <span class="add-essential-style">*</span>
             <span class="right-side-frame">
               <input
                 v-model="name"
@@ -40,6 +42,7 @@
           </div>
           <div class="birthday">
             <span class="left-side-frame">생일</span>
+            <span class="add-essential-style">*</span>
             <span class="right-side-frame">
               <input
                 v-model="birthday"
@@ -52,6 +55,7 @@
           </div>
           <div class="gender">
             <span class="left-side-frame">성별</span>
+            <span class="add-essential-style">*</span>
             <span class="right-side-frame">
               <span class="right-side-frame__gender">
                 <button
@@ -79,6 +83,7 @@
           </div>
           <div class="species">
             <span class="left-side-frame">종류</span>
+            <span class="add-essential-style">*</span>
             <span class="right-side-frame">
               <span class="right-side-frame__type">
                 <button @click="callCatTypeList">선택하기</button>
@@ -87,6 +92,7 @@
           </div>
           <div class="weight">
             <span class="left-side-frame">무게</span>
+            <span class="add-essential-style">*</span>
             <span class="right-side-frame">
               <input
                 v-model="kg"
@@ -303,7 +309,7 @@ export default {
         .catch((error) => this.callSimpleModal(error.message))
     },
     callCatTypeList() {
-
+      EventBus.$emit('callCatTypeListModal')
     },
   },
 }
@@ -313,6 +319,15 @@ export default {
     // @Local Utils
     .change-button-color-to-visited {
         background-color: $sd-yellow !important;
+    }
+
+    .add-essential-style {
+        width: 2px;
+        font-size: 25px;
+        padding-left: 1px;
+        padding-top: -5px;
+        display: inline-block !important;
+        color: $sd-red !important;
     }
 
     // @Classes
@@ -359,12 +374,11 @@ export default {
                 }
                 .left-side-frame {
                     display: inline-block;
-                    width: 40px;
+                    width: 38px;
                     color: $sd-ivory;
                     font-size: 22px;
                     @media (max-width: $screen-mobile) {
-                        display: block;
-                        width: 100%;
+                        width: auto;
                         padding-bottom: 5px;
                     }
                 }
@@ -374,9 +388,10 @@ export default {
                     width: calc(100% - 40px);
                     vertical-align: middle;
                     @media (max-width: $screen-mobile) {
-                        text-align: left;
                         display: block;
+                        text-align: left;
                         width: 100%;
+                        padding-top: 5px;
                         padding-bottom: 5px;
                     }
                     &__gender {
@@ -389,8 +404,12 @@ export default {
                             border-radius: 10px;
                             padding-top: 5px;
                             padding-bottom: 5px;
-                            @media (max-width: $screen-mobile) {
-                              width: 75px;
+                            transition: 0.3s;
+                            &:hover {
+                                -webkit-transform: scale(1.1);
+                                -moz-transform: scale(1.1);
+                                -ms-transform: scale(1.1);
+                                transform: scale(1.1);
                             }
                             &:first-child {
                                 margin-right: 10px;
@@ -422,6 +441,13 @@ export default {
                             padding-top: 5px;
                             padding-bottom: 5px;
                             font-size: 20px;
+                            transition: 0.3s;
+                            &:hover {
+                                -webkit-transform: scale(1.1);
+                                -moz-transform: scale(1.1);
+                                -ms-transform: scale(1.1);
+                                transform: scale(1.1);
+                            }
                             &:active {
                                 background-color: $sd-blue;
                                 color: $sd-white;
@@ -452,6 +478,9 @@ export default {
                         margin-top: 5px;
                         margin-bottom: 5px;
                         cursor: pointer;
+                        @media (max-width: $screen-mobile) {
+                            margin-top: 15px;
+                        }
                         .default-image {
                             position: absolute;
                             width: 70px;
@@ -542,6 +571,9 @@ export default {
                         margin-bottom: 10px;
                     }
                     .introduce-contents {
+                        @media (max-width: $screen-mobile) {
+                            margin-bottom: 25px;
+                        }
                     }
                 }
             }
@@ -571,6 +603,13 @@ export default {
                                 text-align: left;
                                 color: $sd-ivory;
                                 font-size: 25px;
+                                transition: 0.3s;
+                                &:hover {
+                                    -webkit-transform: scale(1.1);
+                                    -moz-transform: scale(1.1);
+                                    -ms-transform: scale(1.1);
+                                    transform: scale(1.1);
+                                }
                                 @media (max-width: $screen-mobile) {
                                     // ?
                                 }
@@ -589,6 +628,13 @@ export default {
                                 text-align: right;
                                 color: $sd-ivory;
                                 font-size: 25px;
+                                transition: 0.3s;
+                                &:hover {
+                                    -webkit-transform: scale(1.1);
+                                    -moz-transform: scale(1.1);
+                                    -ms-transform: scale(1.1);
+                                    transform: scale(1.1);
+                                }
                                 @media (max-width: $screen-mobile) {
                                     // ?
                                 }
