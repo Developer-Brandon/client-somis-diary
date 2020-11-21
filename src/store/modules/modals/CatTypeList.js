@@ -22,6 +22,11 @@ const actions = {
     // commit('setCatTypeList', params)
     resolve()
   }),
+  SEARCHING_CAT_TYPE: ({ commit }) => new Promise((resolve) => {
+    // TODO: 검색의 결과로 내려온 결과 리스트들을 아래에 setting
+    commit('setCatTypeList')
+    resolve()
+  }),
   // SET_CAT_TYPE_LIST: ({ commit }, params) => new Promise((resolve) => {
   //   // TODO:
   //   commit('setCatTypeList', params)

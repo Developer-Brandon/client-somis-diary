@@ -1,5 +1,5 @@
 <template>
-  <div class="sd-diary-search-bar">
+  <div class="sd-diary-search-bar sd-block-select">
     <div class="sd-diary-search-bar__inputs">
       <div class="wrap-cat-list">
         <div class="wrap-cat-list__inner">

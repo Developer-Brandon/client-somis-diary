@@ -2,7 +2,7 @@
   <transition name="page-fade">
     <section
       v-show="values.check.lifeCycle"
-      class="write-cat-diary-modal"
+      class="write-cat-diary-modal sd-block-select"
     >
       <div class="write-cat-diary-modal__inner">
         <div class="write-cat-diary-modal__inner__left">
@@ -608,6 +608,13 @@ export default {
                             color: $sd-white;
                             border: 1px solid $sd-white;
                             border-radius: 3px;
+                            transition: 0.3s;
+                            &:hover {
+                                -webkit-transform: scale(1.1);
+                                -moz-transform: scale(1.1);
+                                -ms-transform: scale(1.1);
+                                transform: scale(1.1);
+                            }
                         }
                         &__date {
                             width: 100%;
@@ -639,6 +646,13 @@ export default {
                             margin-right: 50px;
                             color: $sd-ivory;
                             font-size: 30px;
+                            transition: 0.3s;
+                            &:hover {
+                                -webkit-transform: scale(1.1);
+                                -moz-transform: scale(1.1);
+                                -ms-transform: scale(1.1);
+                                transform: scale(1.1);
+                            }
                             @media (max-width: $screen-mobile) {
                                 width: auto;
                                 position: absolute;
@@ -652,6 +666,13 @@ export default {
                             cursor: pointer;
                             font-size: 30px;
                             color: $sd-ivory;
+                            transition: 0.3s;
+                            &:hover {
+                                -webkit-transform: scale(1.1);
+                                -moz-transform: scale(1.1);
+                                -ms-transform: scale(1.1);
+                                transform: scale(1.1);
+                            }
                             @media (max-width: $screen-mobile) {
                                 width: auto;
                                 position: absolute;

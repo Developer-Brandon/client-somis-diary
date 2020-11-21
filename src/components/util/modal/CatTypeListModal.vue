@@ -2,7 +2,7 @@
   <transition name="page-fade">
     <section
       v-show="values.check.lifeCycle"
-      class="cat-type-list-modal"
+      class="cat-type-list-modal sd-block-select"
     >
       <div class="cat-type-list-modal__inner">
         <div class="cat-type-list-modal__inner__contents">
@@ -23,32 +23,42 @@
                 maxlength="20"
                 class="name-input sd-input"
                 type="text"
+                @keyup.enter="searching"
               />
             </div>
-            <div
-              class="confirm-button"
-            >
+            <div class="wrap-searching-button">
               <button
-                class="sd-positive-button confirm"
-                @click.stop="confirm"
+                class="sd-positive-button searching"
+                @click.stop="searching"
               >
-                닫기
+                검색
               </button>
             </div>
           </div>
+
           <sd-clear-both />
           <div
             v-if="catTypeList.length === 0"
             class="no-result"
           >
             <p class="no-result__contents">
-              검색결과가 <br class="mobile-visible-block-only"/>없습니다
+              검색결과가 <br class="mobile-visible-block-only" />없습니다
             </p>
           </div>
           <div
             v-else
             class="list"
           ></div>
+          <div
+            class="confirm-button"
+          >
+            <button
+              class="sd-positive-button confirm"
+              @click.stop="confirm"
+            >
+              닫기
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -86,6 +96,13 @@ export default {
     },
   },
   methods: {
+    searching() {
+      const searchingKeyword = this.keyword
+      this.$store.dispatch('catTypeList/SEARCHING_CAT_TYPE', { searchingKeyword })
+        .then(() => {
+          // TODO: 검색하고 할일이 있다면 처리
+        })
+    },
     close() {
       this.values.check.lifeCycle = false
     },
@@ -143,16 +160,21 @@ export default {
                 height: 100%;
                 .search-bar {
                     .wrap-image {
-                        float: left;
+                        display:inline-block;
+                        line-height: 30px;
+                        vertical-align: middle;
+                        padding-right: 10px;
                         .searching-icon {
                             width: 30px !important;
                             height: 30px !important;
                         }
                     }
                     .wrap-searching-input {
-                        float: right;
-                        display: inline-block;
-                        width: calc(100% - 40px);
+                        display:inline-block;
+                        line-height: 30px;
+                        vertical-align: middle;
+                        width: calc(100% - 90px);
+                        padding-right: 10px;
                         .contents {
                             text-align: center;
                             color: $sd-ivory;
@@ -163,46 +185,57 @@ export default {
                             }
                         }
                     }
-                    .confirm-button {
-                        .confirm {
-                            position: absolute;
-                            bottom: 0;
-                            right: 0;
-                            width: 120px;
-                            height: 45px;
-                            float: right;
-                            clear: right;
-                            @media (max-width: $screen-mobile) {
-                                width: 100%;
-                                height: 50px;
-                                margin-bottom: 10px;
-                            }
+                    .wrap-searching-button {
+                        display:inline-block;
+                        width: 50px;
+                        line-height: 30px;
+                        vertical-align: middle;
+                        .searching {
+                            width: 50px;
+                            height: 33px;
                         }
                     }
                 }
                 .no-result {
                     display: block;
                     position: relative;
+                    cursor: default;
                     width: 100%;
                     height: 200px;
                     @media (max-width: $screen-mobile) {
-                      height: 240px;
+                        height: 240px;
                     }
                     &__contents {
-                      position: absolute;
-                      top: 50%;
-                      left: 50%;
-                      transform: translate(-50%, -50%);
-                      margin: 0 auto;
-                      color: $sd-ivory;
-                      font-size: 18px;
-                      text-align: center;
-                      @media (max-width: $screen-mobile) {
-                        font-size: 25px;
-                      }
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        margin: 0 auto;
+                        color: $sd-ivory;
+                        font-size: 18px;
+                        text-align: center;
+                        @media (max-width: $screen-mobile) {
+                            font-size: 25px;
+                        }
                     }
                 }
                 .list {
+                }
+                .confirm-button {
+                    .confirm {
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        width: 120px;
+                        height: 45px;
+                        float: right;
+                        clear: right;
+                        @media (max-width: $screen-mobile) {
+                            width: 100%;
+                            height: 50px;
+                            margin-bottom: 10px;
+                        }
+                    }
                 }
             }
         }
