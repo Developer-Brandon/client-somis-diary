@@ -163,8 +163,8 @@ export default {
         width: 10px;
         height: 50px;
         margin-right: 5px;
-        color: $sd-white;
-        font-weight: 700;
+        color: $sd-black;
+        font-weight: 400;
         .top {
             position: absolute;
             top: 2px;
@@ -183,6 +183,11 @@ export default {
             left: 50%;
             transform: translateX(- 50%);
         }
+    }
+
+    // @Override
+    .sd-input {
+      border: 0.5px solid $sd-black !important;
     }
 
     // @Classes

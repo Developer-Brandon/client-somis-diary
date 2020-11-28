@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="container">
+    <div class="container sd-block-select">
       <sd-header />
       <router-view />
     </div>

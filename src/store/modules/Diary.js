@@ -10,12 +10,14 @@ const state = () => ({
   title: '',
   dateTime: '',
   contents: '',
+  diaryList: [],
 })
 const getters = {
   previewCat: (state) => state.previewCat,
   title: (state) => state.title,
   dateTime: (state) => state.dateTime,
   contents: (state) => state.contents,
+  diaryList: (state) => state.diaryList,
 }
 const mutations = {
   setPreviewCat(state, params) {
@@ -35,6 +37,56 @@ const mutations = {
     state.title = ''
     state.dateTime = ''
     state.contents = ''
+  },
+  setDiaryList(state, params) {
+    console.log(params)
+    state.diaryList = [{
+      index: 0,
+      title: '첫번째 일기입니다',
+      contents: '첫번째 일기의 글입니다',
+      registeredDate: '2020-01-01',
+    }, {
+      index: 1,
+      title: '두번째 일기입니다',
+      contents: '두번째 공지사항의 글입니다',
+      registeredDate: '2020-01-01',
+    },
+    {
+      index: 2,
+      title: '세번째 일기입니다',
+      contents: '세번째 공지사항의 글입니다',
+      registeredDate: '2020-01-01',
+    },
+    {
+      index: 3,
+      title: '네번째 일기입니다',
+      contents: '네번째 공지사항의 글입니다',
+      registeredDate: '2020-01-01',
+    },
+    {
+      index: 4,
+      title: '다섯번째 일기입니다',
+      contents: '다섯번째 공지사항의 글입니다',
+      registeredDate: '2020-01-01',
+    },
+    {
+      index: 5,
+      title: '여섯번째 일기입니다',
+      contents: '여섯번째 공지사항의 글입니다',
+      registeredDate: '2020-01-01',
+    },
+    {
+      index: 6,
+      title: '일곱번째 일기입니다',
+      contents: '일곱번째 공지사항의 글입니다',
+      registeredDate: '2020-01-01',
+    },
+    {
+      index: 7,
+      title: '여덟번째 일기입니다',
+      contents: '여덟번째 공지사항의 글입니다',
+      registeredDate: '2020-01-01',
+    }]
   },
 }
 const actions = {
@@ -64,7 +116,12 @@ const actions = {
     commit('', params)
     resolve()
   }),
+  CALL_DIARY_LIST: ({ commit }, params) => new Promise((resolve) => {
+    commit('setDiaryList', params)
+    resolve()
+  }),
 }
+
 export default {
   namespaced: true,
   state,
