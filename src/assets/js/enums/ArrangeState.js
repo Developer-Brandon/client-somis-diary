@@ -1,14 +1,18 @@
 export const ArrangeState = Object.freeze({
-  LIST: {
-    name: 'LIST',
+  NORMAL_TYPE: {
+    name: 'NORMAL_TYPE',
     value: 1,
   },
-  MIDDLE_LIST: {
-    name: 'MIDDLE_LIST',
+  PHOTO_TYPE: {
+    name: 'PHOTO_TYPE',
     value: 2,
   },
-  BIG_LIST: {
-    name: 'BIG_LIST',
+  CARD_TYPE: {
+    name: 'CARD_TYPE',
     value: 3,
+  },
+  MUSEUM_TYPE: {
+    name: 'MUSEUM_TYPE',
+    value: 4,
   },
 })

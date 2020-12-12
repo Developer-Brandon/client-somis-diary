@@ -13,8 +13,9 @@
 }
 
 .component-fade-enter-active, .component-fade-leave-active {
-  transition: opacity .3s ease-out;
+  transition: opacity .1s ease-in-out;
 }
+
 
 // @Slide
 .component-slide-enter {

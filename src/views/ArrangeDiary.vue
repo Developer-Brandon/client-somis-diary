@@ -13,8 +13,11 @@
       <div
         class="arrange-diary__inner sd-common-page__inner"
       >
+        <!-- -->
         <sd-opposite-arrows />
         <sd-diary-search-bar v-if="!values.check.isMobile" />
+        <!-- -->
+        <!-- Data detail select button -->
         <button
           v-else
           class="sd-negative-reversal-button mobile-searching"
@@ -22,6 +25,8 @@
           상세조회하기
         </button>
         <!-- Data load is finished -->
+        <!-- Arrange Type -->
+        <sd-arrange-type-button class="arrange-diary-type-button-fade-in" />
         <div
           v-if="values.check.dataLoadedEnd"
           class="when-browser-can-load-diary-list"
@@ -65,8 +70,10 @@
 
 <script>
 import { HeaderState } from '@/assets/js/enums/HeaderState'
+import { ArrangeState } from '@/assets/js/enums/ArrangeState'
 import SdOppositeArrows from '@/components/util/SdOppositeArrows.vue'
 import SdDiarySearchBar from '@/components/arrangeDiary/SdDiarySearchBar.vue'
+import SdArrangeTypeButton from '@/components/arrangeDiary/SdArrangeTypeButton.vue'
 import MatchMedia from '@/assets/js/util/resolution/matchMedia'
 
 let matchMedia
@@ -76,6 +83,7 @@ export default {
   components: {
     SdOppositeArrows,
     SdDiarySearchBar,
+    SdArrangeTypeButton,
   },
   data() {
     return {
@@ -88,6 +96,7 @@ export default {
       },
       enums: {
         headerState: HeaderState,
+        arrangeState: ArrangeState,
       },
     }
   },
@@ -156,7 +165,11 @@ export default {
 <style lang="scss" scoped>
     // @Local Util
     .diary-list-fade-in {
-        @include primary-fade-in(2);
+      @include primary-fade-in(2);
+    }
+
+    .arrange-diary-type-button-fade-in {
+      @include primary-fade-in(2);
     }
 
     // @Classes
@@ -168,11 +181,11 @@ export default {
             height: 100vh;
             @media (max-width: $screen-mobile) {
                 padding: 20px !important;
-                overflow-y: scroll;
+                overflow: inherit;
             }
             .when-browser-can-load-diary-list {
                 width: auto;
-                margin: 50px;
+                margin: 20px 50px 50px 50px;
                 @media (max-width: $screen-mobile) {
                     margin: 15px auto 40px auto;
                 }
@@ -188,7 +201,7 @@ export default {
                         line-height: 50px;
                         cursor: pointer;
                         transition: 0.4s;
-                        background-color: $sd-ivory;
+                        background-color: $sd-white;
                         border-bottom: 2px solid $sd-gray;
                         &:last-child {
                             border-bottom: none;

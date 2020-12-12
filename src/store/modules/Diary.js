@@ -10,6 +10,7 @@ const state = () => ({
   title: '',
   dateTime: '',
   contents: '',
+  diaryListType: '',
   diaryList: [],
 })
 const getters = {
@@ -17,6 +18,7 @@ const getters = {
   title: (state) => state.title,
   dateTime: (state) => state.dateTime,
   contents: (state) => state.contents,
+  diaryListType: (state) => state.diaryListType,
   diaryList: (state) => state.diaryList,
 }
 const mutations = {
@@ -37,6 +39,9 @@ const mutations = {
     state.title = ''
     state.dateTime = ''
     state.contents = ''
+  },
+  setDiaryListType(state, params) {
+    state.diaryListType = params.diaryListType
   },
   setDiaryList(state, params) {
     console.log(params)
@@ -114,6 +119,10 @@ const actions = {
   }),
   CLEAR_ALL_DATA: ({ commit }, params) => new Promise((resolve) => {
     commit('', params)
+    resolve()
+  }),
+  SET_DIARY_LIST_TYPE: ({ commit }, params) => new Promise((resolve) => {
+    commit('setDiaryListType', params)
     resolve()
   }),
   CALL_DIARY_LIST: ({ commit }, params) => new Promise((resolve) => {
