@@ -8,6 +8,7 @@ import login from './modules/Login'
 import notice from './modules/Notice'
 import cat from './modules/Cat'
 import diary from './modules/Diary'
+import arrangeDiary from './modules/ArrangeDiary'
 
 import catTypeList from './modules/modals/CatTypeList'
 
@@ -23,6 +24,7 @@ const entryPointOfStore = () => new Vuex.Store({
     notice,
     cat,
     diary,
+    arrangeDiary,
     catTypeList,
   },
 })

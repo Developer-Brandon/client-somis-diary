@@ -1,5 +1,5 @@
 <template>
-  <div class="sd-diary-search-bar sd-block-select">
+  <div class="sd-diary-search-bar">
     <div class="sd-diary-search-bar__inputs">
       <div class="wrap-cat-list">
         <div class="wrap-cat-list__inner">
@@ -46,7 +46,7 @@
             <span class="bottom">목</span>
           </div>
           <input
-            v-model="diaryTitle"
+            v-model="searchDiaryTitle"
             class="diary-title sd-input"
             placeholder="제목을 입력해주세요"
             type="text"
@@ -60,7 +60,7 @@
             <span class="bottom">용</span>
           </div>
           <input
-            v-model="diaryContents"
+            v-model="searchDiaryContents"
             class="diary-contents sd-input"
             placeholder="내용을 입력해주세요"
             type="text"
@@ -79,7 +79,7 @@
         <div class="wrap-search-button">
           <button
             class="search-button sd-negative-reversal-button"
-            @click="search"
+            @click="clickSearchButton"
           >
             검색
           </button>
@@ -93,6 +93,7 @@
 <script>
 import RefreshButton from '@/components/util/RefreshButton.vue'
 import SdClearBoth from '@/components/util/SdClearBoth.vue'
+import { EventBus } from '@/assets/js/plugin/eventBus'
 
 export default {
   name: 'SdDairySearchBar',
@@ -101,55 +102,55 @@ export default {
     SdClearBoth,
   },
   computed: {
-    startDateTime: {
-      set(startDateTime) {
-        console.log(startDateTime)
+    selectedCat() {
+      return this.$store.getters['arrangeDiary/selectedCatName']
+    },
+    startDateTime() {
+      return this.$store.getters['arrangeDiary/startDateTime']
+    },
+    endDateTime() {
+      return this.$store.getters['arrangeDiary/endDateTime']
+    },
+    searchDiaryTitle: {
+      set(searchDiaryTitle) {
+        this.$store.dispatch('arrangeDiary/SET_SEARCH_DIARY_TITLE', { searchDiaryTitle })
       },
       get() {
-        return ''
+        return this.$store.getters['arrangeDiary/searchDiaryTitle']
       },
     },
-    endDateTime: {
-      set(endDateTime) {
-        console.log(endDateTime)
+    searchDiaryContents: {
+      set(searchDiaryContents) {
+        this.$store.dispatch('arrangeDiary/SET_SEARCH_DIARY_CONTENTS', { searchDiaryContents })
       },
       get() {
-        return ''
+        return this.$store.getters['arrangeDiary/searchDiaryContents']
       },
     },
-    selectedCat: {
-      set(selectedCatId) {
-        console.log(selectedCatId)
-      },
-      get() {
-        return ''
-      },
-    },
-    diaryTitle: {
-      set(diaryTitle) {
-        console.log(diaryTitle)
-      },
-      get() {
-        return ''
-      },
-    },
-    diaryContents: {
-      set(diaryContents) {
-        console.log(diaryContents)
-      },
-      get() {
-        return ''
-      },
+    arrangeListType() {
+      return this.$store.getters['arrangeDiary/arrangeListType']
     },
   },
   mounted() {
+    // TODO: Search params 비우고 특정 조건없이 일기 리스트 불러오기
+    this.clearSearchData()
+    this.clearSearchType()
   },
   methods: {
     callCatList() {
+      this.$store.dispatch('arrangeDiary/GET_CAT_LIST')
+        .then(() => {
+          EventBus.$emit('callReadCatListModal')
+        })
     },
     clearSearchData() {
+      this.$store.dispatch('arrangeDiary/CLEAR_SEARCH_DATA')
     },
-    search() {
+    clearSearchType() {
+      this.$store.dispatch('arrangeDiary/CLEAR_LIST_TYPE')
+    },
+    clickSearchButton() {
+      this.$store.dispatch('arrangeDiary/GET_DIARY_LIST_BY_VALUES')
     },
   },
 }
