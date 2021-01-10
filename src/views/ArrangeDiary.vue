@@ -192,6 +192,8 @@ export default {
                 .diary-list {
                     width: 1000px;
                     margin: 0 auto;
+                    border: 1px dotted $sd-black;
+                    border-radius: 5px;
                     @media (max-width: $screen-mobile) {
                         width: auto;
                     }

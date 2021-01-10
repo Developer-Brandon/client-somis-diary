@@ -7,18 +7,20 @@
         @mouseleave="values.state.button.normalListType = false"
         @click="clickNormalTypeList"
       >
-        <img
-          v-if="!values.state.button.normalListType"
-          class="icon common-icon-style"
-          src="@/assets/images/icons/normal-checklist-type-icon.png"
-          alt="sign-in-image"
-        />
-        <span
-          v-else-if="values.state.button.normalListType"
-          class="icon-explain"
-        >
-          NORMAL LIST
-        </span>
+        <transition name="icon-fade">
+          <img
+            v-if="!values.state.button.normalListType"
+            class="icon common-icon-style"
+            src="@/assets/images/icons/normal-checklist-type-icon.png"
+            alt="sign-in-image"
+          />
+          <p
+            v-else-if="values.state.button.normalListType"
+            class="icon-explain"
+          >
+            NORMAL LIST
+          </p>
+        </transition>
       </button>
       <button
         class="list-type__frame"
@@ -26,18 +28,20 @@
         @mouseleave="values.state.button.frameListType = false"
         @click="clickPhotoTypeList"
       >
-        <img
-          v-if="!values.state.button.frameListType"
-          class="icon common-icon-style"
-          src="@/assets/images/icons/photo-frame-list-type-icon.png"
-          alt="photo-frame-image"
-        />
-        <span
-          v-else-if="values.state.button.frameListType"
-          class="icon-explain"
-        >
-          FRAME LIST
-        </span>
+        <transition name="icon-fade">
+          <img
+            v-if="!values.state.button.frameListType"
+            class="icon common-icon-style"
+            src="@/assets/images/icons/photo-frame-list-type-icon.png"
+            alt="photo-frame-image"
+          />
+          <p
+            v-else-if="values.state.button.frameListType"
+            class="icon-explain"
+          >
+            FRAME LIST
+          </p>
+        </transition>
       </button>
       <button
         class="list-type__card"
@@ -45,18 +49,20 @@
         @mouseleave="values.state.button.cardListType = false"
         @click="clickCardTypeList"
       >
-        <img
-          v-if="!values.state.button.cardListType"
-          class="icon common-icon-style"
-          src="@/assets/images/icons/card-list-type-icon.png"
-          alt="card-list-image"
-        />
-        <span
-          v-else-if="values.state.button.cardListType"
-          class="icon-explain"
-        >
-          CARD LIST
-        </span>
+        <transition name="icon-fade">
+          <img
+            v-if="!values.state.button.cardListType"
+            class="icon common-icon-style"
+            src="@/assets/images/icons/card-list-type-icon.png"
+            alt="card-list-image"
+          />
+          <p
+            v-else-if="values.state.button.cardListType"
+            class="icon-explain"
+          >
+            CARD LIST
+          </p>
+        </transition>
       </button>
       <button
         class="list-type__museum"
@@ -64,18 +70,20 @@
         @mouseleave="values.state.button.museumListType = false"
         @click="clickMuseumTypeList"
       >
-        <img
-          v-if="!values.state.button.museumListType"
-          class="icon common-icon-style"
-          src="@/assets/images/icons/museum-list-type-icon.png"
-          alt="museum-list-image"
-        />
-        <span
-          v-else-if="values.state.button.museumListType"
-          class="icon-explain"
-        >
-          MUSEUM LIST
-        </span>
+        <transition name="icon-fade">
+          <img
+            v-if="!values.state.button.museumListType"
+            class="icon common-icon-style"
+            src="@/assets/images/icons/museum-list-type-icon.png"
+            alt="museum-list-image"
+          />
+          <p
+            v-else-if="values.state.button.museumListType"
+            class="icon-explain"
+          >
+            MUSEUM LIST
+          </p>
+        </transition>
       </button>
     </section>
     <section class="button-type mobile-visible-block-only">
@@ -144,62 +152,75 @@ export default {
 <style lang="scss" scoped>
     // @Local Utils
     .common-icon-style {
-        display: inline-block;
         width: 14px;
         height: 14px;
-        transition: 0.3s;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .icon-explain {
-        display: inline-block;
         font-size: 14px;
+        line-height: 14px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 
     // @Classes
     .wrap-arrange-type {
         width: 1000px;
-        padding-top: 15px;
         margin: 0 auto;
         @media (max-width: $screen-mobile) {
-          width: auto;
+            width: auto;
         }
         .list-type {
             width: 100%;
-            height: 40px;
+            height: 41px;
+            border: 1px solid $sd-black;
+            border-radius: 3px;
+            background-color: $sd-white;
             &__normal {
                 border: 0;
                 width: 25%;
                 height: 40px;
-                background-color: $sd-white;
+                margin-bottom: -5px;
+                position: relative;
             }
             &__frame {
                 border: 0;
                 width: 25%;
                 height: 40px;
-                background-color: $sd-white;
+                margin-bottom: -5px;
+                position: relative;
             }
             &__card {
                 border: 0;
                 width: 25%;
                 height: 40px;
-                background-color: $sd-white;
+                margin-bottom: -5px;
+                position: relative;
             }
             &__museum {
                 border: 0;
                 width: 25%;
                 height: 40px;
-                background-color: $sd-white;
+                margin-bottom: -5px;
+                position: relative;
             }
         }
         .button-type {
-          box-shadow: 0 5px 17px -7px rgba(0, 0, 0, 0.75);
-          .change-arrange-type {
-            @media (max-width: $screen-mobile) {
-              width: 100%;
-              height: 45px;
-              font-size: 18px;
+            box-shadow: 0 5px 17px -7px rgba(0, 0, 0, 0.75);
+            .change-arrange-type {
+                color: $sd-black !important;
+                @media (max-width: $screen-mobile) {
+                    width: 100%;
+                    height: 45px;
+                    font-size: 18px;
+                }
             }
-          }
         }
     }
 </style>

@@ -99,14 +99,14 @@ export default {
             right: 0;
             margin: auto;
             //
-            width: 350px;
+            width: 315px;
             height: 275px;
             padding: 30px;
             background-color: $sd-blue;
             border-radius: 15px;
             overflow: visible;
             @media (max-width: $screen-mobile) {
-                width: 90%;
+                width: 85%;
                 overflow-x: hidden;
                 height: 275px;
             }

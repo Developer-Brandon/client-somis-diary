@@ -16,6 +16,19 @@
   transition: opacity .1s ease-in-out;
 }
 
+.icon-fade-enter, .icon-fade-leave-to {
+  opacity: 0;
+}
+
+
+.icon-fade-enter-active {
+  transition: opacity 0.5s linear;
+}
+
+.icon-fade-leave-active {
+  transition: opacity 0.1s ease;
+}
+
 
 // @Slide
 .component-slide-enter {

@@ -1,5 +1,5 @@
 const state = () => ({
-  previewCat: {
+  selectedCat: {
     name: '',
     birthday: '',
     gender: '',
@@ -14,7 +14,7 @@ const state = () => ({
   diaryList: [],
 })
 const getters = {
-  previewCat: (state) => state.previewCat,
+  selectedCat: (state) => state.selectedCat,
   title: (state) => state.title,
   dateTime: (state) => state.dateTime,
   contents: (state) => state.contents,
@@ -22,8 +22,8 @@ const getters = {
   diaryList: (state) => state.diaryList,
 }
 const mutations = {
-  setPreviewCat(state, params) {
-    state.previewCat = params.previewCat
+  setSelectedCat(state, params) {
+    state.selectedCat = params.selectedCat
   },
   setTitle(state, params) {
     state.title = params.title
@@ -95,8 +95,8 @@ const mutations = {
   },
 }
 const actions = {
-  SET_PREVIEW_CAT: ({ commit }, params) => new Promise((resolve) => {
-    commit('setPreviewCat', params)
+  SET_SELECTED_CAT: ({ commit }, params) => new Promise((resolve) => {
+    commit('setSelectedCat', params)
     resolve()
   }),
   SET_TITLE: ({ commit }, params) => new Promise((resolve) => {

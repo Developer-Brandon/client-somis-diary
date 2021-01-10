@@ -70,12 +70,6 @@
     </div>
     <div class="sd-diary-search-bar__buttons">
       <div class="sd-diary-search-bar__buttons__inner">
-        <div class="wrap-refresh-button">
-          <refresh-button
-            class="refresh-button-for-display"
-            @click="clearSearchData"
-          />
-        </div>
         <div class="wrap-search-button">
           <button
             class="search-button sd-negative-reversal-button"
@@ -91,14 +85,12 @@
 </template>
 
 <script>
-import RefreshButton from '@/components/util/RefreshButton.vue'
 import SdClearBoth from '@/components/util/SdClearBoth.vue'
 import { EventBus } from '@/assets/js/plugin/eventBus'
 
 export default {
   name: 'SdDairySearchBar',
   components: {
-    RefreshButton,
     SdClearBoth,
   },
   computed: {
@@ -143,9 +135,6 @@ export default {
           EventBus.$emit('callReadCatListModal')
         })
     },
-    clearSearchData() {
-      this.$store.dispatch('arrangeDiary/CLEAR_SEARCH_DATA')
-    },
     clearSearchType() {
       this.$store.dispatch('arrangeDiary/CLEAR_LIST_TYPE')
     },
@@ -188,22 +177,21 @@ export default {
 
     // @Override
     .sd-input {
-      border: 0.5px solid $sd-black !important;
+        border: 0.5px solid $sd-black !important;
     }
 
     // @Classes
     .sd-diary-search-bar {
         width: 100%;
-        max-width: 1200px;
+        max-width: 1000px;
         margin: 0 auto;
         padding: 30px 0;
         @media (max-width: $screen-mobile) {
-          display: none;
+            display: none;
         }
         &__inputs {
             float: left;
-            width: calc(100% - 300px);
-            padding-left: 20px;
+            width: calc(100% - 150px);
             .wrap-cat-list {
                 position: relative;
                 float: left;
@@ -264,32 +252,16 @@ export default {
         }
         &__buttons {
             float: right;
-            width: 300px;
+            width: 150px;
             display: flex;
-            justify-content: center;
+            justify-content: right;
             &__inner {
-                width: 200px;
-                display: flex;
-                .wrap-refresh-button {
-                    width: 50px;
-                    height: 50px;
-                    align-items: center;
-                    justify-content: center;
-                    position: relative;
-                    .refresh-button-for-display {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                    }
-                }
+                width: 150px;
                 .wrap-search-button {
                     width: 150px;
                     height: 50px;
-                    align-items: center;
-                    justify-content: center;
                     position: relative;
-                    transition: 0.1s;
+                    transition: 0.1s !important;
                     &:hover {
                         -webkit-transform: scale(1.1);
                         -moz-transform: scale(1.1);
@@ -298,12 +270,18 @@ export default {
                     }
                     .search-button {
                         font-size: 25px;
+                        color: $sd-black;
+                        background-color: $sd-white;
+                        border: 1px $sd-black solid;
                         width: 130px;
                         height: 50px;
                         position: absolute;
                         top: 50%;
                         left: 50%;
                         transform: translate(-50%, -50%);
+                        &:hover {
+                            font-weight: 500 !important;
+                        }
                     }
                 }
             }

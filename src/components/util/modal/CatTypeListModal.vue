@@ -42,7 +42,7 @@
             class="no-result"
           >
             <p class="no-result__contents">
-              검색결과가 <br class="mobile-visible-block-only" />없습니다
+              검색 결과가 <br />없습니다
             </p>
           </div>
           <div
@@ -144,14 +144,14 @@ export default {
             left: 0;
             right: 0;
             margin: auto;
-            width: 350px;
+            width: 315px;
             height: 350px;
             padding: 30px;
             background-color: $sd-blue;
             border-radius: 15px;
             overflow: visible;
             @media (max-width: $screen-mobile) {
-                width: 90%;
+                width: 85%;
                 overflow-x: hidden;
                 height: 400px;
             }
