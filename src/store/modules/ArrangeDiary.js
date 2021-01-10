@@ -22,7 +22,6 @@ const state = () => ({
     searchDiaryTitle: '',
     searchDiaryContents: '',
   },
-  searchDiaryTitle: '',
   arrangeDiaryList: [],
   arrangeListType: ArrangeState.NORMAL_TYPE, // NormalType 은 일반적인 게시판 리스트입니다.
 })
@@ -38,11 +37,10 @@ const mutations = {
     state.searchBarElements = params.searchBarElements
   },
   setCatList(state, params) {
-    state.searchBarElements.catList = params.searchBarElements.catList
+    state.searchBarElements.catList = params.dummyCatList
   },
   setSearchDiaryTitle(state, params) {
-    // state.searchBarElements.searchDiaryTitle = params.searchDiaryTitle
-    state.searchDiaryTitle = params.searchDiaryTitle
+    state.searchBarElements.searchDiaryTitle = params.searchDiaryTitle
   },
   setSearchDiaryContents(state, params) {
     state.searchBarElements.searchDiaryContents = params.searchDiaryContents
@@ -55,9 +53,47 @@ const mutations = {
   },
 }
 const actions = {
-  GET_CAT_LIST: ({ commit }) => new Promise((resolve) => {
+  GET_CAT_LIST: ({ commit }, params) => new Promise((resolve) => {
+    console.log(params)
     // TODO: Call cat list api
-    commit('setCatList', {})
+    const dummyCatList = [{
+      index: 1,
+      name: '소미',
+    }, {
+      index: 2,
+      name: '꼬미',
+    }, {
+      index: 3,
+      name: '수미',
+    }, {
+      index: 4,
+      name: '세미',
+    }, {
+      index: 5,
+      name: '소미',
+    }, {
+      index: 6,
+      name: '꼬미',
+    }, {
+      index: 7,
+      name: '수미',
+    }, {
+      index: 8,
+      name: '세미',
+    }, {
+      index: 9,
+      name: '소미',
+    }, {
+      index: 10,
+      name: '꼬미',
+    }, {
+      index: 11,
+      name: '수미',
+    }, {
+      index: 12,
+      name: '세미',
+    }]
+    commit('setCatList', { dummyCatList })
     resolve()
   }),
   SET_SEARCH_DIARY_TITLE: ({ commit }, params) => new Promise((resolve) => {

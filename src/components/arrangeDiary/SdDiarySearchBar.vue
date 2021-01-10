@@ -9,6 +9,7 @@
             <span class="bottom">이</span>
           </div>
           <input
+            onmousedown="return false"
             class="cat-list sd-input"
             placeholder="선택해주세요"
             type="text"
@@ -26,6 +27,7 @@
           </div>
           <input
             v-model="startDateTime"
+            onmousedown="return false"
             class="start-date-time sd-input"
             placeholder="2020-01-01"
             type="text"
@@ -33,6 +35,7 @@
           <span class="middle-dash"></span>
           <input
             v-model="endDateTime"
+            onmousedown="return false"
             class="end-date-time sd-input"
             placeholder="2022-01-01"
             type="text"
@@ -49,7 +52,9 @@
             v-model="searchDiaryTitle"
             class="diary-title sd-input"
             placeholder="제목을 입력해주세요"
+            maxlength="15"
             type="text"
+            @keyup.enter="searching"
           />
         </div>
       </div>
@@ -63,7 +68,9 @@
             v-model="searchDiaryContents"
             class="diary-contents sd-input"
             placeholder="내용을 입력해주세요"
+            maxlength="20"
             type="text"
+            @keyup.enter="searching"
           />
         </div>
       </div>
@@ -75,7 +82,7 @@
             class="search-button sd-negative-reversal-button"
             @click="clickSearchButton"
           >
-            검색
+            검 색
           </button>
         </div>
       </div>
@@ -125,21 +132,29 @@ export default {
   },
   mounted() {
     // TODO: Search params 비우고 특정 조건없이 일기 리스트 불러오기
-    this.clearSearchData()
-    this.clearSearchType()
+    // this.$nextTick(() => {
+    //   this.clearSearchData()
+    //   this.clearSearchType()
+    // })
   },
   methods: {
     callCatList() {
       this.$store.dispatch('arrangeDiary/GET_CAT_LIST')
         .then(() => {
-          EventBus.$emit('callReadCatListModal')
+          EventBus.$emit('callMyCatListModal')
         })
+    },
+    clearSearchData() {
+      //
     },
     clearSearchType() {
       this.$store.dispatch('arrangeDiary/CLEAR_LIST_TYPE')
     },
-    clickSearchButton() {
+    searching() {
       this.$store.dispatch('arrangeDiary/GET_DIARY_LIST_BY_VALUES')
+    },
+    clickSearchButton() {
+      this.searching()
     },
   },
 }
@@ -269,11 +284,11 @@ export default {
                         transform: scale(1.1);
                     }
                     .search-button {
+                        width: 150px;
                         font-size: 25px;
                         color: $sd-black;
                         background-color: $sd-white;
                         border: 1px $sd-black solid;
-                        width: 130px;
                         height: 50px;
                         position: absolute;
                         top: 50%;

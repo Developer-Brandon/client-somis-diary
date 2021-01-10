@@ -178,6 +178,7 @@ export default {
         }
         .list-type {
             width: 100%;
+            max-width: 1000px;
             height: 41px;
             border: 1px solid $sd-black;
             border-radius: 3px;
@@ -214,6 +215,7 @@ export default {
         .button-type {
             box-shadow: 0 5px 17px -7px rgba(0, 0, 0, 0.75);
             .change-arrange-type {
+                margin-top: 10px;
                 color: $sd-black !important;
                 @media (max-width: $screen-mobile) {
                     width: 100%;

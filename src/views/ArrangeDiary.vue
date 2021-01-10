@@ -1,9 +1,9 @@
 <template>
   <div>
     <!-- 만약, 이 라우터에서 일기를 쓴 경우에는 일기목록 페이지 data 들을 init 시켜주어야함 -->
+    <!-- onmousedown="return false" 부분적으로 쓸 것... -->
     <section
       v-show="values.check.lifeCycle"
-      onmousedown="return false"
       class="arrange-diary sd-common-page"
       :class="{
         'sd-wide-width': headerState === enums.headerState.WIDE,
@@ -185,7 +185,7 @@ export default {
             }
             .when-browser-can-load-diary-list {
                 width: auto;
-                margin: 20px 50px 50px 50px;
+                margin: 20px auto;
                 @media (max-width: $screen-mobile) {
                     margin: 15px auto 40px auto;
                 }
@@ -199,6 +199,7 @@ export default {
                     }
                     &__item {
                         padding: 10px 4px;
+                        width: 100%;
                         height: 70px;
                         line-height: 50px;
                         cursor: pointer;
