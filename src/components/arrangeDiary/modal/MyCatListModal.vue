@@ -66,9 +66,6 @@ export default {
         .then(() => {
           this.close()
         })
-        .catch((error) => {
-          console.log(error)
-        })
     },
     clickClose() {
       this.close()

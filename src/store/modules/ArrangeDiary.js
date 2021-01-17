@@ -1,6 +1,14 @@
 import { ArrangeState } from '@/assets/js/enums/ArrangeState'
 
 const state = () => ({
+  selectedCat: {
+    name: '',
+    birthday: '',
+    gender: '',
+    species: '',
+    kg: '',
+    introduce: '',
+  },
   searchBarElements: {
     catList: [
       // {
@@ -26,6 +34,7 @@ const state = () => ({
   arrangeListType: ArrangeState.NORMAL_TYPE, // NormalType 은 일반적인 게시판 리스트입니다.
 })
 const getters = {
+  selectedCat: (state) => state.selectedCat,
   searchBarElements: (state) => state.searchBarElements,
   catList: (state) => state.searchBarElements.catList,
   arrangeListType: (state) => state.arrangeListType,
@@ -50,6 +59,9 @@ const mutations = {
   },
   clearListType(state) {
     state.arrangeListType = ArrangeState.NORMAL_TYPE
+  },
+  setSelectedCat(state, params) {
+    state.selectedCat = params.selectedCat
   },
 }
 const actions = {
@@ -114,6 +126,10 @@ const actions = {
   }),
   CLEAR_LIST_TYPE: ({ commit }) => new Promise((resolve) => {
     commit('clearListType')
+    resolve()
+  }),
+  SET_SELECTED_CAT: ({ commit }, params) => new Promise((resolve) => {
+    commit('setSelectedCat', params)
     resolve()
   }),
 }

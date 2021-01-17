@@ -22,9 +22,6 @@ const getters = {
   diaryList: (state) => state.diaryList,
 }
 const mutations = {
-  setSelectedCat(state, params) {
-    state.selectedCat = params.selectedCat
-  },
   setTitle(state, params) {
     state.title = params.title
   },
@@ -95,10 +92,6 @@ const mutations = {
   },
 }
 const actions = {
-  SET_SELECTED_CAT: ({ commit }, params) => new Promise((resolve) => {
-    commit('setSelectedCat', params)
-    resolve()
-  }),
   SET_TITLE: ({ commit }, params) => new Promise((resolve) => {
     commit('setTitle', params)
     resolve()
