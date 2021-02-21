@@ -20,13 +20,17 @@
         <!-- Data detail select button -->
         <button
           v-else
+          id="mobile-searching-button"
           class="sd-negative-reversal-button mobile-searching"
         >
           상세조회하기
         </button>
         <!-- Data load is finished -->
         <!-- Arrange Type -->
-        <sd-arrange-type-button class="arrange-diary-type-button-fade-in" />
+        <sd-arrange-type-button
+          id="arrange-type-select-button"
+          class="arrange-diary-type-button-fade-in mobile-selecting"
+        />
         <div
           v-if="values.check.dataLoadedEnd"
           class="when-browser-can-load-diary-list"
@@ -119,6 +123,9 @@ export default {
           this.values.check.lifeCycle = true
           this.values.check.dataLoadedEnd = true
           this.values.check.isMobile = matchMedia.isMobile
+          if (this.values.check.isMobile) {
+            this.removeButtonsEventListener()
+          }
         })
         .catch(() => {
           this.values.check.lifeCycle = true
@@ -127,6 +134,16 @@ export default {
     })
   },
   methods: {
+    removeButtonsEventListener() {
+      // 상세조회 버튼
+      document.getElementById('mobile-searching-button')
+        .removeEventListener('click')
+        .removeAttribute('class')
+        // 정렬방식변경 버튼
+      document.getElementById('arrange-type-select-button')
+        .removeEventListener('click')
+        .removeAttribute('class')
+    },
     judgeResolution() {
       return new Promise((resolve) => {
         if (matchMedia.isMobile) {
@@ -165,11 +182,11 @@ export default {
 <style lang="scss" scoped>
     // @Local Util
     .diary-list-fade-in {
-      @include primary-fade-in(2);
+        @include primary-fade-in(2);
     }
 
     .arrange-diary-type-button-fade-in {
-      @include primary-fade-in(2);
+        @include primary-fade-in(2);
     }
 
     // @Classes
@@ -247,21 +264,16 @@ export default {
                 text-align: center;
                 padding: 40px;
                 @media (max-width: $screen-mobile) {
-                    height: 200px;
+                    height: 250px;
                     text-align: center;
-                    padding: 80px 30px;
                 }
                 .wrap-error-case {
                     position: absolute;
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    @media (max-width: $screen-mobile) {
-                        position: static;
-                        top: auto;
-                        left: auto;
-                        text-align: center;
-                    }
+                    width: 300px;
+                    height: 150px;
                     .image {
                         padding-bottom: 25px;
                     }
@@ -271,10 +283,26 @@ export default {
                 }
             }
             .mobile-searching {
+              @media (max-width: $screen-mobile) {
+                width: 100%;
+                height: 45px;
+              }
+              &:hover {
                 @media (max-width: $screen-mobile) {
-                    width: 100%;
-                    height: 45px;
+                  font-weight: normal !important;
+                  -webkit-transform: unset !important;
+                  transform: unset !important;
                 }
+              }
+            }
+            #arrange-type-select-button {
+                &:hover {
+                  @media (max-width: $screen-mobile) {
+                    font-weight: normal !important;
+                    -webkit-transform: none !important;
+                    transform: none !important;
+                  }
+              }
             }
         }
     }

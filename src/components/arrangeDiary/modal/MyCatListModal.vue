@@ -15,7 +15,10 @@
           </div>
         </div>
         <div class="my-cat-list-modal__inner__contents">
-          <div class="wrap-list">
+          <div
+            id="scroll-element"
+            class="wrap-list"
+          >
             <ul
               v-for="(cat, index) in myCatList"
               :key="index"
@@ -61,6 +64,10 @@ export default {
     },
   },
   methods: {
+    moveModalScrollToTop() {
+      const scroll = document.getElementById('scroll-element')
+      scroll.scrollTop = 0
+    },
     clickCat(selectedCat) {
       this.$store.dispatch('arrangeDiary/SET_SELECTED_CAT', { selectedCat })
         .then(() => {
@@ -72,6 +79,9 @@ export default {
     },
     show() {
       this.values.check.lifeCycle = true
+      this.$nextTick(() => {
+        this.moveModalScrollToTop()
+      })
     },
     close() {
       this.values.check.lifeCycle = false
@@ -112,7 +122,7 @@ export default {
             overflow: visible;
             @media (max-width: $screen-mobile) {
                 width: 90%;
-                overflow-x: hidden;
+                overflow: hidden;
                 height: 400px;
             }
             &__header {
