@@ -1,7 +1,7 @@
 export default {
   methods: {
     getProjectTitle() {
-      return 'Somi\'s diary'
+      return '소 미 일 기'
     },
     getProjectExplain() {
       return `당신의 반려묘를 위해 기록해보세요<br />

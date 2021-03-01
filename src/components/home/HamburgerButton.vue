@@ -25,7 +25,7 @@
       @click="callWriteDiaryModal"
     >
       <span>
-        Write diary
+        일기쓰기
       </span>
     </span>
     <span
@@ -33,7 +33,7 @@
       @click="routing(enums.pageState.ARRANGE_DIARY)"
     >
       <span>
-        Arrange<br />diary
+        일기목록
       </span>
     </span>
     <span
@@ -41,7 +41,7 @@
       @click="routing(enums.pageState.NOTICE)"
     >
       <span>
-        Notice
+        공지사항
       </span>
     </span>
     <span
@@ -49,7 +49,7 @@
       @click="routing(enums.pageState.COMMUNITY)"
     >
       <span>
-        Community
+        커뮤니티
       </span>
     </span>
     <div class="slider__footer">

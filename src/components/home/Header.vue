@@ -5,7 +5,12 @@
       :class="{
         'wide': isHeaderStateWide,
         'strait': isHeaderStateStrait,
-      }">
+        'page-state-default': isPageStateDefault,
+        'page-state-arrange-diary': isPageStateArrangeDiary,
+        'page-state-notice': isPageStateNotice,
+        'page-state-community': isPageStateCommunity,
+      }"
+    >
       <div v-if="isHeaderStateWide">
         <strait-header />
       </div>
@@ -14,7 +19,8 @@
       </div>
     </div>
     <div
-      class="header__mobile mobile-visible-block-only">
+      class="header__mobile mobile-visible-block-only"
+    >
       <hamburger-button />
     </div>
   </section>
@@ -28,6 +34,8 @@ import WideHeader from '@/components/home/WideHeader.vue'
 //
 import { HeaderState } from '@/assets/js/enums/HeaderState'
 import { PageState } from '@/assets/js/enums/PageState'
+//
+import { EventBus } from '@/assets/js/plugin/eventBus'
 
 export default {
   name: 'Header',
@@ -41,6 +49,10 @@ export default {
       values: {
         check: {
           lifeCycle: false,
+          isPageStateDefault: false,
+          isPageStateArrangeDiary: false,
+          isPageStateNotice: false,
+          isPageStateCommunity: false,
         },
       },
       enums: {
@@ -50,28 +62,76 @@ export default {
     }
   },
   computed: {
+    // Auth State
+    isClientLogin() {
+      return this.$store.getters['login/isClientLogin']
+    },
+    whetherCatExist() {
+      return this.$store.getters['cat/whetherCatExist']
+    },
+    // State
     headerState() {
       return this.$store.getters['home/headerType']
     },
+    pageState() {
+      return this.$store.getters['home/pageType']
+    },
+    // Judgement between State and Enum
     isHeaderStateWide() {
       return this.headerState === this.enums.headerState.WIDE
     },
     isHeaderStateStrait() {
       return this.headerState === this.enums.headerState.STRAIT
     },
+    isPageStateDefault() {
+      return this.pageState === this.enums.pageState.DEFAULT
+    },
+    isPageStateArrangeDiary() {
+      return this.pageState === this.enums.pageState.ARRANGE_DIARY
+    },
+    isPageStateNotice() {
+      return this.pageState === this.enums.pageState.NOTICE
+    },
+    isPageStateCommunity() {
+      return this.pageState === this.enums.pageState.COMMUNITY
+    },
   },
   methods: {
-    callWriteDiaryModal() {},
+    callWriteDiaryModal() {
+      if (this.isClientLogin) {
+        if (this.whetherCatExist) {
+          EventBus.$emit('callWriteCatDiaryModal')
+        } else {
+          EventBus.$emit('callMustAddCatAnnounceModal')
+          // EventBus.$emit('callAddCatModal')
+        }
+      } else {
+        EventBus.$emit('callSignInModal')
+      }
+    },
     routing(pageEnum) {
+      const pageType = pageEnum
       switch (pageEnum) {
         case this.enums.pageState.ARRANGE_DIARY:
-          return false
+          if (this.isClientLogin) {
+            this.$store.dispatch('home/SET_PAGE_STATE', { pageType })
+            return this.$router.push('/ArrangeDiary')
+          } else {
+            return EventBus.$emit('callSignInModal')
+          }
         case this.enums.pageState.NOTICE:
-          return false
+          this.$store.dispatch('home/SET_PAGE_STATE', { pageType })
+          return this.$router.push('/Notice')
         case this.enums.pageState.COMMUNITY:
-          return false
+          this.$store.dispatch('home/SET_PAGE_STATE', { pageType })
+          return this.$router.push('/Community')
         default:
-          return false
+          this.$store.dispatch('home/SET_PAGE_STATE', { pageType })
+          if (this.$router.history.current.path !== '/') {
+            return this.$router.push('/')
+          } else {
+            return ''
+          }
       }
     },
   },
@@ -79,7 +139,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    $max-width:400px;
+    $max-width: 400px;
+    // @Local Util
+    .page-state-default {
+        background-color: $sd-blue !important;
+    }
+
+    .page-state-arrange-diary {
+        background-color: $sd-deep-gray !important;
+    }
+
+    .page-state-notice {
+        background-color: $sd-blue !important;
+    }
+
+    .page-state-question-and-answer {
+        background-color: $sd-blue !important;
+    }
 
     // @Classes
     .header {

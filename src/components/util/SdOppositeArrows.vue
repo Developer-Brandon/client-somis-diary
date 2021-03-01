@@ -1,7 +1,13 @@
 <template>
   <div
     class="opposite-arrows"
-    @click="clickHeaderChangeButton"
+    :class="{
+      'page-state-default': isPageStateDefault,
+      'page-state-arrange-diary': isPageStateArrangeDiary,
+      'page-state-notice': isPageStateNotice,
+      'page-state-community': isPageStateCommunity,
+    }"
+    @click="clickChangeHeaderStateButton"
   >
     <img
       class="opposite-arrows-image desktop-visible-block-only"
@@ -13,21 +19,53 @@
 
 <script>
 import { HeaderState } from '@/assets/js/enums/HeaderState'
+import { PageState } from '@/assets/js/enums/PageState'
 
 export default {
   name: 'SdOppositeArrows',
+  data() {
+    return {
+      enums: {
+        headerState: HeaderState,
+        pageState: PageState,
+      },
+    }
+  },
   computed: {
+    // State
     headerState() {
       return this.$store.getters['home/headerType']
     },
+    pageState() {
+      return this.$store.getters['home/pageType']
+    },
+    // Judgement between State and Enum
+    isHeaderStateWide() {
+      return this.headerState === this.enums.headerState.WIDE
+    },
+    isHeaderStateStrait() {
+      return this.headerState === this.enums.headerState.STRAIT
+    },
+    isPageStateDefault() {
+      return this.pageState === this.enums.pageState.DEFAULT
+    },
+    isPageStateArrangeDiary() {
+      return this.pageState === this.enums.pageState.ARRANGE_DIARY
+    },
+    isPageStateNotice() {
+      return this.pageState === this.enums.pageState.NOTICE
+    },
+    isPageStateCommunity() {
+      return this.pageState === this.enums.pageState.COMMUNITY
+    },
   },
   methods: {
-    clickHeaderChangeButton() {
+    clickChangeHeaderStateButton() {
       let headerType
-      if (this.headerState === HeaderState.WIDE) {
-        headerType = HeaderState.STRAIT
+      if (this.headerState === this.enums.headerState.WIDE) {
+        headerType = this.enums.headerState.STRAIT
       } else {
-        headerType = HeaderState.WIDE
+        headerType = this.enums.headerState.WIDE
       }
       this.$store.dispatch('home/SET_HEADER_STATE', { headerType })
     },
@@ -36,7 +74,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .opposite-arrows {
+  // @Local Util
+  .page-state-default {
+    background-color: $sd-blue !important;
+  }
+
+  .page-state-arrange-diary {
+    background-color: $sd-deep-gray !important;
+  }
+
+  .page-state-notice {
+    background-color: $sd-blue !important;
+  }
+
+  .page-state-question-and-answer {
+    background-color: $sd-blue !important;
+  }
+
+  // @Classes
+  .opposite-arrows {
         position: absolute;
         display: flex;
         align-items: center;

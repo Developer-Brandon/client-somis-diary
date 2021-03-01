@@ -192,7 +192,8 @@ export default {
 
     // @Override
     .sd-input {
-        border: 0.5px solid $sd-black !important;
+        // 혹시나 나중에 생각이 바뀔수도 있으니 주석처리 하겠습니다.
+        // border: 0.5px solid $sd-black !important;
     }
 
     // @Classes
@@ -251,6 +252,14 @@ export default {
                     .diary-title {
                         width: 140px;
                         height: 50px;
+                        // 일관된 UI를 위해 지워두었습니다.
+                        border: none;
+                        &:hover {
+                            border: none;
+                        }
+                        &:active {
+                            border: none;
+                        }
                     }
                 }
             }
@@ -261,6 +270,13 @@ export default {
                     .diary-contents {
                         width: 180px;
                         height: 50px;
+                        border: none;
+                        &:hover {
+                            border: none;
+                        }
+                        &:active {
+                            border: none;
+                        }
                     }
                 }
             }
@@ -288,7 +304,7 @@ export default {
                         font-size: 25px;
                         color: $sd-black;
                         background-color: $sd-white;
-                        border: 1px $sd-black solid;
+                        border: none !important;
                         height: 50px;
                         position: absolute;
                         top: 50%;

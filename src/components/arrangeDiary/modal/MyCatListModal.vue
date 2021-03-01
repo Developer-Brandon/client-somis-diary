@@ -117,7 +117,7 @@ export default {
             width: 300px;
             height: 500px;
             padding: 30px;
-            background-color: $sd-blue;
+            background-color: $sd-deep-gray;
             border-radius: 15px;
             overflow: visible;
             @media (max-width: $screen-mobile) {
@@ -149,11 +149,7 @@ export default {
                         width: 8px;
                     }
                     &::-webkit-scrollbar-thumb {
-                        background: $sd-gray;
-                        transition: 0.3s;
-                        &:hover {
-                            background: $sd-opacity-deep-gray;
-                        }
+                        background: $sd-light-gray;
                     }
                     .list {
                         cursor: default;
@@ -165,7 +161,7 @@ export default {
                             color: $sd-white;
                             &:hover {
                                 cursor: pointer;
-                                background-color: $sd-transparent-white;
+                                background-color: $sd-light-gray;
                                 transition: 0.1s;
                             }
                         }
@@ -178,8 +174,6 @@ export default {
                     &__close {
                         width: 70px;
                         height: 40px;
-                        border: 1px $sd-white solid;
-                        border-radius: 3px;
                     }
                 }
             }

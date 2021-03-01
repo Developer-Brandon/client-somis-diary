@@ -59,7 +59,6 @@
 <script>
 import { HeaderState } from '@/assets/js/enums/HeaderState'
 import { PageState } from '@/assets/js/enums/PageState'
-import { EventBus } from '@/assets/js/plugin/eventBus'
 import SdClearBoth from '@/components/util/SdClearBoth.vue'
 import AuthSection from '@/components/home/AuthSection.vue'
 
@@ -92,36 +91,10 @@ export default {
   },
   methods: {
     callWriteDiaryModal() {
-      if (this.isClientLogin) {
-        if (this.whetherCatExist) {
-          EventBus.$emit('callWriteCatDiaryModal')
-        } else {
-          EventBus.$emit('callMustAddCatAnnounceModal')
-          // EventBus.$emit('callAddCatModal')
-        }
-      } else {
-        EventBus.$emit('callSignInModal')
-      }
+      this.$parent.callWriteDiaryModal()
     },
     routing(pageEnum) {
-      switch (pageEnum) {
-        case this.enums.pageState.ARRANGE_DIARY:
-          if (this.isClientLogin) {
-            return this.$router.push('/ArrangeDiary')
-          } else {
-            return EventBus.$emit('callSignInModal')
-          }
-        case this.enums.pageState.NOTICE:
-          return this.$router.push('/Notice')
-        case this.enums.pageState.COMMUNITY:
-          return this.$router.push('/Community')
-        default:
-          if (this.$router.history.current.path !== '/') {
-            return this.$router.push('/')
-          } else {
-            return ''
-          }
-      }
+      this.$parent.routing(pageEnum)
     },
   },
 }
@@ -130,27 +103,27 @@ export default {
 <style lang="scss" scoped>
     // @Local Utils
     .title-diary-fade-in {
-      @include primary-fade-in-bottom-to-top(0.4, 0.1);
+        @include primary-fade-in-bottom-to-top(0.4, 0.1);
     }
 
     .contents-diary-fade-in {
-      @include primary-fade-in-bottom-to-top(0.4, 0.1);
+        @include primary-fade-in-bottom-to-top(0.4, 0.1);
     }
 
     .write-diary-fade-in {
-      @include primary-fade-in-bottom-to-top(0.4, 0.1);
+        @include primary-fade-in-bottom-to-top(0.4, 0.1);
     }
 
     .arrange-diary-fade-in {
-      @include primary-fade-in-bottom-to-top(0.4, 0.3);
+        @include primary-fade-in-bottom-to-top(0.4, 0.3);
     }
 
     .notice-fade-in {
-      @include primary-fade-in-bottom-to-top(0.4, 0.5);
+        @include primary-fade-in-bottom-to-top(0.4, 0.5);
     }
 
     .community-fade-in {
-      @include primary-fade-in-bottom-to-top(0.4, 0.7);
+        @include primary-fade-in-bottom-to-top(0.4, 0.7);
     }
 
     // @Classes

@@ -209,8 +209,8 @@ export default {
                 .diary-list {
                     width: 1000px;
                     margin: 0 auto;
-                    border: 1px dotted $sd-black;
-                    border-radius: 5px;
+                    // border: 1px dotted $sd-black;
+                    border-radius: 10px;
                     @media (max-width: $screen-mobile) {
                         width: auto;
                     }
@@ -230,7 +230,7 @@ export default {
                             padding: 10px;
                         }
                         &:hover {
-                            border-left: 5px solid $sd-blue;
+                            border-left: 5px solid $sd-light-gray;
                             background-color: $sd-transparent-white;
                         }
                         &:hover .notice-list__item__left-side {
