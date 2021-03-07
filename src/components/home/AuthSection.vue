@@ -8,10 +8,16 @@
       class="login-menu__log-out"
     >
       <div v-if="headerState === enums.headerState.WIDE">
-        <p class="sign-in-fade-in" @click="callSignInModal">
+        <p
+          class="sign-in-fade-in"
+          @click="callSignInModal"
+        >
           가입하기
         </p>
-        <p class="sign-up-fade-in" @click="callSignUpModal">
+        <p
+          class="sign-up-fade-in"
+          @click="callSignUpModal"
+        >
           로그인
         </p>
       </div>
@@ -35,7 +41,10 @@
       class="login-menu__log-in"
     >
       <div v-if="headerState === enums.headerState.WIDE">
-        <p class="sign-out-fade-in" @click="callSignOut">
+        <p
+          class="sign-out-fade-in"
+          @click="callSignOut"
+        >
           로그아웃
         </p>
       </div>

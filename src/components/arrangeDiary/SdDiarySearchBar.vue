@@ -82,7 +82,7 @@
             class="search-button sd-negative-reversal-button"
             @click="clickSearchButton"
           >
-            검 색
+            찾 기
           </button>
         </div>
       </div>

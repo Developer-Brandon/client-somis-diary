@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
 const developer = 'Brandon Lee'
 const realName = 'Dokyeom Lee'
 const email = 'lovefinance@naver.com'
@@ -15,8 +16,10 @@ module.exports = {
       },
     },
   },
+
   devServer: { disableHostCheck: true },
   productionSourceMap: false,
+
   configureWebpack: {
     module: {
       rules: [
@@ -56,4 +59,8 @@ module.exports = {
       concatenateModules: true,
     },
   },
+
+  transpileDependencies: [
+    'vuetify',
+  ],
 }

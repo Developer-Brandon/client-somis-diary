@@ -44,7 +44,7 @@
             @click="callSignInModal"
           >
             로그인
-         </p>
+          </p>
           <p
             class="close-button"
             @click="close"

@@ -141,6 +141,12 @@ export default {
             }
             .sub-title {
                 text-align: center;
+                background-image: url('~@/assets/images/sketch/yellow-sketch.png');
+                background-repeat: no-repeat;
+                background-size: 690px 150px;
+                background-position: top center;
+                width: 100%;
+                height: 300px;
                 @media (max-width: $screen-mobile) {
                     text-align: center;
                     margin-right: 0;
@@ -148,10 +154,12 @@ export default {
                 p {
                     color: $sd-ivory;
                     text-shadow: -1px 0 $sd-yellow, 0 1px $sd-yellow, 1px 0 $sd-yellow, 0 -1px $sd-yellow;
-                    font-size: 25px;
-                    font-weight: 700;
-                    line-height: 40px;
-                    letter-spacing: 1px;
+                    font-size: 21px;
+                    font-weight: 500;
+                    line-height: 30px;
+                    letter-spacing: -0.2px;
+                    margin-top: 35px;
+                    padding-top: 23px;
                     &:hover {
                         // ?
                     }
