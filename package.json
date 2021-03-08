@@ -11,9 +11,11 @@
     "prod-local": "PORT=4004 NODE_ENV=local vue-cli-service serve --mode production --open"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cheero": "0.0.1",
     "core-js": "^3.6.5",
+    "deepmerge": "^4.2.2",
+    "fibers": "^5.0.0",
     "jquery": "^3.5.1",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.20",
@@ -57,7 +59,7 @@
     "node-sass": "^4.12.0",
     "postcss-loader": "^4.0.1",
     "sass": "^1.32.0",
-    "sass-loader": "^10.0.0",
+    "sass-loader": "^8.0.0",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
     "vue-cli-plugin-vuetify": "~2.2.2",

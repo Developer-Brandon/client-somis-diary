@@ -83,7 +83,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    // @Classes
+    // @Classes;
     .home {
         position: relative;
         &__inner {
@@ -161,7 +161,6 @@ export default {
                     margin-top: 35px;
                     padding-top: 23px;
                     &:hover {
-                        // ?
                     }
                     @media (max-width: $screen-mobile) {
                         letter-spacing: 0.5px;

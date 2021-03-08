@@ -76,7 +76,7 @@ export default {
         font-size: 20px !important;
     }
 
-    // @Classes
+    // @Classes;
     .sd-simple-modal {
         position: fixed;
         z-index: 1;
@@ -98,7 +98,6 @@ export default {
             left: 0;
             right: 0;
             margin: auto;
-            //
             width: 315px;
             height: 275px;
             padding: 30px;

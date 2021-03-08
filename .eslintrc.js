@@ -48,6 +48,7 @@ module.exports = {
     'no-lonely-if': 'off',
     'class-methods-use-this': 'off',
     'import/prefer-default-export': 'off',
+    'no-unresolved': 'off',
     'no-param-reassign': 'off',
     'vue/valid-v-model': 'off',
     'vue/no-v-html': 'off',

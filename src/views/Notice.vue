@@ -55,7 +55,6 @@ export default {
 <style lang="scss" scoped>
   .notice {
     &__inner {
-      //
     }
   }
 </style>

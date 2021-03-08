@@ -167,7 +167,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    // @Classes
+    // @Classes;
     .cat-add-modal {
         position: fixed;
         z-index: 1;
@@ -189,7 +189,6 @@ export default {
             left: 0;
             right: 0;
             margin: auto;
-            //
             width: 350px;
             height: 610px;
             padding: 30px;
@@ -387,7 +386,6 @@ export default {
                                 color: $sd-ivory;
                                 font-size: 25px;
                                 @media (max-width: $screen-mobile) {
-                                    // ?
                                 }
                             }
                         }
@@ -405,7 +403,6 @@ export default {
                                 color: $sd-ivory;
                                 font-size: 25px;
                                 @media (max-width: $screen-mobile) {
-                                    // ?
                                 }
                             }
                         }

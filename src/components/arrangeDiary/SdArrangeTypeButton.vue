@@ -169,7 +169,7 @@ export default {
         transform: translate(-50%, -50%);
     }
 
-    // @Classes
+    // @Classes;
     .wrap-arrange-type {
         width: 1000px;
         margin: 0 auto;
@@ -180,8 +180,8 @@ export default {
             width: 100%;
             max-width: 1000px;
             height: 41px;
-            // 혹시 나중에 마음이 바뀔수도 있으니 주석 처리 하겠습니다.
-            // border: 1px solid $sd-black;
+            /* 혹시 나중에 마음이 바뀔수도 있으니 주석 처리 하겠습니다.
+            border: 1px solid $sd-black; */
             border-radius: 3px;
             background-color: $sd-white;
             &__normal {

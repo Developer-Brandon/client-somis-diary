@@ -122,7 +122,7 @@ export default {
         font-size: 20px !important;
     }
 
-    // @Classes
+    // @Classes;
     .cat-type-list-modal {
         position: fixed;
         z-index: 1;

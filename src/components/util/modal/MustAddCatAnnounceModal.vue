@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    // @Classes
+    // @Classes;
     .wrap-cat-add-announce-modal {
         position: fixed;
         z-index: 1;
@@ -95,7 +95,6 @@ export default {
             left: 0;
             right: 0;
             margin: auto;
-            //
             width: 500px;
             height: 275px;
             padding: 30px;

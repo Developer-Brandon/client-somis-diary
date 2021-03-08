@@ -330,7 +330,7 @@ export default {
         color: $sd-red !important;
     }
 
-    // @Classes
+    // @Classes;
     .cat-add-modal {
         position: fixed;
         z-index: 1;
@@ -352,7 +352,6 @@ export default {
             left: 0;
             right: 0;
             margin: auto;
-            //
             width: 350px;
             height: 610px;
             padding: 30px;
@@ -596,7 +595,6 @@ export default {
                             left: 5px;
                             bottom: 5px;
                             @media (max-width: $screen-mobile) {
-                                // ?
                             }
                             .close-button {
                                 cursor: pointer;
@@ -611,7 +609,6 @@ export default {
                                     transform: scale(1.1);
                                 }
                                 @media (max-width: $screen-mobile) {
-                                    // ?
                                 }
                             }
                         }
@@ -621,7 +618,6 @@ export default {
                             right: 5px;
                             bottom: 5px;
                             @media (max-width: $screen-mobile) {
-                                // ?
                             }
                             .finish-button {
                                 cursor: pointer;
@@ -636,7 +632,6 @@ export default {
                                     transform: scale(1.1);
                                 }
                                 @media (max-width: $screen-mobile) {
-                                    // ?
                                 }
                             }
                         }

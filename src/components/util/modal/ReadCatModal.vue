@@ -116,7 +116,7 @@ export default {
         opacity: 0.5;
     }
 
-    // @Classes
+    // @Classes;
     .cat-type-list-modal {
         position: fixed;
         z-index: 1;

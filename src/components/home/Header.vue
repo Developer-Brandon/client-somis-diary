@@ -157,7 +157,7 @@ export default {
         background-color: $sd-blue !important;
     }
 
-    // @Classes
+    // @Classes;
     .header {
         &__pc {
             position: relative;
@@ -193,7 +193,6 @@ export default {
                 margin: 0 auto;
                 padding: 0 20px;
             }
-            // Hamburger button(slider) was imported
         }
     }
 </style>

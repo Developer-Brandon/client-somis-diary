@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    // @Classes
+    // @Classes;
     .wrap-sign-up-modal {
       position: fixed;
       z-index: 1;
@@ -123,7 +123,6 @@ export default {
         left: 0;
         right: 0;
         margin: auto;
-        //
         width: 500px;
         height: 300px;
         padding: 30px;

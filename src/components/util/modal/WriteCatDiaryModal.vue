@@ -309,7 +309,7 @@ export default {
         color: $sd-ivory !important;
     }
 
-    // @Classes
+    // @Classes;
     .write-cat-diary-modal {
         position: fixed;
         z-index: 1;

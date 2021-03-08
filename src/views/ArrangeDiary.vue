@@ -189,7 +189,7 @@ export default {
         @include primary-fade-in(2);
     }
 
-    // @Classes
+    // @Classes;
     .arrange-diary {
         overflow-y: hidden;
         background-color: rgba(0, 0, 0, 0.1) !important;
@@ -209,7 +209,6 @@ export default {
                 .diary-list {
                     width: 1000px;
                     margin: 0 auto;
-                    // border: 1px dotted $sd-black;
                     border-radius: 10px;
                     @media (max-width: $screen-mobile) {
                         width: auto;

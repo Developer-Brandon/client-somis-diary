@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div class="sd-diary-search-bar">
     <div class="sd-diary-search-bar__inputs">
       <div class="wrap-cat-list">
@@ -32,6 +32,29 @@
             placeholder="2020-01-01"
             type="text"
           />
+          <v-menu
+            v-model="menu2"
+            :close-on-content-click="false"
+            :nudge-right="40"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="date"
+                label="Picker without buttons"
+                prepend-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              v-model="date"
+              @input="menu2 = false"
+            ></v-date-picker>
+          </v-menu>
           <span class="middle-dash"></span>
           <input
             v-model="endDateTime"
@@ -100,6 +123,11 @@ export default {
   components: {
     SdClearBoth,
   },
+  data: () => ({
+    date: new Date().toISOString()
+      .substr(0, 10),
+    menu2: false,
+  }),
   computed: {
     selectedCat() {
       return this.$store.getters['arrangeDiary/selectedCatName']
@@ -192,11 +220,11 @@ export default {
 
     // @Override
     .sd-input {
-        // 혹시나 나중에 생각이 바뀔수도 있으니 주석처리 하겠습니다.
-        // border: 0.5px solid $sd-black !important;
+        /* 혹시나 나중에 생각이 바뀔수도 있으니 주석처리 하겠습니다.
+        border: 0.5px solid $sd-black !important; */
     }
 
-    // @Classes
+    // @Classes;
     .sd-diary-search-bar {
         width: 100%;
         max-width: 1000px;
@@ -252,7 +280,7 @@ export default {
                     .diary-title {
                         width: 140px;
                         height: 50px;
-                        // 일관된 UI를 위해 지워두었습니다.
+                        /* 일관된 UI를 위해 지워두었습니다. */
                         border: none;
                         &:hover {
                             border: none;

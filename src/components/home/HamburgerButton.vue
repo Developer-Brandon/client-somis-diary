@@ -199,7 +199,7 @@ export default {
         font-size: 20px;
     }
 
-    // @Classes
+    // @Classes;
     .slider {
         position: relative;
         &__header {

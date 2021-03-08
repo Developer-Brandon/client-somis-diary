@@ -55,7 +55,6 @@ export default {
 <style lang="scss" scoped>
   .community {
     &__inner {
-      //
     }
   }
 </style>

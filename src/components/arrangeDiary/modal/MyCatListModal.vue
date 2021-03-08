@@ -92,7 +92,7 @@ export default {
 
 <style lang="scss" scoped>
     // @Local Utils
-    // @Classes
+    // @Classes;
     .my-cat-list-modal {
         position: fixed;
         z-index: 1;

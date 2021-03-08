@@ -4,12 +4,13 @@ import mixin from '@/assets/js/global/mixin'
 import router from '@/router'
 import store from '@/store'
 import VueMask from 'v-mask'
+import vuetify from '@/plugins/vuetify'
 import App from './App.vue'
 
 // eslint-disable-next-line
 import '@/assets/js/global/filter'
 
-import vuetify from './plugins/vuetify'
+// path to vuetify export
 
 Vue.config.productionTip = false
 Vue.config.devtools = process.env.NODE_ENV !== 'production'

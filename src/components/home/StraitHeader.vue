@@ -126,7 +126,7 @@ export default {
         @include primary-fade-in-bottom-to-top(0.4, 0.7);
     }
 
-    // @Classes
+    // @Classes;
     .wrap-wide-header {
         .title {
             margin-bottom: 30px;

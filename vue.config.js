@@ -1,5 +1,7 @@
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+// const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const developer = 'Brandon Lee'
 const realName = 'Dokyeom Lee'
@@ -10,13 +12,11 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        data: `
-          @import "@/assets/scss/whole_style.scss";
-        `,
+        prependData: '@import "~@/assets/scss/whole_style.scss";',
       },
     },
   },
-
+  filenameHashing: false,
   devServer: { disableHostCheck: true },
   productionSourceMap: false,
 
@@ -41,6 +41,26 @@ module.exports = {
             },
           },
         },
+        // {
+        //   test: /\.vue$/,
+        //   loader: 'vue-loader',
+        // },
+        // {
+        //   test: /\.s(c|a)ss$/,
+        //   use: [
+        //     'vue-style-loader',
+        //     'css-loader',
+        //     {
+        //       loader: 'sass-loader',
+        //       options: {
+        //         // eslint-disable-next-line
+        //         implementation: require('sass'),
+        //         // eslint-disable-next-line
+        //         fiber: require('fibers'),
+        //       },
+        //     },
+        //   ],
+        // },
       ],
     },
     plugins: [
@@ -53,6 +73,8 @@ module.exports = {
         Promise: 'es6-promise',
       }),
       new CleanWebpackPlugin(),
+      // new VuetifyLoaderPlugin(),
+      // new VueLoaderPlugin(),
     ],
     optimization: {
       minimize: true,

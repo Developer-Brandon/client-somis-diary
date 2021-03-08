@@ -126,7 +126,7 @@ export default {
         @include primary-fade-in-bottom-to-top(0.6, 0.9);
     }
 
-    // @Classes
+    // @Classes;
     .login-menu {
         position: absolute;
         bottom: 50px;

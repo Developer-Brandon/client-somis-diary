@@ -91,7 +91,7 @@ export default {
     background-color: $sd-blue !important;
   }
 
-  // @Classes
+  // @Classes;
   .opposite-arrows {
         position: absolute;
         display: flex;
