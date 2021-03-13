@@ -12,7 +12,9 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        prependData: '@import "~@/assets/scss/whole_style.scss";',
+        data: `
+          @import "@/assets/scss/whole_style.scss";
+        `,
       },
     },
   },
@@ -81,8 +83,4 @@ module.exports = {
       concatenateModules: true,
     },
   },
-
-  transpileDependencies: [
-    'vuetify',
-  ],
 }
