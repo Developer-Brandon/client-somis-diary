@@ -21,7 +21,6 @@ module.exports = {
   filenameHashing: false,
   devServer: { disableHostCheck: true },
   productionSourceMap: false,
-
   configureWebpack: {
     module: {
       rules: [
