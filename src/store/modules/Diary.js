@@ -41,7 +41,7 @@ const mutations = {
     state.diaryListType = params.diaryListType
   },
   setDiaryList(state, params) {
-    console.log(params)
+    console.log('setDairyList', params)
     state.diaryList = [{
       index: 0,
       title: '첫번째 일기입니다',

@@ -1,14 +1,17 @@
 <template>
-  <section class="header">
+  <section
+    v-show="values.check.lifeCycle"
+    class="header"
+  >
     <div
       class="header__pc desktop-visible-block-only"
       :class="{
         'wide': isHeaderStateWide,
         'strait': isHeaderStateStrait,
-        'page-state-default': isPageStateDefault,
-        'page-state-arrange-diary': isPageStateArrangeDiary,
-        'page-state-notice': isPageStateNotice,
-        'page-state-community': isPageStateCommunity,
+        'page-state-default': isPageStateDefault || values.check.isPageStateDefault,
+        'page-state-arrange-diary': isPageStateArrangeDiary || values.check.isPageStateArrangeDiary,
+        'page-state-notice': isPageStateNotice || values.check.isPageStateNotice,
+        'page-state-community': isPageStateCommunity || values.check.isPageStateCommunity,
       }"
     >
       <div v-if="isHeaderStateWide">
@@ -96,6 +99,9 @@ export default {
       return this.pageState === this.enums.pageState.COMMUNITY
     },
   },
+  created() {
+    EventBus.$on('globalPageWatcher', () => this.routingPageAutomatic())
+  },
   methods: {
     callWriteDiaryModal() {
       if (this.isClientLogin) {
@@ -103,35 +109,94 @@ export default {
           EventBus.$emit('callWriteCatDiaryModal')
         } else {
           EventBus.$emit('callMustAddCatAnnounceModal')
-          // EventBus.$emit('callAddCatModal')
         }
       } else {
         EventBus.$emit('callSignInModal')
       }
     },
+    callHeaderStateForChangeArrowColor() {
+      EventBus.$emit('globalHeaderWatcher')
+    },
+    callPageStateForChangeHeaderColor() {
+      EventBus.$emit('globalHeaderColorWatcher', this.pageState)
+    },
+    routingPageAutomatic() {
+      this.routing(this.pageState)
+    },
     routing(pageEnum) {
       const pageType = pageEnum
-      switch (pageEnum) {
-        case this.enums.pageState.ARRANGE_DIARY:
+      switch (pageType.name) {
+        case 'DEFAULT':
+          this.$store.dispatch('home/SET_PAGE_STATE', { pageType })
+            .then(() => {
+              this.values.check.isPageStateDefault = true
+              this.values.check.isPageStateArrangeDiary = false
+              this.values.check.isPageStateNotice = false
+              this.values.check.isPageStateCommunity = false
+              this.values.check.lifeCycle = true
+              this.callHeaderStateForChangeArrowColor()
+              this.callPageStateForChangeHeaderColor()
+            })
+          return this.$router.push('/')
+        case 'ARRANGE_DIARY':
           if (this.isClientLogin) {
             this.$store.dispatch('home/SET_PAGE_STATE', { pageType })
+              .then(() => {
+                this.values.check.isPageStateDefault = false
+                this.values.check.isPageStateArrangeDiary = true
+                this.values.check.isPageStateNotice = false
+                this.values.check.isPageStateCommunity = false
+                this.values.check.lifeCycle = true
+                this.callHeaderStateForChangeArrowColor()
+                this.callPageStateForChangeHeaderColor()
+              })
             return this.$router.push('/ArrangeDiary')
           } else {
+            this.values.check.isPageStateDefault = false
+            this.values.check.isPageStateArrangeDiary = true
+            this.values.check.isPageStateNotice = false
+            this.values.check.isPageStateCommunity = false
+            this.values.check.lifeCycle = true
+            this.callHeaderStateForChangeArrowColor()
+            this.callPageStateForChangeHeaderColor()
             return EventBus.$emit('callSignInModal')
           }
-        case this.enums.pageState.NOTICE:
+        case 'NOTICE':
           this.$store.dispatch('home/SET_PAGE_STATE', { pageType })
+            .then(() => {
+              this.values.check.isPageStateDefault = false
+              this.values.check.isPageStateArrangeDiary = false
+              this.values.check.isPageStateNotice = true
+              this.values.check.isPageStateCommunity = false
+              this.values.check.lifeCycle = true
+              this.callHeaderStateForChangeArrowColor()
+              this.callPageStateForChangeHeaderColor()
+            })
           return this.$router.push('/Notice')
-        case this.enums.pageState.COMMUNITY:
+        case 'COMMUNITY':
           this.$store.dispatch('home/SET_PAGE_STATE', { pageType })
+            .then(() => {
+              this.values.check.isPageStateDefault = false
+              this.values.check.isPageStateArrangeDiary = false
+              this.values.check.isPageStateNotice = false
+              this.values.check.isPageStateCommunity = true
+              this.values.check.lifeCycle = true
+              this.callHeaderStateForChangeArrowColor()
+              this.callPageStateForChangeHeaderColor()
+            })
           return this.$router.push('/Community')
         default:
           this.$store.dispatch('home/SET_PAGE_STATE', { pageType })
-          if (this.$router.history.current.path !== '/') {
-            return this.$router.push('/')
-          } else {
-            return ''
-          }
+            .then(() => {
+              this.values.check.isPageStateDefault = true
+              this.values.check.isPageStateArrangeDiary = false
+              this.values.check.isPageStateNotice = false
+              this.values.check.isPageStateCommunity = false
+              this.values.check.lifeCycle = true
+              this.callHeaderStateForChangeArrowColor()
+              this.callPageStateForChangeHeaderColor()
+            })
+          return this.$router.push('/')
       }
     },
   },

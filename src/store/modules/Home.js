@@ -1,15 +1,15 @@
-import { HeaderState } from '@/assets/js/enums/HeaderState'
+// import { HeaderState } from '@/assets/js/enums/HeaderState'
 import { PageState } from '@/assets/js/enums/PageState'
 
-// TODO: 아래 두개의 state들이 중요한데, 새로고침하면 날라가는 상황이니 이 부분에 대한 대책이 필요합니다.
-// 정말 Cookie 밖에 없는건지 검토해봐야 합니다.
 const state = () => ({
-  headerType: HeaderState.WIDE,
-  pageType: PageState.DEFAULT,
+  headerType: '',
+  pageType: '',
+  heroColorHexCode: '#06468E',
 })
 const getters = {
   headerType: (state) => state.headerType,
   pageType: (state) => state.pageType,
+  heroColor: (state) => state.heroColor,
 }
 const mutations = {
   setHeaderTypeState(state, params) {
@@ -17,6 +17,27 @@ const mutations = {
   },
   setPageTypeState(state, params) {
     state.pageType = params.pageType
+  },
+  judgeHeroColor(state) {
+    switch (state.pageType) {
+      case PageState.DEFAULT:
+        state.heroColorHexCode = '#06468E'
+        break
+      case PageState.ARRANGE_DIARY:
+        state.heroColorHexCode = '#353535'
+        break
+      case PageState.NOTICE:
+        // TODO: hero color가 생기면 교체 예정입니다.
+        state.heroColorHexCode = '#06468E'
+        break
+      case PageState.COMMUNITY:
+        // TODO: hero color가 생기면 교체 예정입니다.
+        state.heroColorHexCode = '#06468E'
+        break
+      default:
+        state.heroColorHexCode = '#06468E'
+        break
+    }
   },
 }
 const actions = {
@@ -26,6 +47,7 @@ const actions = {
   }),
   SET_PAGE_STATE: ({ commit }, params) => new Promise((resolve) => {
     commit('setPageTypeState', params)
+    commit('judgeHeroColor')
     resolve()
   }),
 }

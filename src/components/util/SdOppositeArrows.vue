@@ -1,11 +1,12 @@
 <template>
   <div
+    v-show="values.check.lifeCycle"
     class="opposite-arrows"
     :class="{
-      'page-state-default': isPageStateDefault,
-      'page-state-arrange-diary': isPageStateArrangeDiary,
-      'page-state-notice': isPageStateNotice,
-      'page-state-community': isPageStateCommunity,
+      'page-state-default': isPageStateDefault || values.check.isPageStateDefault,
+      'page-state-arrange-diary': isPageStateArrangeDiary || values.check.isPageStateArrangeDiary,
+      'page-state-notice': isPageStateNotice || values.check.isPageStateNotice,
+      'page-state-community': isPageStateCommunity || values.check.isPageStateCommunity,
     }"
     @click="clickChangeHeaderStateButton"
   >
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+import { EventBus } from '@/assets/js/plugin/eventBus'
 import { HeaderState } from '@/assets/js/enums/HeaderState'
 import { PageState } from '@/assets/js/enums/PageState'
 
@@ -25,6 +27,15 @@ export default {
   name: 'SdOppositeArrows',
   data() {
     return {
+      values: {
+        check: {
+          lifeCycle: false,
+          isPageStateDefault: false,
+          isPageStateArrangeDiary: false,
+          isPageStateNotice: false,
+          isPageStateCommunity: false,
+        },
+      },
       enums: {
         headerState: HeaderState,
         pageState: PageState,
@@ -59,6 +70,13 @@ export default {
       return this.pageState === this.enums.pageState.COMMUNITY
     },
   },
+  created() {
+    EventBus.$on('globalHeaderWatcher', () => this.clickChangeHeaderStateButton())
+    EventBus.$on('globalHeaderColorWatcher', (headerType) => this.changeArrowBackgroundColor(headerType))
+  },
+  mounted() {
+    this.clickChangeHeaderStateButton()
+  },
   methods: {
     clickChangeHeaderStateButton() {
       let headerType
@@ -67,7 +85,50 @@ export default {
       } else {
         headerType = this.enums.headerState.WIDE
       }
+      //
       this.$store.dispatch('home/SET_HEADER_STATE', { headerType })
+        .then(() => {
+          this.values.check.lifeCycle = true
+        })
+    },
+    changeArrowBackgroundColor(headerType) {
+      switch (headerType.name) {
+        case 'DEFAULT':
+          this.values.check.isPageStateDefault = true
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = false
+          this.values.check.lifeCycle = true
+          return null
+        case 'ARRANGE_DIARY':
+          this.values.check.isPageStateDefault = false
+          this.values.check.isPageStateArrangeDiary = true
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = false
+          this.values.check.lifeCycle = true
+          return null
+        case 'NOTICE':
+          this.values.check.isPageStateDefault = false
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = true
+          this.values.check.isPageStateCommunity = false
+          this.values.check.lifeCycle = true
+          return null
+        case 'COMMUNITY':
+          this.values.check.isPageStateDefault = false
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = true
+          this.values.check.lifeCycle = true
+          return null
+        default:
+          this.values.check.isPageStateDefault = true
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = false
+          this.values.check.lifeCycle = true
+          return null
+      }
     },
   },
 }

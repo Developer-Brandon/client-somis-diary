@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import createPersistedState from 'vuex-persistedstate'
+
 import home from './modules/Home'
 import community from './modules/Community'
 import join from './modules/Join'
@@ -27,6 +29,9 @@ const entryPointOfStore = () => new Vuex.Store({
     arrangeDiary,
     catTypeList,
   },
+  plugins: [
+    createPersistedState({ paths: ['home', 'login'] }),
+  ],
 })
 
 export default entryPointOfStore()

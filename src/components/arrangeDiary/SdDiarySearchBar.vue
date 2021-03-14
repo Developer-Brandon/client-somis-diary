@@ -159,6 +159,9 @@ export default {
       this.$store.dispatch('arrangeDiary/CLEAR_LIST_TYPE')
     },
     searching() {
+      // TODO: 작성일 시작일 끝나는날 관련해서 validation 추가하기
+      // TODO: 제목 관련 validation 추가
+      // TODO: 내용 관련 validation 추가
       this.$store.dispatch('arrangeDiary/GET_DIARY_LIST_BY_VALUES')
     },
     clickSearchButton() {
