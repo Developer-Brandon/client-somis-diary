@@ -76,6 +76,7 @@ export default {
   },
   mounted() {
     this.clickChangeHeaderStateButton()
+    this.changeArrowBackgroundColor(this.pageState)
   },
   methods: {
     clickChangeHeaderStateButton() {
@@ -85,7 +86,6 @@ export default {
       } else {
         headerType = this.enums.headerState.WIDE
       }
-      //
       this.$store.dispatch('home/SET_HEADER_STATE', { headerType })
         .then(() => {
           this.values.check.lifeCycle = true

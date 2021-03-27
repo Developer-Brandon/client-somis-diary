@@ -65,6 +65,7 @@ export default {
     // 새로고침 시에도 UI들의 상태를 고정시켜주는 로직입니다.
     EventBus.$emit('globalPageWatcher')
     EventBus.$emit('globalHeaderWatcher')
+    EventBus.$emit('globalHeaderColorWatcher')
   },
 }
 </script>
