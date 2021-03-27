@@ -71,7 +71,7 @@ export default {
     },
   },
   created() {
-    EventBus.$on('globalHeaderWatcher', () => this.clickChangeHeaderStateButton())
+    EventBus.$on('globalHeaderTypeWatcher', () => this.clickChangeHeaderStateButton())
     EventBus.$on('globalHeaderColorWatcher', (headerType) => this.changeArrowBackgroundColor(headerType))
   },
   mounted() {
@@ -135,23 +135,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  // @Local Util
-  .page-state-default {
-    background-color: $sd-blue !important;
-  }
-
-  .page-state-arrange-diary {
-    background-color: $sd-deep-gray !important;
-  }
-
-  .page-state-notice {
-    background-color: $sd-blue !important;
-  }
-
-  .page-state-question-and-answer {
-    background-color: $sd-blue !important;
-  }
-
   // @Classes;
   .opposite-arrows {
         position: absolute;

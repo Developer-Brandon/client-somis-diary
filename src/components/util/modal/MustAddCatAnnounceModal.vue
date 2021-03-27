@@ -4,7 +4,15 @@
       v-show="values.check.lifeCycle"
       class="wrap-cat-add-announce-modal sd-block-select"
     >
-      <div class="wrap-cat-add-announce-modal__inner">
+      <div
+        class="wrap-cat-add-announce-modal__inner"
+        :class="{
+          'page-state-default': isPageStateDefault || values.check.isPageStateDefault,
+          'page-state-arrange-diary': isPageStateArrangeDiary || values.check.isPageStateArrangeDiary,
+          'page-state-notice': isPageStateNotice || values.check.isPageStateNotice,
+          'page-state-community': isPageStateCommunity || values.check.isPageStateCommunity,
+        }"
+      >
         <div class="wrap-image">
           <img
             src="@/assets/images/icons/sensitive-cat.png"
@@ -41,28 +49,99 @@
 
 <script>
 import { EventBus } from '@/assets/js/plugin/eventBus'
+import { HeaderState } from '@/assets/js/enums/HeaderState'
+import { PageState } from '@/assets/js/enums/PageState'
 
 export default {
   name: 'MustEstablishCatAnnounceModal',
   data() {
     return {
       values: {
+        check: {
+          lifeCycle: false,
+          isPageStateDefault: false,
+          isPageStateArrangeDiary: false,
+          isPageStateNotice: false,
+          isPageStateCommunity: false,
+        },
         string: {
           message: '',
         },
-        check: {
-          lifeCycle: false,
-        },
+      },
+      enums: {
+        headerState: HeaderState,
+        pageState: PageState,
       },
     }
   },
+  computed: {
+    // State
+    headerState() {
+      return this.$store.getters['home/headerType']
+    },
+    pageState() {
+      return this.$store.getters['home/pageType']
+    },
+    // Judgement between State and Enum
+    isPageStateDefault() {
+      return this.pageState === this.enums.pageState.DEFAULT
+    },
+    isPageStateArrangeDiary() {
+      return this.pageState === this.enums.pageState.ARRANGE_DIARY
+    },
+    isPageStateNotice() {
+      return this.pageState === this.enums.pageState.NOTICE
+    },
+    isPageStateCommunity() {
+      return this.pageState === this.enums.pageState.COMMUNITY
+    },
+  },
+  created() {
+    EventBus.$on('globalHeaderColorWatcher', (headerType) => this.changeModalBackgroundColor(headerType))
+  },
   methods: {
+    changeModalBackgroundColor(headerType) {
+      switch (headerType.name) {
+        case 'DEFAULT':
+          this.values.check.isPageStateDefault = true
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = false
+          return null
+        case 'ARRANGE_DIARY':
+          this.values.check.isPageStateDefault = false
+          this.values.check.isPageStateArrangeDiary = true
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = false
+          return null
+        case 'NOTICE':
+          this.values.check.isPageStateDefault = false
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = true
+          this.values.check.isPageStateCommunity = false
+          return null
+        case 'COMMUNITY':
+          this.values.check.isPageStateDefault = false
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = true
+          return null
+        default:
+          this.values.check.isPageStateDefault = true
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = false
+          return null
+      }
+    },
     close() {
       this.values.check.lifeCycle = false
     },
     show(message) {
+      // this.$nextTick(() => {
       this.values.check.lifeCycle = true
       this.values.string.message = message
+      // })
     },
     mustEstablishModal() {
       this.close()

@@ -30,6 +30,22 @@
   }
 }
 
+.page-state-default {
+  background-color: $sd-blue !important;
+}
+
+.page-state-arrange-diary {
+  background-color: $sd-deep-gray !important;
+}
+
+.page-state-notice {
+  background-color: $sd-blue !important;
+}
+
+.page-state-question-and-answer {
+  background-color: $sd-blue !important;
+}
+
 .sd-light-blue {
   color: $sd-light-blue;
 }

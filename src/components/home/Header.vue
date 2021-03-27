@@ -30,14 +30,11 @@
 </template>
 
 <script>
-//
 import HamburgerButton from '@/components/home/HamburgerButton.vue'
 import StraitHeader from '@/components/home/StraitHeader.vue'
 import WideHeader from '@/components/home/WideHeader.vue'
-//
 import { HeaderState } from '@/assets/js/enums/HeaderState'
 import { PageState } from '@/assets/js/enums/PageState'
-//
 import { EventBus } from '@/assets/js/plugin/eventBus'
 
 export default {
@@ -115,7 +112,7 @@ export default {
       }
     },
     callHeaderStateForChangeArrowColor() {
-      EventBus.$emit('globalHeaderWatcher')
+      EventBus.$emit('globalHeaderTypeWatcher')
     },
     callPageStateForChangeHeaderColor() {
       EventBus.$emit('globalHeaderColorWatcher', this.pageState)
@@ -204,23 +201,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    $max-width: 400px;
     // @Local Util
-    .page-state-default {
-        background-color: $sd-blue !important;
-    }
-
-    .page-state-arrange-diary {
-        background-color: $sd-deep-gray !important;
-    }
-
-    .page-state-notice {
-        background-color: $sd-blue !important;
-    }
-
-    .page-state-question-and-answer {
-        background-color: $sd-blue !important;
-    }
+    $max-width: 400px;
 
     // @Classes;
     .header {

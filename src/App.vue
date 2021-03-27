@@ -63,9 +63,9 @@ export default {
     //
     // Vuex 에 저장되어있는 Header 의 상태와 Page 의 상태를 판단하여
     // 새로고침 시에도 UI들의 상태를 고정시켜주는 로직입니다.
-    EventBus.$emit('globalPageWatcher')
-    EventBus.$emit('globalHeaderWatcher')
-    EventBus.$emit('globalHeaderColorWatcher')
+    EventBus.$emit('globalPageWatcher', () => {})
+    EventBus.$emit('globalHeaderTypeWatcher', () => {})
+    EventBus.$emit('globalHeaderColorWatcher', () => {})
   },
 }
 </script>

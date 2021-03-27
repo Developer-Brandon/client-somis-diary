@@ -4,7 +4,15 @@
       v-show="values.check.lifeCycle"
       class="cat-add-modal sd-block-select"
     >
-      <div class="cat-add-modal__inner">
+      <div
+        class="cat-add-modal__inner"
+        :class="{
+          'page-state-default': isPageStateDefault || values.check.isPageStateDefault,
+          'page-state-arrange-diary': isPageStateArrangeDiary || values.check.isPageStateArrangeDiary,
+          'page-state-notice': isPageStateNotice || values.check.isPageStateNotice,
+          'page-state-community': isPageStateCommunity || values.check.isPageStateCommunity,
+        }"
+      >
         <div class="wrap-information">
           <div class="profile">
             <div class="profile__inner">
@@ -94,6 +102,8 @@
 <script>
 import { EventBus } from '@/assets/js/plugin/eventBus'
 import { CatGenderState } from '@/assets/js/enums/CatGenderState'
+import { HeaderState } from '@/assets/js/enums/HeaderState'
+import { PageState } from '@/assets/js/enums/PageState'
 
 export default {
   name: 'SummaryAddedCatModal',
@@ -105,8 +115,16 @@ export default {
         },
         check: {
           lifeCycle: false,
+          isPageStateDefault: false,
+          isPageStateArrangeDiary: false,
+          isPageStateNotice: false,
+          isPageStateCommunity: false,
         },
         data: {},
+      },
+      enums: {
+        headerState: HeaderState,
+        pageState: PageState,
       },
     }
   },
@@ -129,8 +147,65 @@ export default {
     introduce() {
       return this.$store.getters['cat/introduce']
     },
+    // State
+    headerState() {
+      return this.$store.getters['home/headerType']
+    },
+    pageState() {
+      return this.$store.getters['home/pageType']
+    },
+    // Judgement between State and Enum
+    isPageStateDefault() {
+      return this.pageState === this.enums.pageState.DEFAULT
+    },
+    isPageStateArrangeDiary() {
+      return this.pageState === this.enums.pageState.ARRANGE_DIARY
+    },
+    isPageStateNotice() {
+      return this.pageState === this.enums.pageState.NOTICE
+    },
+    isPageStateCommunity() {
+      return this.pageState === this.enums.pageState.COMMUNITY
+    },
+  },
+  created() {
+    EventBus.$on('globalHeaderColorWatcher', (headerType) => this.changeModalBackgroundColor(headerType))
   },
   methods: {
+    changeModalBackgroundColor(headerType) {
+      switch (headerType.name) {
+        case 'DEFAULT':
+          this.values.check.isPageStateDefault = true
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = false
+          return null
+        case 'ARRANGE_DIARY':
+          this.values.check.isPageStateDefault = false
+          this.values.check.isPageStateArrangeDiary = true
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = false
+          return null
+        case 'NOTICE':
+          this.values.check.isPageStateDefault = false
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = true
+          this.values.check.isPageStateCommunity = false
+          return null
+        case 'COMMUNITY':
+          this.values.check.isPageStateDefault = false
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = true
+          return null
+        default:
+          this.values.check.isPageStateDefault = true
+          this.values.check.isPageStateArrangeDiary = false
+          this.values.check.isPageStateNotice = false
+          this.values.check.isPageStateCommunity = false
+          return null
+      }
+    },
     checkGender() {
       if (this.gender === CatGenderState.MAN) {
         this.values.temp.gender = '남아'
